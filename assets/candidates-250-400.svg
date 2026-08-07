@@ -1,0 +1,31 @@
+<svg viewBox="0 0 1000 624" xmlns="http://www.w3.org/2000/svg" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+<rect x="0" y="0" width="1000" height="624" fill="#232733"/>
+<text x="52" y="52" fill="#e6e6e6" font-size="27" font-weight="800">最初に決めるのは、メーカーではなく排気量。</text>
+<text x="52" y="82" fill="#e6e6e6" font-size="14.5" font-weight="700">排気量が上がると、帯ごと動く。帯の中の差は、帯と帯の間より小さい。</text>
+<text x="52" y="106" fill="#7a808c" font-size="13">メーカー公式値。力 ＝ 最大トルク ÷（車両重量 ＋ 体重60kg）。</text>
+<rect x="40" y="120" width="920" height="136" rx="7" fill="#ffffff" opacity="0.035"/>
+<text x="52" y="140" fill="#cdd2dd" font-size="15" font-weight="700">250cc</text>
+<text x="948" y="140" fill="#8b919d" font-size="13" text-anchor="end">帯の幅 0.097〜0.100（上下3%）</text>
+<text x="236" y="168" fill="#b98ae0" font-size="16" font-weight="600" text-anchor="end">YZF-R25</text>
+<rect x="254" y="152" width="386.6" height="22" rx="4" fill="#f0883a" opacity="0.9"/>
+<text x="650.6" y="169" fill="#f0883a" font-size="16" font-weight="700">0.100</text>
+<text x="236" y="230" fill="#5fcf5f" font-size="16" font-weight="600" text-anchor="end">Ninja 250</text>
+<rect x="254" y="214" width="374.7" height="22" rx="4" fill="#f0883a" opacity="0.9"/>
+<text x="638.7" y="231" fill="#f0883a" font-size="16" font-weight="700">0.097</text>
+<rect x="40" y="298" width="920" height="74" rx="7" fill="#ffffff" opacity="0.035"/>
+<text x="52" y="318" fill="#cdd2dd" font-size="15" font-weight="700">320cc</text>
+<text x="948" y="318" fill="#8b919d" font-size="13" text-anchor="end">この段は1台だけ</text>
+<text x="236" y="346" fill="#b98ae0" font-size="16" font-weight="600" text-anchor="end">YZF-R3</text>
+<rect x="254" y="330" width="504.3" height="22" rx="4" fill="#f0883a" opacity="0.9"/>
+<text x="768.3" y="347" fill="#f0883a" font-size="16" font-weight="700">0.131</text>
+<rect x="40" y="414" width="920" height="136" rx="7" fill="#ffffff" opacity="0.035"/>
+<text x="52" y="434" fill="#cdd2dd" font-size="15" font-weight="700">400cc</text>
+<text x="948" y="434" fill="#8b919d" font-size="13" text-anchor="end">帯の幅 0.149〜0.163（上下9%）</text>
+<text x="236" y="462" fill="#5fcf5f" font-size="16" font-weight="600" text-anchor="end">Ninja 400</text>
+<rect x="254" y="446" width="627.5" height="22" rx="4" fill="#f0883a" opacity="0.9"/>
+<text x="891.5" y="463" fill="#f0883a" font-size="16" font-weight="700">0.163</text>
+<text x="236" y="524" fill="#5a90e8" font-size="16" font-weight="600" text-anchor="end">CBR400R</text>
+<rect x="254" y="508" width="573.7" height="22" rx="4" fill="#f0883a" opacity="0.9"/>
+<text x="837.7" y="525" fill="#f0883a" font-size="16" font-weight="700">0.149</text>
+<text x="52" y="602" fill="#7a808c" font-size="12.5">※ピーク同士の比較。一般道で使う回転域で各車が何N·m出しているかは、どのメーカーも公表していない。</text>
+</svg>

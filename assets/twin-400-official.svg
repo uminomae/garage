@@ -1,0 +1,28 @@
+<svg viewBox="0 0 1000 524" xmlns="http://www.w3.org/2000/svg" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+<rect x="0" y="0" width="1000" height="524" fill="#232733"/>
+<text x="52" y="52" fill="#e6e6e6" font-size="27" font-weight="800">値段の順と、力の順は一致しない。</text>
+<text x="52" y="82" fill="#9aa0aa" font-size="14.5">メーカー公式値。力 ＝ 最大トルク ÷（車両重量 ＋ 体重60kg）。上から価格の高い順。</text>
+<text x="250" y="132" fill="#5a90e8" font-size="17" font-weight="600" text-anchor="end">CBR400R</text>
+<text x="250" y="154" fill="#7fe39a" font-size="14" font-weight="700" text-anchor="end">100.0万円</text>
+<rect x="268" y="114" width="555.7" height="26" rx="4" fill="#f0883a" opacity="0.8"/>
+<text x="833.7" y="133" fill="#f0883a" font-size="18" font-weight="600">0.149</text>
+<text x="268" y="154" fill="#8b919d" font-size="12.5">38N·m・195kg（E-Clutch）</text>
+<text x="250" y="216" fill="#47b04a" font-size="17" font-weight="600" text-anchor="end">エリミネーター400 SE</text>
+<text x="250" y="238" fill="#7fe39a" font-size="14" font-weight="700" text-anchor="end">85.8万円</text>
+<rect x="268" y="198" width="579.7" height="26" rx="4" fill="#f0883a" opacity="0.8"/>
+<text x="857.7" y="217" fill="#f0883a" font-size="18" font-weight="600">0.155</text>
+<text x="268" y="238" fill="#8b919d" font-size="12.5">37N·m・178kg（クルーザー）</text>
+<rect x="40" y="272" width="920" height="74" rx="6" fill="#5fcf5f" opacity="0.08"/>
+<text x="250" y="300" fill="#5fcf5f" font-size="17" font-weight="800" text-anchor="end">Ninja 400</text>
+<text x="250" y="322" fill="#7fe39a" font-size="14" font-weight="700" text-anchor="end">81.4万円</text>
+<rect x="268" y="282" width="607.8" height="26" rx="4" fill="#f0883a" opacity="1"/>
+<text x="885.8" y="301" fill="#f0883a" font-size="18" font-weight="800">0.163</text>
+<text x="268" y="322" fill="#8b919d" font-size="12.5">37N·m・167kg</text>
+<text x="250" y="384" fill="#b98ae0" font-size="17" font-weight="600" text-anchor="end">YZF-R3</text>
+<text x="250" y="406" fill="#7fe39a" font-size="14" font-weight="700" text-anchor="end">72.6万円</text>
+<rect x="268" y="366" width="488.5" height="26" rx="4" fill="#f0883a" opacity="0.8"/>
+<text x="766.5" y="385" fill="#f0883a" font-size="18" font-weight="600">0.131</text>
+<text x="268" y="406" fill="#8b919d" font-size="12.5">30N·m・169kg（320cc）</text>
+<text x="268" y="342" fill="#7fe39a" font-size="14" font-weight="700">↑ 400では最も安い。それでも力は最上位</text>
+<text x="52" y="502" fill="#7a808c" font-size="12.5">※ピーク同士の比較。一般道で使う回転域で各車が何N·m出しているかは、どのメーカーも公表していない。YZF-R3だけ320ccなので、400の3台とは同じ土俵にない。</text>
+</svg>

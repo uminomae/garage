@@ -1,0 +1,107 @@
+<svg viewBox="0 0 1050 836" xmlns="http://www.w3.org/2000/svg" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+<rect x="0" y="0" width="1050" height="836" fill="#232733"/>
+<text x="40" y="30" fill="#e6e6e6" font-size="18" font-weight="700">アルファード基準の倍率 ── 最大トルク/重量 と 最高出力/重量（公式諸元の割り算だけ）</text>
+<text x="40" y="50" fill="#9aa0aa" font-size="12">体重60kg乗車込み。アルファード＝1.0。<tspan fill="#f0883a" font-weight="700">■トルク比</tspan>＝力の大きさ／<tspan fill="#4a9be8" font-weight="700">■パワー比</tspan>＝伸び・速さ。<tspan fill="#ff9a6a">どちらもピーク値。低回転でいくら出るかではない。</tspan></text>
+<line x1="390.0" y1="80" x2="390.0" y2="734" stroke="#e6e6e6" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="390.0" y="76" fill="#e6e6e6" font-size="17.2" text-anchor="middle">アルファード=1.0</text>
+<line x1="286" y1="738" x2="970" y2="738" stroke="#5a6070" stroke-width="1.2"/>
+<line x1="286.0" y1="80" x2="286.0" y2="738" stroke="#2c313d" stroke-width="1"/>
+<text x="286.0" y="754" fill="#9aa0aa" font-size="16.5" text-anchor="middle">0×</text>
+<line x1="390.0" y1="80" x2="390.0" y2="738" stroke="#2c313d" stroke-width="1"/>
+<text x="390.0" y="754" fill="#9aa0aa" font-size="16.5" text-anchor="middle">1×</text>
+<line x1="494.0" y1="80" x2="494.0" y2="738" stroke="#2c313d" stroke-width="1"/>
+<text x="494.0" y="754" fill="#9aa0aa" font-size="16.5" text-anchor="middle">2×</text>
+<line x1="598.0" y1="80" x2="598.0" y2="738" stroke="#2c313d" stroke-width="1"/>
+<text x="598.0" y="754" fill="#9aa0aa" font-size="16.5" text-anchor="middle">3×</text>
+<line x1="702.0" y1="80" x2="702.0" y2="738" stroke="#2c313d" stroke-width="1"/>
+<text x="702.0" y="754" fill="#9aa0aa" font-size="16.5" text-anchor="middle">4×</text>
+<line x1="806.0" y1="80" x2="806.0" y2="738" stroke="#2c313d" stroke-width="1"/>
+<text x="806.0" y="754" fill="#9aa0aa" font-size="16.5" text-anchor="middle">5×</text>
+<line x1="910.0" y1="80" x2="910.0" y2="738" stroke="#2c313d" stroke-width="1"/>
+<text x="910.0" y="754" fill="#9aa0aa" font-size="16.5" text-anchor="middle">6×</text>
+<text x="628" y="772" fill="#9aa0aa" font-size="18" text-anchor="middle">アルファードの何倍か（×）</text>
+<text x="278" y="102" fill="#40b8d0" font-size="18" text-anchor="end" font-weight="600">CB125R</text>
+<rect x="286" y="87" width="55.6" height="12" rx="2" fill="#f0883a"/>
+<text x="346.6" y="96" fill="#f0883a" font-size="15">0.53×</text>
+<rect x="286" y="102" width="97.9" height="12" rx="2" fill="#4a9be8"/>
+<text x="388.9" y="111" fill="#4a9be8" font-size="15">0.94×</text>
+<text x="278" y="142" fill="#e85b82" font-size="18" text-anchor="end" font-weight="600">GSX250R</text>
+<rect x="286" y="127" width="87.7" height="12" rx="2" fill="#f0883a"/>
+<text x="378.7" y="136" fill="#f0883a" font-size="15">0.84×</text>
+<rect x="286" y="142" width="123.5" height="12" rx="2" fill="#4a9be8"/>
+<text x="414.5" y="151" fill="#4a9be8" font-size="15">1.19×</text>
+<text x="278" y="182" fill="#b98ae0" font-size="18" text-anchor="end" font-weight="600">YZF-R25</text>
+<rect x="286" y="167" width="96.5" height="12" rx="2" fill="#f0883a"/>
+<text x="387.5" y="176" fill="#f0883a" font-size="15">0.93×</text>
+<rect x="286" y="182" width="189.5" height="12" rx="2" fill="#4a9be8"/>
+<text x="480.5" y="191" fill="#4a9be8" font-size="15">1.82×</text>
+<text x="278" y="222" fill="#6cc04e" font-size="18" text-anchor="end" font-weight="600">Ninja250</text>
+<rect x="286" y="207" width="93.5" height="12" rx="2" fill="#f0883a"/>
+<text x="384.5" y="216" fill="#f0883a" font-size="15">0.90×</text>
+<rect x="286" y="222" width="192.0" height="12" rx="2" fill="#4a9be8"/>
+<text x="483.0" y="231" fill="#4a9be8" font-size="15">1.85×</text>
+<text x="278" y="262" fill="#5a90e8" font-size="18" text-anchor="end" font-weight="600">CBR400R</text>
+<rect x="286" y="247" width="144.8" height="12" rx="2" fill="#f0883a"/>
+<text x="435.8" y="256" fill="#f0883a" font-size="15">1.39×</text>
+<rect x="286" y="262" width="226.3" height="12" rx="2" fill="#4a9be8"/>
+<text x="517.3" y="271" fill="#4a9be8" font-size="15">2.18×</text>
+<text x="278" y="302" fill="#b98ae0" font-size="18" text-anchor="end" font-weight="600">YZF-R3(320)</text>
+<rect x="286" y="287" width="125.8" height="12" rx="2" fill="#f0883a"/>
+<text x="416.8" y="296" fill="#f0883a" font-size="15">1.21×</text>
+<rect x="286" y="302" width="227.4" height="12" rx="2" fill="#4a9be8"/>
+<text x="518.4" y="311" fill="#4a9be8" font-size="15">2.19×</text>
+<text x="278" y="342" fill="#5a90e8" font-size="18" text-anchor="end" font-weight="600">CBR250RR</text>
+<rect x="286" y="327" width="105.3" height="12" rx="2" fill="#f0883a"/>
+<text x="396.3" y="336" fill="#f0883a" font-size="15">1.01×</text>
+<rect x="286" y="342" width="228.4" height="12" rx="2" fill="#4a9be8"/>
+<text x="519.4" y="351" fill="#4a9be8" font-size="15">2.20×</text>
+<text x="278" y="382" fill="#6cc04e" font-size="18" text-anchor="end" font-weight="600">ZX-25R</text>
+<rect x="286" y="367" width="83.0" height="12" rx="2" fill="#f0883a"/>
+<text x="374.0" y="376" fill="#f0883a" font-size="15">0.80×</text>
+<rect x="286" y="382" width="229.6" height="12" rx="2" fill="#4a9be8"/>
+<text x="520.6" y="391" fill="#4a9be8" font-size="15">2.21×</text>
+<text x="278" y="422" fill="#6cc04e" font-size="18" text-anchor="end" font-weight="600">W650(大型)</text>
+<rect x="286" y="407" width="210.9" height="12" rx="2" fill="#f0883a"/>
+<text x="501.9" y="416" fill="#f0883a" font-size="15">2.03×</text>
+<rect x="286" y="422" width="243.1" height="12" rx="2" fill="#4a9be8"/>
+<text x="534.1" y="431" fill="#4a9be8" font-size="15">2.34×</text>
+<text x="278" y="462" fill="#6cc04e" font-size="18" text-anchor="end" font-weight="600">エリミネーターSE</text>
+<rect x="286" y="447" width="149.3" height="12" rx="2" fill="#f0883a"/>
+<text x="440.3" y="456" fill="#f0883a" font-size="15">1.44×</text>
+<rect x="286" y="462" width="250.1" height="12" rx="2" fill="#4a9be8"/>
+<text x="541.1" y="471" fill="#4a9be8" font-size="15">2.40×</text>
+<text x="278" y="502" fill="#aeb4c0" font-size="18" text-anchor="end" font-weight="600">CB400SF 教習(NC42)</text>
+<rect x="286" y="487" width="143.7" height="12" rx="2" fill="#f0883a"/>
+<text x="434.7" y="496" fill="#f0883a" font-size="15">1.38×</text>
+<rect x="286" y="502" width="258.7" height="12" rx="2" fill="#4a9be8"/>
+<text x="549.7" y="511" fill="#4a9be8" font-size="15">2.49×</text>
+<text x="278" y="542" fill="#6cc04e" font-size="18" text-anchor="end" font-weight="600">Ninja400</text>
+<rect x="286" y="527" width="156.5" height="12" rx="2" fill="#f0883a"/>
+<text x="447.5" y="536" fill="#f0883a" font-size="15">1.51×</text>
+<rect x="286" y="542" width="262.2" height="12" rx="2" fill="#4a9be8"/>
+<text x="553.2" y="551" fill="#4a9be8" font-size="15">2.52×</text>
+<text x="278" y="582" fill="#8fb8f2" font-size="18" text-anchor="end" font-weight="600">CBR400R FOUR</text>
+<rect x="286" y="567" width="147.7" height="12" rx="2" fill="#f0883a"/>
+<text x="438.7" y="576" fill="#f0883a" font-size="15">1.42×</text>
+<rect x="286" y="582" width="291.2" height="12" rx="2" fill="#4a9be8"/>
+<text x="582.2" y="591" fill="#4a9be8" font-size="15">2.80×</text>
+<text x="278" y="622" fill="#b98ae0" font-size="18" text-anchor="end" font-weight="600">MT-07(大型)</text>
+<rect x="286" y="607" width="264.8" height="12" rx="2" fill="#f0883a"/>
+<text x="555.8" y="616" fill="#f0883a" font-size="15">2.55×</text>
+<rect x="286" y="622" width="372.5" height="12" rx="2" fill="#4a9be8"/>
+<text x="663.5" y="631" fill="#4a9be8" font-size="15">3.58×</text>
+<text x="278" y="662" fill="#e8685f" font-size="18" text-anchor="end" font-weight="600">ZX-4R</text>
+<rect x="286" y="647" width="149.8" height="12" rx="2" fill="#f0883a"/>
+<text x="440.8" y="656" fill="#f0883a" font-size="15">1.44×</text>
+<rect x="286" y="662" width="381.9" height="12" rx="2" fill="#4a9be8"/>
+<text x="672.9" y="671" fill="#4a9be8" font-size="15">3.67×</text>
+<text x="278" y="702" fill="#e0603a" font-size="18" text-anchor="end" font-weight="600">ZX-6R 636(大型)</text>
+<rect x="286" y="687" width="255.8" height="12" rx="2" fill="#f0883a"/>
+<text x="546.8" y="696" fill="#f0883a" font-size="15">2.46×</text>
+<rect x="286" y="702" width="584.1" height="12" rx="2" fill="#4a9be8"/>
+<text x="875.1" y="711" fill="#4a9be8" font-size="15">5.62×</text>
+<rect x="40" y="786" width="970" height="80" rx="6" fill="#1b1f27" stroke="#3a4050"/>
+<text x="54" y="806" fill="#cfd3da" font-size="12">体重60kgを乗せると<tspan fill="#e6e6e6" font-weight="700">軽いバイクほど不利</tspan>。トルク比がアルファード未満は <tspan fill="#e6e6e6" font-weight="700">CB125R・GSX250R・YZF-R25・Ninja250・ZX-25R</tspan>。</text>
+<text x="54" y="826" fill="#cfd3da" font-size="12">一方パワー比は250でも車の約2倍。<tspan fill="#e6e6e6" font-weight="700">「回せば速いが、力そのものは車と互角」</tspan>が数字に出る。</text>
+<text x="54" y="848" fill="#ff9a6a" font-size="11.5">※<tspan font-weight="700">これはピーク値どうしの比で、一般道で使う回転域の話ではない。</tspan>低回転のトルクは非公表。減速比も未反映。“順位”より“桁感”で見ること。</text>
+</svg>

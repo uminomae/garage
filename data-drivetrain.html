@@ -1,0 +1,4194 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>駆動系・諸元データ</title>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WV09PB2PZT"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','G-WV09PB2PZT');</script>
+<style>body{background:#232733;color:#e6e6e6;font-family:'Hiragino Sans','Noto Sans JP',sans-serif;
+max-width:860px;margin:0 auto;padding:24px;line-height:1.8}
+a{color:#8ab4e6}table{border-collapse:collapse;margin:1em 0}th,td{border:1px solid #3a4050;padding:6px 10px}
+th{background:#1b1f27}code{background:#1b1f27;padding:2px 5px;border-radius:4px}</style></head><body>
+<p><a href="index.html">← 本文へ戻る</a></p>
+<h1>駆動系データ ― 60km/h巡航の回転数を実ギア比から求める</h1>
+<p><code>assets/four-hundred-official.svg</code>・<code>assets/torque-peak-speed.svg</code>・<code>assets/weight-ratio.svg</code> の作図根拠。
+<strong>手で置いた数値は使わない。</strong> ここに無い値は図に描かない。</p>
+<ul>
+<li>収集日: 2026-07-26（初版）／2026-07-27（大型・125・250の追補）</li>
+<li>対象: 日本国内仕様。年式は各表に明記</li>
+<li>用途: 「トップギアで60km/hを流すとき、エンジンは何回転か」を実測ギア比から計算する</li>
+</ul>
+<p><strong>出典の格付け</strong>（表の「出典」列）。図には格を明示して描く:</p>
+<table>
+<thead>
+<tr>
+<th>格</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>公式</td>
+<td>メーカー公式ページ／公式PDFの諸元表</td>
+</tr>
+<tr>
+<td>公式(諸元)／二次(ギア比)</td>
+<td>出力・重量は公式。ギア比だけ公式が非公表のため二次情報</td>
+</tr>
+<tr>
+<td>二次</td>
+<td>公式ページが存在しない（生産終了車など）。二次情報のみ</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>1. 公式諸元（一次情報）</h2>
+<p>出力・トルク・重量・ギア比・タイヤは、すべて下の「出典一覧」の<strong>メーカー公式</strong>ページ／公式PDFから取得。</p>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>年式・型式</th>
+<th>気筒</th>
+<th>最高出力</th>
+<th>最大トルク</th>
+<th>車両重量</th>
+<th>一次減速比</th>
+<th>二次減速比</th>
+<th>トップギア</th>
+<th>後タイヤ</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>エリミネーター400</td>
+<td>8BL-EL400A</td>
+<td>並2</td>
+<td>48PS/10,000</td>
+<td>37N·m/8,000</td>
+<td>176kg（SE 178kg）</td>
+<td>2.218</td>
+<td>3.071</td>
+<td>1.037（6速）</td>
+<td>150/80-16</td>
+<td>公式</td>
+</tr>
+<tr>
+<td>Ninja 400</td>
+<td>2BL-EX400G（2018）</td>
+<td>並2</td>
+<td>48PS/10,000</td>
+<td>38N·m/8,000</td>
+<td>167kg</td>
+<td>2.218</td>
+<td>2.928</td>
+<td>1.037（6速）</td>
+<td>150/60R17</td>
+<td>公式</td>
+</tr>
+<tr>
+<td>Ninja 400</td>
+<td>8BL-EX400L（現行）</td>
+<td>並2</td>
+<td>48PS/10,000</td>
+<td>37N·m/8,000</td>
+<td>167kg</td>
+<td>2.218</td>
+<td>2.928</td>
+<td>1.037（6速）</td>
+<td>150/60R17</td>
+<td>公式</td>
+</tr>
+<tr>
+<td>CBR400R</td>
+<td>2BL-NC56（2019）</td>
+<td>並2</td>
+<td>46PS/9,000</td>
+<td>38N·m/7,500</td>
+<td>192kg</td>
+<td>2.029</td>
+<td>3.000</td>
+<td>1.043（6速）</td>
+<td>160/60R17</td>
+<td>公式</td>
+</tr>
+<tr>
+<td>CBR400R</td>
+<td>8BL-NC56（2022）</td>
+<td>並2</td>
+<td>46PS/9,000</td>
+<td>38N·m/7,500</td>
+<td>192kg</td>
+<td>2.029</td>
+<td>3.000</td>
+<td>1.043（6速）</td>
+<td>160/60R17</td>
+<td>公式</td>
+</tr>
+<tr>
+<td>CBR400R</td>
+<td>8BL-<strong>NC65</strong>（2024）<strong>E-Clutch無し</strong></td>
+<td>並2</td>
+<td>46PS/9,000</td>
+<td>38N·m/7,500</td>
+<td><strong>191kg</strong></td>
+<td>2.029</td>
+<td>3.000</td>
+<td>1.043（6速）</td>
+<td>160/60R17</td>
+<td>公式</td>
+</tr>
+<tr>
+<td>CBR400R <strong>E-Clutch</strong></td>
+<td>8BL-<strong>NC65</strong>（2026/5〜）</td>
+<td>並2</td>
+<td>46PS/9,000</td>
+<td>38N·m/7,500</td>
+<td><strong>195kg</strong></td>
+<td>2.029</td>
+<td>3.000</td>
+<td>1.043（6速）</td>
+<td>160/60R17</td>
+<td>公式</td>
+</tr>
+<tr>
+<td><strong>CBR400R FOUR E-Clutch</strong></td>
+<td><strong>8BL-NC70（2026-09-18発売）</strong></td>
+<td><strong>直4</strong></td>
+<td><strong>58PS/11,500</strong></td>
+<td><strong>38N·m/9,750</strong></td>
+<td><strong>187kg</strong></td>
+<td><strong>2.273</strong></td>
+<td><strong>3.067</strong></td>
+<td><strong>1.043（6速）</strong></td>
+<td><strong>160/60ZR17</strong></td>
+<td><strong>公式</strong></td>
+</tr>
+<tr>
+<td>CB400SF E-Clutch</td>
+<td>2026（CBR400R FOURの姉妹車）</td>
+<td>直4</td>
+<td>58PS/11,500</td>
+<td>38N·m/9,750</td>
+<td>187kg</td>
+<td>2.273</td>
+<td>3.067</td>
+<td>1.043（6速）</td>
+<td>160/60ZR17</td>
+<td>公式</td>
+</tr>
+<tr>
+<td>YZF-R3</td>
+<td>8BL-RH25J</td>
+<td>並2</td>
+<td>42PS/10,750</td>
+<td>30N·m/9,000</td>
+<td>169kg</td>
+<td>3.043</td>
+<td>3.071</td>
+<td>0.800（6速）</td>
+<td>140/70R17</td>
+<td>公式</td>
+</tr>
+<tr>
+<td>Ninja ZX-4R SE</td>
+<td>8BL-ZX400P</td>
+<td>直4</td>
+<td>77PS/14,500<br>（ラムエア加圧時 80PS）</td>
+<td>39N·m/13,000</td>
+<td>190kg</td>
+<td>2.029</td>
+<td>3.428</td>
+<td>1.037（6速）</td>
+<td>160/60ZR17</td>
+<td>公式</td>
+</tr>
+<tr>
+<td>CB400SF（教習車の世代）</td>
+<td>EBL-NC42（2010）</td>
+<td>直4</td>
+<td>53PS/10,500</td>
+<td>38N·m/9,500</td>
+<td>194kg（ABS 199kg）</td>
+<td>2.171</td>
+<td>2.933</td>
+<td>1.130（6速）</td>
+<td>160/60ZR17</td>
+<td>公式</td>
+</tr>
+<tr>
+<td>Ninja ZX-25R</td>
+<td>2BK-ZX250E（2020）</td>
+<td>直4</td>
+<td>45PS/15,500</td>
+<td>21N·m/13,000</td>
+<td>183kg</td>
+<td>2.900</td>
+<td>3.571</td>
+<td>1.037（6速）</td>
+<td>150/60R17</td>
+<td>公式</td>
+</tr>
+<tr>
+<td>GSX250R</td>
+<td>8BK-DN12B</td>
+<td>並2</td>
+<td>24PS/8,000</td>
+<td>22N·m/6,500</td>
+<td>181kg</td>
+<td>3.238</td>
+<td>3.285</td>
+<td>0.807（6速）</td>
+<td>140/70-17</td>
+<td>公式</td>
+</tr>
+<tr>
+<td><strong>Ninja 250</strong></td>
+<td><strong>8BK-EX250Y（現行）</strong></td>
+<td><strong>並2</strong></td>
+<td><strong>35PS/12,500</strong></td>
+<td><strong>22N·m/10,500</strong></td>
+<td><strong>166kg</strong></td>
+<td><strong>3.068</strong></td>
+<td><strong>2.928</strong></td>
+<td><strong>0.960（6速）</strong></td>
+<td><strong>140/70-17</strong></td>
+<td><strong>公式</strong></td>
+</tr>
+<tr>
+<td><strong>CBR250RR</strong></td>
+<td><strong>8BK-MC51（2023）</strong></td>
+<td><strong>並2</strong></td>
+<td><strong>42PS/13,500</strong></td>
+<td><strong>25N·m/10,750</strong></td>
+<td><strong>168kg</strong></td>
+<td><strong>2.781</strong></td>
+<td><strong>3.000</strong></td>
+<td><strong>1.041（6速）</strong></td>
+<td><strong>140/70R17</strong></td>
+<td><strong>公式</strong></td>
+</tr>
+<tr>
+<td><strong>YZF-R25</strong></td>
+<td><strong>8BK-RG95J（2025）</strong></td>
+<td><strong>並2</strong></td>
+<td><strong>35PS/12,000</strong></td>
+<td><strong>23N·m/10,000</strong></td>
+<td><strong>169kg</strong></td>
+<td><strong>3.043</strong></td>
+<td><strong>3.071</strong></td>
+<td><strong>0.920（6速）</strong></td>
+<td><strong>140/70-17</strong></td>
+<td><strong>公式</strong>（§7でヤマハ公式リリースから裏取り）</td>
+</tr>
+<tr>
+<td><strong>CBR250R</strong></td>
+<td><strong>JBK-MC41（2011）</strong></td>
+<td><strong>単</strong></td>
+<td><strong>27PS/8,500</strong></td>
+<td><strong>23N·m/7,000</strong></td>
+<td><strong>161kg</strong></td>
+<td><strong>未取得</strong></td>
+<td><strong>未取得</strong></td>
+<td><strong>未取得</strong></td>
+<td><strong>140/70-17</strong></td>
+<td><strong>公式（ギア比は非公表）</strong></td>
+</tr>
+<tr>
+<td><strong>CB125R</strong></td>
+<td><strong>8BJ-JC91</strong></td>
+<td><strong>単</strong></td>
+<td><strong>15PS/10,000</strong></td>
+<td><strong>11N·m/8,000</strong></td>
+<td><strong>130kg</strong></td>
+<td><strong>3.260</strong></td>
+<td><strong>3.200</strong></td>
+<td><strong>0.923（6速）</strong></td>
+<td><strong>150/60R17</strong></td>
+<td><strong>公式(諸元)／二次(ギア比)</strong></td>
+</tr>
+<tr>
+<td><strong>Ninja ZX-6R</strong>（大型）</td>
+<td><strong>8BL-ZX636K（2026）</strong></td>
+<td><strong>直4</strong></td>
+<td><strong>122PS/13,000</strong><br>（ラムエア加圧時 128PS）</td>
+<td><strong>69N·m/11,000</strong></td>
+<td><strong>199kg</strong></td>
+<td><strong>1.900</strong></td>
+<td><strong>2.866</strong></td>
+<td><strong>1.300（6速）</strong></td>
+<td><strong>180/55ZR17</strong></td>
+<td><strong>公式</strong></td>
+</tr>
+<tr>
+<td><strong>MT-07</strong>（大型）</td>
+<td><strong>2025年モデル</strong></td>
+<td><strong>並2</strong></td>
+<td><strong>73PS/8,750</strong></td>
+<td><strong>67N·m/6,500</strong></td>
+<td><strong>183kg</strong>（Y-AMT 186kg）</td>
+<td><strong>1.925</strong></td>
+<td><strong>2.687</strong></td>
+<td><strong>0.964（6速）</strong></td>
+<td><strong>180/55ZR17</strong></td>
+<td><strong>公式(諸元)／二次(ギア比)</strong></td>
+</tr>
+<tr>
+<td><strong>W650</strong>（大型）</td>
+<td><strong>BC-EJ650A（1999）</strong></td>
+<td><strong>並2</strong></td>
+<td><strong>50PS/7,500</strong></td>
+<td><strong>56N·m/5,500</strong></td>
+<td><strong>195kg（乾燥）</strong></td>
+<td><strong>2.095</strong></td>
+<td><strong>2.533</strong></td>
+<td><strong>0.851（5速）</strong></td>
+<td><strong>130/80-18</strong></td>
+<td><strong>二次</strong></td>
+</tr>
+</tbody>
+</table>
+<p>CBR400R の年式系譜は §9-9 も参照。太字＝2026-07-27 に追加した行。大型3台・125・250の一部は初版で図に描かれていたが根拠が無く「要検証」のままだった。</p>
+<h3>変速比 全段（参考）</h3>
+<ul>
+<li>カワサキ4台（エリミ400・Ninja400・ZX-4R・ZX-25R）は<strong>全車同一</strong>: 2.928 / 2.055 / 1.619 / 1.333 / 1.153 / 1.037<ul>
+<li><strong>Ninja 250だけは別</strong>（この4台と共通ではない）: 2.769 / 1.894 / 1.500 / 1.240 / 1.074 / <strong>0.960</strong>。
+ZX-25Rと同じ249cc級でもギアは専用で、トップは0.960（ZX-25Rの1.037より高い＝回転が下がる方向）</li>
+</ul></li>
+<li>CBR400R: 3.285 / 2.105 / 1.600 / 1.300 / 1.150 / 1.043</li>
+<li>CB400SF NC42: 3.307 / 2.294 / 1.750 / 1.421 / 1.240 / 1.130</li>
+<li>YZF-R3: 2.500 / 1.823 / 1.347 / 1.086 / 0.920 / 0.800</li>
+<li>YZF-R25: 2.666 / 1.882 / 1.454 / 1.200 / 1.037 / 0.920（<strong>一次・二次はR3と完全同一</strong>、変速比だけ全段ローギヤード）</li>
+<li>GSX250R: 2.416 / 1.529 / 1.181 / 1.043 / 0.909 / 0.807</li>
+</ul>
+<hr />
+<h2>2. 計算（式を明記）</h2>
+<p><strong>タイヤ外径</strong>（カタログ表記から算出。実測ではない）</p>
+<p>    外径 D [mm] = リム径[inch] × 25.4 + 2 × タイヤ幅[mm] × 扁平率[%] / 100</p>
+<p><strong>総減速比</strong></p>
+<p>    総減速比 = 一次減速比 × 二次減速比 × トップギア比</p>
+<p><strong>トップギア巡航の回転数</strong></p>
+<p>    エンジン回転数 [rpm] = 速度[m/min] ÷ (π × D[m]) × 総減速比
+    ※ 60km/h = 1,000 m/min。タイヤのつぶれ・スリップは無視</p>
+<p>60km/h回転が低い順。<strong>比</strong>＝60km/hの回転数 ÷ 最大トルクの回転数。1.00なら60km/hがちょうど本領。</p>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>総減速比</th>
+<th>後輪外径</th>
+<th><strong>60km/hの回転数</strong></th>
+<th><strong>比</strong></th>
+<th>最大トルクに達する速度（トップギア）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W650</td>
+<td>4.516</td>
+<td>665.2mm</td>
+<td><strong>2,161rpm</strong></td>
+<td>0.39</td>
+<td>153km/h</td>
+</tr>
+<tr>
+<td>MT-07</td>
+<td>4.986</td>
+<td>629.8mm</td>
+<td><strong>2,520rpm</strong></td>
+<td>0.39</td>
+<td>155km/h</td>
+</tr>
+<tr>
+<td>CBR400R</td>
+<td>6.349</td>
+<td>623.8mm</td>
+<td><strong>3,240rpm</strong></td>
+<td>0.43</td>
+<td>139km/h</td>
+</tr>
+<tr>
+<td>エリミネーター400</td>
+<td>7.064</td>
+<td>646.4mm</td>
+<td><strong>3,478rpm</strong></td>
+<td>0.43</td>
+<td>138km/h</td>
+</tr>
+<tr>
+<td>Ninja 400</td>
+<td>6.735</td>
+<td>611.8mm</td>
+<td><strong>3,504rpm</strong></td>
+<td>0.44</td>
+<td>137km/h</td>
+</tr>
+<tr>
+<td>Ninja ZX-6R</td>
+<td>7.079</td>
+<td>629.8mm</td>
+<td><strong>3,578rpm</strong></td>
+<td>0.33</td>
+<td>184km/h</td>
+</tr>
+<tr>
+<td>CB400SF NC42</td>
+<td>7.195</td>
+<td>623.8mm</td>
+<td><strong>3,672rpm</strong></td>
+<td>0.39</td>
+<td>155km/h</td>
+</tr>
+<tr>
+<td>Ninja ZX-4R SE</td>
+<td>7.213</td>
+<td>623.8mm</td>
+<td><strong>3,680rpm</strong></td>
+<td><strong>0.28</strong></td>
+<td><strong>212km/h</strong></td>
+</tr>
+<tr>
+<td>CBR400R FOUR</td>
+<td>7.271</td>
+<td>623.8mm</td>
+<td><strong>3,710rpm</strong></td>
+<td>0.38</td>
+<td>158km/h</td>
+</tr>
+<tr>
+<td>YZF-R3</td>
+<td>7.476</td>
+<td>627.8mm</td>
+<td><strong>3,791rpm</strong></td>
+<td>0.42</td>
+<td>142km/h</td>
+</tr>
+<tr>
+<td>GSX250R</td>
+<td>8.584</td>
+<td>627.8mm</td>
+<td><strong>4,352rpm</strong></td>
+<td>0.67</td>
+<td>90km/h</td>
+</tr>
+<tr>
+<td>YZF-R25</td>
+<td>8.597</td>
+<td>627.8mm</td>
+<td><strong>4,359rpm</strong></td>
+<td>0.44</td>
+<td>138km/h</td>
+</tr>
+<tr>
+<td>Ninja 250</td>
+<td>8.624</td>
+<td>627.8mm</td>
+<td><strong>4,372rpm</strong></td>
+<td>0.42</td>
+<td>144km/h</td>
+</tr>
+<tr>
+<td>CBR250RR</td>
+<td>8.685</td>
+<td>627.8mm</td>
+<td><strong>4,404rpm</strong></td>
+<td>0.41</td>
+<td>146km/h</td>
+</tr>
+<tr>
+<td>CB125R</td>
+<td>9.629</td>
+<td>611.8mm</td>
+<td><strong>5,010rpm</strong></td>
+<td>0.63</td>
+<td>96km/h</td>
+</tr>
+<tr>
+<td>Ninja ZX-25R</td>
+<td>10.739</td>
+<td>611.8mm</td>
+<td><strong>5,587rpm</strong></td>
+<td>0.43</td>
+<td>140km/h</td>
+</tr>
+<tr>
+<td>CBR250R（単気筒）</td>
+<td>—</td>
+<td>627.8mm</td>
+<td>ギア比が非公表のため算出不能</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>※ この表は <code>_chart-src/calc_drivetrain.py</code> が同じ式で再計算する（図は出さない検算専用）。
+※ 本文の「直4の伸びが出るのはトップギア186〜236km/h相当」はこの表の60km/h回転から:
+  CBR400R FOUR は最高出力11,500rpm ÷ 3,710rpm × 60km/h ≒ <strong>186km/h</strong>、
+  ZX-4R は 14,500rpm ÷ 3,680rpm × 60km/h ≒ <strong>236km/h</strong>。
+※ Ninja 250 の 4,372rpm は<strong>現行 8BK-EX250Y</strong>（二次減速 2.928）の値。2018〜2021年式は二次減速 2.857 で <strong>4,266rpm</strong>（→ §8・§9-4）。</p>
+<hr />
+<h2>3. ここから分かる重要な事実</h2>
+<ol>
+<li><strong>トップギアの60km/hは、大型でも250でも2,200〜5,600rpm</strong>。ZX-4Rは3,680rpmで、Ninja400（3,504）やCB400SF（3,672）とほとんど変わらない。
+（※ 旧 <code>lowspeed-pull.svg</code> はZX-4Rの60km/h回転を6,000rpmと手で置いていた。<strong>これは誤り</strong>）</li>
+<li><strong>どの車も、トップギアでは最大トルクの回転にまるで届かない</strong>。最大トルクが出るのは137〜212km/h相当。
+例外的に低いのはGSX250R（90km/h）とCB125R（96km/h）だけ。</li>
+<li><strong>★最重要：「比」はほとんどの車で 0.38〜0.44 に集まる。</strong> 大型（MT-07 0.39・W650 0.39）も、教習車
+（CB400SF 0.39）も、250（Ninja250 0.42・CBR250RR 0.41）も、**60km/hでは自分の最大トルク回転の
+だいたい4割の位置にいる**。排気量にもクラスにも、ほとんど関係がない。</li>
+<li><strong>その中で ZX-4R だけが 0.28 と外れている</strong>（次に低いのが同じ高回転直4の ZX-6R 0.33）。
+<strong>「公道では山に届かない」というこの章の主張は、この1つの数字に集約される。</strong>
+ZX-4Rは他車より高い回転を回しているのではなく、<strong>本領がそれだけ遠い</strong>。</li>
+<li>逆側の外れ値は GSX250R（0.67）と CB125R（0.63）。<strong>60km/hで既に本領のすぐ手前</strong>にいる。
+だから遅いのだが、「回さなくても出ている」という意味では公道向きでもある。</li>
+<li>逆に言うと、<strong>60km/h付近で各車が実際に何N·m出しているかは、公式諸元からは分からない</strong>。
+公式が公表するのは「最大トルク点」と「最高出力点」の2点だけで、どちらも60km/hの回転よりはるか上にある。</li>
+</ol>
+<hr />
+<h2>4. 実測トルクカーブ（ダイノ）の入手状況</h2>
+<p>低回転域を実データで描くには実測カーブが要る。調査結果は以下。<strong>大半が入手できない。</strong></p>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>実測カーブ</th>
+<th>内容・制約</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ninja 400</td>
+<td><strong>あり</strong></td>
+<td>Motorcycle.com がDynojet 250iで後輪計測。44.0hp/10,000rpm・25.0lb-ft/8,000rpm。「フラットなトルク特性」と明記。単位はhp/lb-ft（米国式）</td>
+</tr>
+<tr>
+<td>Ninja ZX-25R</td>
+<td><strong>あり</strong></td>
+<td>Akrapovič提供のノーマル計測（20.8N·m/約12,700rpm、〜17,000rpmまで）。ヤングマシンのBLR計測（後輪PS）もあり</td>
+</tr>
+<tr>
+<td>Ninja ZX-4R</td>
+<td><strong>使えない</strong></td>
+<td>見つかるのは米国仕様（56hp・11,500rpmで頭打ち）のみ。国内77PS仕様とは別物なので流用不可</td>
+</tr>
+<tr>
+<td>YZF-R3</td>
+<td><strong>使えない</strong></td>
+<td>見つかるのはマフラー交換＋セッティング済みの改造車</td>
+</tr>
+<tr>
+<td>エリミネーター400</td>
+<td><strong>なし</strong></td>
+<td>398ccの計測は見つからず。Cycle Worldにあるのは<strong>451ccのエリミネーター500</strong>で別物</td>
+</tr>
+<tr>
+<td>CBR400R</td>
+<td><strong>なし</strong></td>
+<td>NC56/NC65系の実測は見つからず</td>
+</tr>
+<tr>
+<td>CB400SF NC42</td>
+<td><strong>なし</strong></td>
+<td>世代を特定できる信頼できる計測が見つからず</td>
+</tr>
+<tr>
+<td>GSX250R</td>
+<td><strong>なし</strong></td>
+<td>実走データ（最高速・0-100km/h）はあるが、ダイノ曲線ではない</td>
+</tr>
+<tr>
+<td>CBR400R FOUR</td>
+<td><strong>なし</strong></td>
+<td>2026-09-18発売の新型。発売前のため計測が存在しない</td>
+</tr>
+<tr>
+<td>Ninja ZX-6R</td>
+<td><strong>なし</strong></td>
+<td>国内122PS仕様の数値つきカーブは見つからず</td>
+</tr>
+<tr>
+<td>MT-07 / W650 / CB125R</td>
+<td><strong>なし</strong></td>
+<td>同上。いずれも数値で読めるカーブが無い</td>
+</tr>
+</tbody>
+</table>
+<p><strong>結論: 全車を同じ土俵で実測比較することはできない。</strong>（2026-07-27 に再調査したが状況は変わらず）
+よって <strong>「低回転でどれだけトルクが出ているか」を比較する図は作らない</strong>（→ §4-3）。
+公表されていないものを、推定で埋めない。</p>
+<h3>4-1. 実測ピーク値（参考。仕様違いを含む）</h3>
+<p>すべて Dynojet 250i による計測。lb-ft は ×1.3558 で N·m に換算した。</p>
+<table>
+<thead>
+<tr>
+<th>計測車</th>
+<th>排気量・仕様</th>
+<th>実測ピークトルク</th>
+<th>実測ピーク出力</th>
+<th>カタログ（クランク）</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ninja 400</td>
+<td>399cc</td>
+<td>25.0 lb-ft ＝ <strong>33.9N·m</strong> / 8,000rpm</td>
+<td>44.0hp / 10,000rpm</td>
+<td>37N·m・48PS</td>
+<td>「フラットなトルク特性」と明記</td>
+</tr>
+<tr>
+<td>Z400</td>
+<td>399cc（Ninja400と同エンジン）</td>
+<td>25.12 lb-ft ＝ <strong>34.1N·m</strong> / 8,250rpm</td>
+<td>44.08hp / 9,830rpm</td>
+<td>37N·m・48PS</td>
+<td>ネイキッド版</td>
+</tr>
+<tr>
+<td>Ninja ZX-4RR</td>
+<td>399cc <strong>米国仕様</strong></td>
+<td>25.8 lb-ft ＝ <strong>35.0N·m</strong> / 11,300rpm</td>
+<td>56.3hp / 11,700rpm</td>
+<td>（国内は39N·m・77PS）</td>
+<td>「リニアな出力・フラットなトルク」と記述。米国は15,000rpm強で頭打ち</td>
+</tr>
+<tr>
+<td>エリミネーター SE</td>
+<td><strong>451cc</strong>（国内の398ccとは別物）</td>
+<td>29.03 lb-ft ＝ <strong>39.4N·m</strong> / 7,510rpm</td>
+<td>47.22hp / 10,430rpm</td>
+<td>—</td>
+<td>ストローク延長で低回転トルクを増やす狙いが実測で確認された、との記述</td>
+</tr>
+<tr>
+<td>Ninja ZX-25R</td>
+<td>249cc</td>
+<td><strong>20.8N·m</strong> / 約12,700rpm</td>
+<td>41.4hp（30.9kW）/ 約15,350rpm</td>
+<td>21N·m・45PS</td>
+<td>Akrapovič提供のノーマル計測。計測部位の明記なし</td>
+</tr>
+<tr>
+<td>KTM RC390</td>
+<td>373cc（比較参考）</td>
+<td>24.4 lb-ft ＝ <strong>33.1N·m</strong> / 6,900rpm</td>
+<td>40.2hp / 8,900rpm</td>
+<td>—</td>
+<td>ZX-4RR記事内の比較対象</td>
+</tr>
+</tbody>
+</table>
+<p><strong>ここから推測できること</strong></p>
+<ol>
+<li><strong>後輪損失は約8%</strong>。Ninja400系はカタログ37N·m（クランク）に対し実測33.9〜34.1N·m（後輪）。
+→ 他車も「カタログ×0.92前後が後輪の実力」と見積もれる。</li>
+<li><strong>実測トルクカーブはフラット</strong>。Ninja400・ZX-4RRとも媒体が「フラット」「リニア」と明記している。
+→ 公式2点から作る放物線近似は、低回転を<strong>極端に過小評価する</strong>（下記参照）。実際の低回転トルクはもっと出ている。</li>
+<li><strong>同系エンジンでもストロークを伸ばすと低回転が太る</strong>。451ccエリミネーターは7,510rpmで39.4N·mと、
+399ccのNinja400（8,000rpmで33.9N·m）より<strong>低い回転で・大きいトルク</strong>を出す。
+→ 国内398ccエリミがNinja400より低速寄りという性格づけ自体は、方向として矛盾しない（ただし別排気量の値であり証拠にはならない）。</li>
+</ol>
+<h3>4-1-2. 実測カーブの読み取り値（Ninja 400 / YZF-R3）</h3>
+<p>出典: <a href="https://www.motorcycle.com/manufacturer/kawasaki/2018-kawasaki-ninja-400-exclusive-dyno-run-and-measured-weight.html">Motorcycle.com の比較ダイノ</a>
+（Dynojet 250i・<strong>後輪</strong>・Mickey Cohen Motorsports計測。2,900〜12,900rpm、6車同時比較）</p>
+<p>グラフ画像から目視で読み取った値。<strong>読み取り誤差は±0.5 lb-ft 程度</strong>。単位は lb-ft（×1.3558でN·m）。</p>
+<table>
+<thead>
+<tr>
+<th>rpm</th>
+<th>Ninja 400</th>
+<th>YZF-R3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3,400</td>
+<td>17.6</td>
+<td>13.3</td>
+</tr>
+<tr>
+<td>3,900</td>
+<td>18.6</td>
+<td>14.2</td>
+</tr>
+<tr>
+<td>4,400</td>
+<td>20.5</td>
+<td>14.8</td>
+</tr>
+<tr>
+<td>4,900</td>
+<td>22.4</td>
+<td>15.0</td>
+</tr>
+<tr>
+<td>5,400</td>
+<td>21.6</td>
+<td>15.2</td>
+</tr>
+<tr>
+<td>5,900</td>
+<td>22.2</td>
+<td>15.5</td>
+</tr>
+<tr>
+<td>6,400</td>
+<td>22.8</td>
+<td>15.9</td>
+</tr>
+<tr>
+<td>6,900</td>
+<td>21.9</td>
+<td>16.5</td>
+</tr>
+<tr>
+<td>7,400</td>
+<td>23.5</td>
+<td>17.0</td>
+</tr>
+<tr>
+<td>7,900</td>
+<td>24.2</td>
+<td>17.5</td>
+</tr>
+<tr>
+<td>8,400</td>
+<td>24.9</td>
+<td>18.0</td>
+</tr>
+<tr>
+<td>8,900</td>
+<td>24.6</td>
+<td>18.6</td>
+</tr>
+<tr>
+<td>9,400</td>
+<td>24.3</td>
+<td>18.9</td>
+</tr>
+<tr>
+<td>9,900</td>
+<td>23.9</td>
+<td>18.6</td>
+</tr>
+<tr>
+<td>10,400</td>
+<td>23.3</td>
+<td>18.3</td>
+</tr>
+</tbody>
+</table>
+<p>グラフ本文に明記されたピーク: <strong>Ninja 400 = 25.0 lb-ft @ 8,200rpm</strong> ／ <strong>YZF-R3 = 18.9 lb-ft @ 9,200rpm</strong>
+（同グラフ内の他車: KTM RC390 24.6@7,000／CBR500R 29.1@6,800／Ninja300 17.6@9,700／CBR300R 17.5@6,700）</p>
+<p><strong>60km/hでの実測トルク（この2台だけは実データで確定する）</strong></p>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>60km/hの回転数</th>
+<th>そのときの実測トルク</th>
+<th>ピークに対する比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ninja 400</td>
+<td>3,504rpm</td>
+<td>約17.9 lb-ft ＝ <strong>約24.3N·m</strong>（後輪）</td>
+<td>ピークの約72%</td>
+</tr>
+<tr>
+<td>YZF-R3</td>
+<td>3,791rpm</td>
+<td>約14.0 lb-ft ＝ <strong>約19.0N·m</strong>（後輪）</td>
+<td>ピークの約74%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>2台とも、60km/hではピークトルクの7割強しか使えていない。</strong> 回転数の比（60km/h回転数÷ピーク回転数）はNinja400が0.43、R3が0.41でほぼ同じであり、そこでのトルク比も72〜74%とよく一致する。</p>
+<h3>4-1-3. 他車へ適用する規則（3速・4速の駆動力を出すため）</h3>
+<blockquote>
+<h2>⚠ この節と §4-1-4 は <strong>不採用</strong>（2026-07-27）。経緯として残してあるだけで、どの図も使っていない。</h2>
+<p>実測2台（並列2気筒）の曲線の形を他車の公式トルク値に当てはめる方法。理屈は通るが、
+<strong>直4に当てると低回転を甘く見積もる</strong>ことが分かっていて、それでも小数第2位まで並んだ
+順位表になってしまう。<strong>推定に見た目の精度を与えると、それは嘘になる。</strong>
+これを使っていた <code>lowrev-torque.svg</code> と <code>thrust-3rd-gear.svg</code> は削除した（→ §4-3）。
+現行は <strong>推定を一切使わない</strong>（公式諸元の割り算だけ）。</p>
+</blockquote>
+<p>上の一致を利用して、実測が無い車にも形を当てはめる。<strong>規則は次の3つだけ:</strong></p>
+<ol>
+<li>横軸を「回転数 ÷ その車のピークトルク回転数」に正規化し、<strong>Ninja400とYZF-R3の実測カーブの平均形</strong>を使う</li>
+<li>縦軸は各車の<strong>公式最大トルク × 0.92</strong>（＝実測で確認した後輪までの駆動損失 約8%）でスケールする</li>
+<li>各車の60km/h位置は、<strong>公式ギア比から計算した実回転数</strong>を使う（§2の表）</li>
+</ol>
+<p><strong>この規則の限界（必ず併記すること）:</strong></p>
+<ul>
+<li>実測2台はどちらも<strong>並列2気筒</strong>。直4（ZX-4R・CB400SF）は一般に低回転が相対的に細いため、<strong>直4はこの方法だと甘めに出る</strong></li>
+<li>ZX-4Rは 60km/h回転数÷ピーク回転数＝0.28 で、<strong>実測データの範囲（0.39以上）の外側</strong>にある。外挿であり信頼度は低い</li>
+<li>エリミネーターはクルーザー用に低速寄りの味付けがされている可能性があり、<strong>この方法では過小評価</strong>の恐れがある（451cc版の実測では低回転が太い傾向が見えている）</li>
+</ul>
+<h3>4-1-4. ★本命の指標：60km/hから加速するときの駆動力（3速・4速）</h3>
+<p><strong>6速60km/hは「巡航」であって「加速」ではない。</strong>実際に加速するのは3〜4速で、しかも<strong>駆動力はギアで増幅される</strong>。
+一般道の速さを見るなら、この指標が正しい。</p>
+<p>    駆動力 F [N] ＝ エンジントルク T [N·m] × 総減速比（一次×二次×そのギア） ÷ タイヤ半径 [m]
+    体感 ＝ F ÷ （車重＋体重60kg）</p>
+<p>トルクは、Ninja400とYZF-R3は<strong>実測値</strong>、他車は §4-1-3 の規則による<strong>推定値</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>3速rpm</th>
+<th>3速トルク</th>
+<th>3速 駆動力</th>
+<th><strong>3速 F/重量</strong></th>
+<th>4速rpm</th>
+<th>4速 駆動力</th>
+<th><strong>4速 F/重量</strong></th>
+<th>根拠</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ninja 400</strong></td>
+<td>5,470</td>
+<td>29.4N·m</td>
+<td>1,011N</td>
+<td><strong>4.45 N/kg</strong></td>
+<td>4,504</td>
+<td>802N</td>
+<td><strong>3.53</strong></td>
+<td>実測</td>
+</tr>
+<tr>
+<td>エリミネーター400</td>
+<td>5,430</td>
+<td>29.1</td>
+<td>992N</td>
+<td><strong>4.20</strong></td>
+<td>4,471</td>
+<td>788N</td>
+<td><strong>3.34</strong></td>
+<td>推定</td>
+</tr>
+<tr>
+<td>CB400SF（教習車）</td>
+<td>5,686</td>
+<td>29.8</td>
+<td>1,063N</td>
+<td><strong>4.19</strong></td>
+<td>4,617</td>
+<td>785N</td>
+<td><strong>3.09</strong></td>
+<td>推定※直4</td>
+</tr>
+<tr>
+<td>ZX-4R</td>
+<td>5,746</td>
+<td>26.6</td>
+<td>959N</td>
+<td><strong>3.84</strong></td>
+<td>4,731</td>
+<td>751N</td>
+<td><strong>3.00</strong></td>
+<td>推定※直4・外挿</td>
+</tr>
+<tr>
+<td><strong>YZF-R3</strong></td>
+<td>6,382</td>
+<td>21.5</td>
+<td>864N</td>
+<td><strong>3.77</strong></td>
+<td>5,146</td>
+<td>662N</td>
+<td><strong>2.89</strong></td>
+<td>実測</td>
+</tr>
+<tr>
+<td>ZX-25R</td>
+<td>8,723</td>
+<td>16.4</td>
+<td>900N</td>
+<td><strong>3.70</strong></td>
+<td>7,182</td>
+<td>712N</td>
+<td><strong>2.93</strong></td>
+<td>推定</td>
+</tr>
+<tr>
+<td>CBR400R</td>
+<td>4,970</td>
+<td>29.6</td>
+<td>924N</td>
+<td><strong>3.66</strong></td>
+<td>4,038</td>
+<td>718N</td>
+<td><strong>2.85</strong></td>
+<td>推定</td>
+</tr>
+<tr>
+<td>GSX250R</td>
+<td>6,369</td>
+<td>19.9</td>
+<td>795N</td>
+<td><strong>3.30</strong></td>
+<td>5,625</td>
+<td>657N</td>
+<td><strong>2.73</strong></td>
+<td>推定</td>
+</tr>
+</tbody>
+</table>
+<p><strong>この結果が意味すること（従来の記述との矛盾）</strong></p>
+<ol>
+<li><strong>エリミネーターは「全域で最強」ではない。</strong> ギアで増幅した駆動力で見ると Ninja400 が上に来る。
+エリミは二次減速比が大きい（3.071）が、後輪が16インチ・扁平80で<strong>外径が646mmと大きく</strong>、その分が相殺される。</li>
+<li><strong>差は小さい。</strong> 上位4台（Ninja400・エリミ・CB400SF・ZX-4R）は3.84〜4.45 N/kg の範囲に収まる。
+「教習車より明確に速い／遅い」と言い切れるほどの開きは、この指標では出ない。</li>
+<li><strong>CBR400Rは下位に来る。</strong> トルクは38N·mと最大だが、192kgと重く、二次減速比3.000・6速1.043とギアが高めで、
+駆動力に直すと不利になる。</li>
+<li><strong>ZX-4Rは中位。</strong> 「公道でしょぼい」というほど低くはない。ただし直4に2気筒の形を当てた推定であり、
+実際はもっと低い可能性が高い（下の限界を参照）。</li>
+<li>GSX250Rが最下位なのは一貫している。</li>
+</ol>
+<p><strong>この表の信頼度</strong>: 実測はNinja400とYZF-R3の2台のみ。他は推定であり、特に**直42台（CB400SF・ZX-4R）は
+並列2気筒の形を当てはめているため甘めに出ている**可能性が高い。順位の細かい上下を断定してはいけない。</p>
+<h3>4-2. 公式2点からの放物線近似が破綻することの確認</h3>
+<p>「最大トルク点」と「最高出力点」を通る放物線 T(n)=Tmax−k(n−n_T)² を低回転へ外挿すると、次のようになる。</p>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>20km/h（約1,100〜1,900rpm）での推定トルク</th>
+<th>60km/hでの推定トルク</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CB400SF</td>
+<td><strong>−137N·m</strong></td>
+<td>−49N·m</td>
+</tr>
+<tr>
+<td>ZX-4R</td>
+<td><strong>−66N·m</strong></td>
+<td>−27N·m</td>
+</tr>
+<tr>
+<td>YZF-R3</td>
+<td>−20N·m</td>
+<td>7N·m</td>
+</tr>
+<tr>
+<td>CBR400R</td>
+<td>−0.5N·m</td>
+<td>21N·m</td>
+</tr>
+<tr>
+<td>ZX-25R</td>
+<td>9N·m</td>
+<td>16N·m</td>
+</tr>
+</tbody>
+</table>
+<p><strong>負の値が出る＝物理的にありえない。</strong> よってこの近似は低回転域に使えない。
+実測が「フラット」であることと合わせると、<strong>公式諸元だけで低速トルクの優劣を語ることはできない</strong>というのが正しい結論。</p>
+<hr />
+<h2>4-3. 図の作図原則 ── 推定は使わない</h2>
+<p>2026-07-27、この検討の図を一斉に整理した。<strong>残したのは「公式諸元の割り算だけ」で作れる図だけ</strong>で、
+実測カーブの形を他車に流用していた図は<strong>すべて削除</strong>した。</p>
+<h3>削除した図と、その理由</h3>
+<table>
+<thead>
+<tr>
+<th>図</th>
+<th>何が問題だったか</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lowrev-torque.svg</code></td>
+<td>初版は全19台の曲線が<strong>手置き</strong>。次に線種で証拠の強さを分けたが、車種ごとに線があったりなかったりで<strong>読み方が定まらない</strong>。最後に1台1点にしたが、それは「最大トルクが<strong>どこで</strong>出るか」＝<strong>使わない性能の量</strong>を測っているだけで、<strong>低回転にトルクがあるかには答えていなかった</strong></td>
+</tr>
+<tr>
+<td><code>thrust-3rd-gear.svg</code></td>
+<td>9台中7台が推定。<strong>推定値に小数第2位まで付けた棒グラフは偽の精度</strong>になる</td>
+</tr>
+<tr>
+<td><code>measured-peaks.svg</code></td>
+<td>実測ではあるが、<strong>実測点が全部「常用域の外」</strong>にあり、結局は駆動損失8%の話しかしていない</td>
+</tr>
+<tr>
+<td><code>lowspeed-pull.svg</code></td>
+<td>トップギア巡航の「押し出す力 vs 速度」。回転数と車重は §2・§5 の実測値に直したが、<strong>肝心のトルク曲線の点列が全車とも手打ちの推定</strong>のままで、上の3図と同じ欠陥を残していた（ZX-25Rの最大トルク23N·mは根拠不明→実際は21N·m）。本文からの参照も0件だったため、2026-07-29 に生成スクリプト <code>gen_lowspeed.py</code> ごと削除</td>
+</tr>
+</tbody>
+</table>
+<h3>残した図（すべて推定ゼロ）</h3>
+<table>
+<thead>
+<tr>
+<th>図</th>
+<th>中身</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>four-hundred-official.svg</code></td>
+<td>400cc6台。力＝最大トルク÷総重量／伸び＝最高出力÷総重量／その回転がトップギア何km/h相当か</td>
+</tr>
+<tr>
+<td><code>torque-peak-speed.svg</code></td>
+<td>最大トルクの回転が、トップギアで何km/hに当たるか</td>
+</tr>
+<tr>
+<td><code>weight-ratio.svg</code></td>
+<td>アルファード基準の倍率（トルク/重量・出力/重量）</td>
+</tr>
+</tbody>
+</table>
+<h3>守ること</h3>
+<ul>
+<li><strong>公表されていない値を、推定で埋めない。</strong> 低回転のトルクは非公表（§3-6）。だから低速トルクの比較図は作らない</li>
+<li><strong>ピーク同士の比較を「低速の力」と呼ばない。</strong> 旧 <code>weight-ratio.svg</code> は凡例を「低速トルク比＝≤60km/hの押し出す力」と
+書いていたが、実体は最大トルク÷重量であり<strong>誤り</strong>だった。2026-07-27 に「トルク比（ピーク値）」へ訂正</li>
+<li><strong>小さい差を優劣として語らない。</strong> 400cc6台の力の差は上下9%。これは「同程度」であって「勝ち負け」ではない</li>
+<li>検算は <code>_chart-src/calc_drivetrain.py</code>（§2 の表を公式値から再計算する。図は出さない）</li>
+</ul>
+<hr />
+<h2>5. 情報源の食い違い・注意点</h2>
+<ul>
+<li><strong>エリミネーター400の二次減速比</strong>: 公式サイト <code>3.071</code>、2023年プレスリリースPDF <code>3.017</code>。歯数はどちらも43/14で、43÷14＝3.0714。<strong>PDF側の誤記と判断し 3.071 を採用</strong></li>
+<li><strong>Ninja 400の最大トルク</strong>: 2018年式(2BL) <code>38N·m</code>、現行(8BL) <code>37N·m</code>。<strong>世代差</strong>であり矛盾ではない</li>
+<li><strong>ZX-4Rの車両重量</strong>: 2023年プレスリリースPDFは188/189kgだが、同PDFに「数値は海外仕様」と注記あり。<strong>国内公式の190kg（SE）を採用</strong></li>
+<li><strong>ZX-25Rの二次減速比</strong>: 検索要約では <code>3.429(48/14)</code> と出るが<strong>誤り</strong>（ZX-4Rの値との混同）。公式は全年式 <code>3.571(50/14)</code></li>
+<li><strong>ZX-25Rの最大トルク</strong>: 21N·m。旧 <code>lowspeed-pull.svg</code> が使っていた23N·mは<strong>根拠不明</strong></li>
+<li><strong>CB400SF NC42の出力・重量</strong>: 公式は53PS/194kg（2010年式）。旧図が使っていた56PS/201kgは<strong>誤り</strong>。なお2014年式以降は197kg（ABS 200kg）</li>
+<li><strong>CB400SF 教習車仕様</strong>の個別諸元（重量・ギア比が市販車と同じか）は公式に記載がなく<strong>不明</strong></li>
+<li><strong>GSX250Rの装備重量</strong>: 公式181kg。旧図の178kgは<strong>誤り</strong></li>
+<li><strong>CBR400R の重量</strong>: ~~通常仕様192kg、E-Clutch仕様195kg（機構ぶん+3kg）~~
+→ <strong>2026-07-27 訂正</strong>。192kgは<strong>2019〜2023年式（NC56）</strong>の値であり、E-Clutchの直前モデルではない。
+正しくは <strong>2024年式 NC65（E-Clutch無し）が191kg → 2026年式 NC65 E-Clutch が195kg ＝ 機構ぶん +4kg</strong>。
+年式系譜は §9-9 を参照</li>
+<li><strong>CBR400R FOUR の重量</strong>: 公式187kg。旧図が使っていた200kgは<strong>誤り</strong>。60km/h回転も旧図は4,000rpmと
+概算で置いていたが、公式ギア比（2.273×3.067×1.043）から計算すると <strong>3,710rpm</strong></li>
+<li><strong>CBR250RR の減速比</strong>: 2017年式ファクトブックは二次 2.928 だが、2023年式公式リリースは <strong>3.000</strong>。
+変速比も 6速 1.068→1.041 に変わっている。<strong>世代差</strong>であり矛盾ではない。現行値（3.000 / 1.041）を採用</li>
+<li><strong>ZX-6R は636cc</strong>。図のラベルが「ZX-6R(600)」だと排気量を誤解させるので「（大型）」表記に改めた。
+2026年式で 122PS/13,000・69N·m/11,000（旧年式は126PS/13,500・70N·m/11,000）</li>
+<li><strong>MT-07 のギア比</strong>: 公式諸元ページが JavaScript 描画で諸元表を機械取得できない。出力・トルク・重量は
+公式リリース由来だが、<strong>一次/二次減速比と変速比は二次情報</strong>。2025年モデルで 183kg（Y-AMT 186kg）</li>
+<li><strong>W650 は公式ページが存在しない</strong>（2008年生産終了）。<strong>全項目が二次情報</strong>。二次減速比は2004年の
+マイナーチェンジで 2.533→2.466 に変わっており、ここでは1999年式の 2.533 を採る。
+なお W650 は<strong>675cc</strong>であり「650」は名称。重量は乾燥195kgで、他車の装備重量とは基準が違う</li>
+<li><strong>CB125R のギア比</strong>: Honda公式スペックページは出力・トルク・重量までで<strong>ギア比を載せていない</strong>。
+ギア比は二次情報。なお公式の最大トルクは <strong>11N·m</strong>/8,000（12N·m とする二次情報があるが公式が優先）</li>
+<li><strong>YZF-R25 / YZF-R3</strong>: ヤマハ公式の<strong>諸元ページは JS 描画で機械取得できない</strong>（価格だけは取れる）。
+ただし<strong>ニュースリリースには諸元表がある</strong>ので、§7 以降の値はそちらで裏取り済み＝公式扱いでよい。</li>
+<li><strong>CBR250R（MC41）のギア比は公式が非公表</strong>。よって60km/hの回転数は算出できず、図の下段には出さない</li>
+<li><strong>旧図に載っていた TZR50・JOG は削除した</strong>。TZR50 は1990年代の生産終了車で公式諸元が確認できず、
+JOG は<strong>CVT（無段変速）なので「トップギアの60km/h回転数」という指標がそもそも成立しない</strong></li>
+<li><strong>旧図の「125（各社）」は実在しない合成値</strong>だった。実在する1台（CB125R）に置き換えた</li>
+</ul>
+<hr />
+<h2>6. 出典一覧</h2>
+<h3>カワサキ（公式）</h3>
+<ul>
+<li><a href="https://www.kawasaki-motors.com/ja-jp/motorcycle/ninja/supersport/ninja-zx-4r/2027-ninja-zx-4r-se">2027 Ninja ZX-4R SE 諸元</a></li>
+<li><a href="https://www.kawasaki-motors.com/ja-jp/motorcycle/ninja/sport/ninja-400/2026-ninja-400">2026 Ninja 400 諸元</a></li>
+<li><a href="https://www.kawasaki-motors.com/ja-jp/motorcycle/ninja/supersport/ninja-zx-25r/2026-ninja-zx-25r-se">2026 Ninja ZX-25R SE 諸元</a></li>
+<li><a href="https://www.kawasaki-motors.com/ja-jp/motorcycle/eliminator/street-cruiser/eliminator/2027-eliminator-se">2027 ELIMINATOR SE 諸元</a></li>
+<li><a href="https://www.khi.co.jp/pressrelease/20230317-1.pdf">ELIMINATOR 主要諸元 PDF（2023-03-17）</a></li>
+<li><a href="https://www.khi.co.jp/pressrelease/news_230202-1.pdf">Ninja ZX-4R 主要諸元 PDF（2023-02-02・海外仕様値注記あり）</a></li>
+<li><a href="https://www.khi.co.jp/pressrelease/news_230320-1.pdf">Ninja ZX-25R SE 主要諸元 PDF（2023-03-20）</a></li>
+<li><a href="https://prtimes.jp/a/?f=d28066-20200714-2206.pdf">Ninja ZX-25R 主要諸元 PDF（2020）</a></li>
+<li><a href="https://prtimes.jp/a/?f=d28066-20180821-2174.pdf">Ninja 400 主要諸元 PDF（2018）</a></li>
+<li><a href="https://www.kawasaki-motors.com/ja-jp/motorcycle/ninja/supersport/ninja-zx-6r/2026-ninja-zx-6r">2026 Ninja ZX-6R 諸元</a></li>
+<li><a href="https://www.kawasaki-motors.com/ja-jp/motorcycle/ninja/sport/ninja-250/2026-ninja-250">2026 Ninja 250 諸元</a></li>
+</ul>
+<h3>ホンダ（公式）</h3>
+<ul>
+<li><a href="https://global.honda/jp/news/2021/2211203.html">CBR400R 2022年式 ニュースリリース（諸元表付き）</a></li>
+<li><a href="https://www.honda.co.jp/factbook/motor/CBR400R/201903/P11.pdf">CBR400R 2019年式 ファクトブックPDF</a></li>
+<li><a href="https://global.honda/jp/news/2026/2260515-cbr400r-nx400.html">CBR400R E-Clutch 2026年式 ニュースリリース</a></li>
+<li><a href="https://www.honda.co.jp/CBR400R/spec/">CBR400R E-Clutch 公式スペック（ギア比記載なし）</a></li>
+<li><a href="https://global.honda/jp/news/2010/2100209-cb400sf.html">CB400SF 2010年式 ニュースリリース（諸元表付き）</a></li>
+<li><a href="https://www.honda.co.jp/factbook/motor/CB400/200801/013.html">CB400SF 2008年式 ファクトブック</a></li>
+<li><a href="https://www.honda.co.jp/factbook/motor/CB400/201403/P09.pdf">CB400SF 2014年式 ファクトブックPDF</a></li>
+<li><a href="https://global.honda/jp/news/2026/2260710-cbr400r.html">CBR400R FOUR E-Clutch 2026年式 ニュースリリース（諸元表付き）</a></li>
+<li><a href="https://global.honda/jp/news/2023/2230113-cbr250rr.html">CBR250RR 2023年式 ニュースリリース（諸元表付き）</a></li>
+<li><a href="https://www.honda.co.jp/factbook/motor/CBR250RR/201704/P21.pdf">CBR250RR 2017年式 ファクトブックPDF</a></li>
+<li><a href="https://www.honda.co.jp/factbook/motor/CB250F-CBR250R/201407/p14.pdf">CB250F / CBR250R 2014年式 ファクトブックPDF</a></li>
+<li><a href="https://www.honda.co.jp/CB125R/spec/">CB125R 公式スペック（ギア比記載なし）</a></li>
+</ul>
+<h3>ヤマハ・スズキ（公式）</h3>
+<ul>
+<li><a href="https://www.yamaha-motor.co.jp/mc/lineup/yzf-r25/spec.html">YZF-R3 / YZF-R25 諸元</a>
+※諸元表がJS描画のため機械取得できない。R25の値は二次情報で補った</li>
+<li><a href="https://global.yamaha-motor.com/jp/news/2025/0204/mt-07.html">MT-07 ABS 2025年モデル ニュースリリース</a></li>
+<li><a href="https://global.yamaha-motor.com/jp/news/2025/0318/yzf-r3.html">YZF-R3 / YZF-R25 2025年モデル ニュースリリース</a></li>
+<li><a href="https://www1.suzuki.co.jp/motor/lineup/gsx250rrlzm6/?page=style">GSX250R 諸元</a></li>
+<li><a href="https://www.suzuki.co.jp/suzuki_digital_library/pdf/2_moto/sports/084.pdf">GSX-R250〜GSX250R 諸元表PDF（旧型クロスチェック用）</a></li>
+</ul>
+<h3>カワサキ（公式・250追加分）</h3>
+<ul>
+<li><a href="https://www.kawasaki-motors.com/ja-jp/motorcycle/ninja/sport/ninja-250/2026-ninja-250">2026 Ninja 250 諸元</a></li>
+</ul>
+<h3>2019〜2021年式（中古）調査分の出典 ― §8</h3>
+<ul>
+<li><a href="https://www.honda.co.jp/factbook/motor/CBR400R/201903/P11.pdf">Honda CBR400R 2019年式 ファクトブックPDF P11</a>
+＝ 2BL-NC56 の全諸元（192kg・17L・WMTC 28.3・最小回転半径2.9m・変速比全段・減速比2.029/3.000）を確認</li>
+<li><a href="https://global.honda/jp/news/2019/2190129-cbr400r.html">Honda CBR400R 2019年モデル ニュースリリース</a>（タンク容量を約1L増、低中回転トルク向上）</li>
+<li><a href="https://prtimes.jp/a/?f=d28066-20180821-2174.pdf">Kawasaki Ninja 400 主要諸元PDF（2018）</a>
+＝ 2BL-EX400G の全諸元（167kg・38N·m・WMTC 24.8・ステアリングアングル35°/35°・最小回転半径2.5m）を確認</li>
+<li><a href="https://global.yamaha-motor.com/jp/news/2019/0305/yzf-r25.html">Yamaha YZF-R25 2019年モデル ニュースリリース</a>
+＝ 2BK-RG43J の全諸元（167kg／ABS 170kg・WMTC 27.2・変速比全段・37mm倒立フォーク採用）を確認</li>
+<li><a href="https://global.yamaha-motor.com/jp/news/2023/0413/yzf-r3.html">Yamaha YZF-R3 2023年モデル ニュースリリース</a>
+＝「エンジン性能を維持しながら平成32年排出ガス規制に適合」の記述（＝2019年式から性能据え置きの根拠）</li>
+<li>Ninja 250 2BK-EX250P の二次減速比 2.857（40/14）は公式PDFに未到達。
+<a href="https://bike-lineage.org/kawasaki/ninja250r/2018ninja250.html">バイクの系譜（スプロケット前14/後40の記載）</a>と
+ウェビック諸元が独立に一致するため採用。<strong>一次資料が見つかれば差し替える</strong></li>
+</ul>
+<h3>二次情報（公式が非公表・生産終了車。図では出典格「二次」として扱う）</h3>
+<ul>
+<li><a href="https://www.bikebros.co.jp/catalog/2/43_5/">MT-07 諸元（ギア比）— バイクブロス</a></li>
+<li><a href="https://www.bikebros.co.jp/catalog/2/106_10/">YZF-R25 諸元 — バイクブロス</a></li>
+<li><a href="https://www.webike.net/bike/14008/service/g14215/">CB125R 諸元（ギア比）— ウェビック</a></li>
+<li><a href="https://mtc.greeco-channel.com/kawasaki/w650_ej650a_gear/">W650 ギア比・減速比 — greeco motorcycle</a></li>
+<li><a href="https://www.webike.net/bike/434/service/5722/">W650 諸元 — ウェビック</a></li>
+<li><a href="https://2rinkan.blog.jp/wakou-2rinkan/2266435">ZX-4R 国内仕様のショップ計測（※パワーコマンダー装着車・72.6PS。素の曲線ではない）</a></li>
+</ul>
+<h3>実測ダイノ（すべて非公式）</h3>
+<ul>
+<li><a href="https://www.motorcycle.com/manufacturer/kawasaki/2018-kawasaki-ninja-400-exclusive-dyno-run-and-measured-weight.html">Ninja 400 実測（Motorcycle.com・Dynojet 250i・後輪）</a></li>
+<li><a href="https://www.asphaltandrubber.com/bikes/akrapovic-kawasaki-ninja-zx-25r-horsepower-dyno/">ZX-25R 実測（Asphalt &amp; Rubber／Akrapovič提供・後輪）</a></li>
+<li><a href="https://young-machine.com/2020/11/11/141382/">ZX-25R 実測対決（ヤングマシン・BLR計測・後輪PS）</a></li>
+<li><a href="https://www.cycleworld.com/bikes/kawasaki-ninja-zx-4rr-dyno-test-2023/">ZX-4R 実測（Cycle World）※<strong>米国仕様</strong>なので国内77PS仕様には使えない</a></li>
+<li><a href="https://www.cycleworld.com/bikes/kawasaki-eliminator-se-dyno-test-2024/">エリミネーターSE 実測（Cycle World）※<strong>451ccのエリミネーター500</strong>であり398ccとは別物</a></li>
+</ul>
+<hr />
+<h2>7. 250 vs 400 パラツイン ― ツアラー／街乗り寄り5台の比較（2026-07-27）</h2>
+<p><strong>問い</strong>: 250と400の並列2気筒は、実際どこが違うのか。<strong>SS系（CBR250RR・ZX-25R・ZX-4R）は除外</strong>し、
+<strong>同じフルカウルでもツーリング・街乗り寄りの味付けの5台</strong>だけを同じ土俵に載せる。</p>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>排気量</th>
+<th>型式</th>
+<th>最高出力</th>
+<th>最大トルク</th>
+<th>車両重量</th>
+<th>シート高</th>
+<th>タンク</th>
+<th>WMTC</th>
+<th>価格（税込）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ninja 250</td>
+<td>248cc</td>
+<td>8BK-EX250Y</td>
+<td>35PS/12,500</td>
+<td>22N·m/10,500</td>
+<td>166kg</td>
+<td>795mm</td>
+<td>14L</td>
+<td>25.1km/L</td>
+<td>726,000円</td>
+</tr>
+<tr>
+<td>YZF-R25</td>
+<td>249cc</td>
+<td>8BK-RG95J</td>
+<td>35PS/12,000</td>
+<td>23N·m/10,000</td>
+<td>169kg</td>
+<td>780mm</td>
+<td>14L</td>
+<td>26.5km/L</td>
+<td>690,800円</td>
+</tr>
+<tr>
+<td>YZF-R3</td>
+<td>320cc</td>
+<td>8BL-RH25J</td>
+<td>42PS/10,750</td>
+<td>30N·m/9,000</td>
+<td>169kg</td>
+<td>780mm</td>
+<td>14L</td>
+<td>26.4km/L</td>
+<td>726,000円</td>
+</tr>
+<tr>
+<td>Ninja 400</td>
+<td>398cc</td>
+<td>8BL-EX400L</td>
+<td>48PS/10,000</td>
+<td>37N·m/8,000</td>
+<td>167kg</td>
+<td>785mm</td>
+<td>14L</td>
+<td>25.7km/L</td>
+<td>814,000円</td>
+</tr>
+<tr>
+<td>CBR400R E-Clutch</td>
+<td>399cc</td>
+<td>8BL-NC65</td>
+<td>46PS/9,000</td>
+<td>38N·m/7,500</td>
+<td>195kg</td>
+<td>785mm</td>
+<td>17L</td>
+<td>28.1km/L</td>
+<td>999,900〜1,089,000円</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Hondaはこの土俵に250を持っていない。</strong> 現行の250二気筒はCBR250RR（SS）だけで、除外条件に当たる。
+CBR250Rは単気筒かつ国内絶版（→ <code>data.md</code> のプラットフォーム表と一致）。<strong>Hondaの選択肢は400のみ</strong>。</p>
+<h3>7-1. 巡航回転数 ― 250と400の差が最も大きく出るところ</h3>
+<p>計算法は §2 と同一（公式ギア比＋カタログ表記からのタイヤ外径）。</p>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>6速総減速比</th>
+<th><strong>60km/h</strong></th>
+<th><strong>100km/h</strong></th>
+<th>100km/hで使えている駆動力 F/(車重+60kg)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CBR400R</td>
+<td>6.349</td>
+<td><strong>3,240rpm</strong></td>
+<td><strong>5,399rpm</strong></td>
+<td>2.43 N/kg</td>
+</tr>
+<tr>
+<td>Ninja 400</td>
+<td>6.735</td>
+<td><strong>3,504rpm</strong></td>
+<td><strong>5,840rpm</strong></td>
+<td>2.91 N/kg</td>
+</tr>
+<tr>
+<td>YZF-R3</td>
+<td>7.476</td>
+<td><strong>3,791rpm</strong></td>
+<td><strong>6,318rpm</strong></td>
+<td>2.23 N/kg</td>
+</tr>
+<tr>
+<td>YZF-R25</td>
+<td>8.597</td>
+<td><strong>4,359rpm</strong></td>
+<td><strong>7,265rpm</strong></td>
+<td>2.21 N/kg</td>
+</tr>
+<tr>
+<td>Ninja 250</td>
+<td>8.624</td>
+<td><strong>4,372rpm</strong></td>
+<td><strong>7,287rpm</strong></td>
+<td>2.11 N/kg</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>高速道路（100km/h）で 250勢は約7,300rpm常用</strong>。400勢（5,400〜5,800rpm）と<strong>1,500〜1,900rpmの差</strong>。
+これが「250のツーリングは疲れる」の中身であって、パワー不足ではない（下記 7-2 のとおり余力の比率は近い）。</li>
+<li><strong>一般道（60km/h）でも 250は約4,370rpm・400は3,240〜3,500rpm</strong>。差は約1,000rpm。</li>
+<li>ただし<strong>排気量が上でも高回転型なら逆転する</strong>: ZX-25Rは60km/h で 5,587rpm（§2）＝この5台のどれよりも高い。
+<strong>回転数を決めるのはギア比であって排気量ではない</strong>。</li>
+</ul>
+<h3>7-2. 一般道の加速力 ― 60km/hから3速・4速で開けたとき</h3>
+<p>指標・式は §4-1-4 と同一（<code>F = T × 総減速比 ÷ タイヤ半径</code>、体感 = <code>F ÷ (車重+60kg)</code>）。
+トルクは Ninja 400 と YZF-R3 が<strong>実測</strong>、他3台は §4-1-3 の規則による<strong>推定</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>3速rpm</th>
+<th>3速トルク</th>
+<th>3速 駆動力</th>
+<th><strong>3速 F/重量</strong></th>
+<th>4速 F/重量</th>
+<th>根拠</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ninja 400</strong></td>
+<td>5,470</td>
+<td>29.4N·m</td>
+<td>1,011N</td>
+<td><strong>4.45 N/kg</strong></td>
+<td>3.53</td>
+<td>実測</td>
+</tr>
+<tr>
+<td><strong>YZF-R3</strong></td>
+<td>6,382</td>
+<td>21.5N·m</td>
+<td>864N</td>
+<td><strong>3.77</strong></td>
+<td>2.89</td>
+<td>実測</td>
+</tr>
+<tr>
+<td>CBR400R E-Clutch</td>
+<td>4,970</td>
+<td>29.6N·m</td>
+<td>925N</td>
+<td><strong>3.63</strong></td>
+<td>2.81</td>
+<td>推定（195kg換算）</td>
+</tr>
+<tr>
+<td>YZF-R25</td>
+<td>6,889</td>
+<td>18.1N·m</td>
+<td>785N</td>
+<td><strong>3.43</strong></td>
+<td>2.74</td>
+<td>推定</td>
+</tr>
+<tr>
+<td>Ninja 250</td>
+<td>6,832</td>
+<td>17.1N·m</td>
+<td>735N</td>
+<td><strong>3.25</strong></td>
+<td>2.57</td>
+<td>推定</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Ninja 250 → Ninja 400 は +37%</strong>。これがこの比較で最大の差で、<strong>同じ車体・同じ重さ（166→167kg）のまま</strong>得られる。</li>
+<li><strong>YZF-R25 → YZF-R3 は +10%</strong> しかない。R3は320ccでボアだけ拡大（68.0×44.1 / R25は60.0×44.1、ストローク共通）、
+ギアも全段ハイギヤード化されるため、駆動力の増分は排気量比ほどには出ない。</li>
+<li><strong>CBR400Rは400なのにR3を下回る</strong>。トルクは38N·mで最大だが、195kg（Ninja 400比+28kg）と
+二次減速3.000・6速1.043のハイギヤードで、駆動力に直すと相殺される。§4-1-4 の結論（192kg時 3.66）と同じ傾向。</li>
+<li>400の中でも<strong>Ninja 400だけが別格</strong>（4.45）。CBR400Rとは 0.8 N/kg 以上開く。</li>
+</ul>
+<h3>7-3. ツアラー適性（速さではない軸）</h3>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>満タン航続（タンク×WMTC）</th>
+<th>60km/h回転</th>
+<th>最小回転半径</th>
+<th>特記</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CBR400R E-Clutch</td>
+<td><strong>478km</strong></td>
+<td><strong>3,240rpm</strong></td>
+<td>2.9m（公式）</td>
+<td>17Lタンク・E-Clutch（発進停止でクラッチ操作不要）・唯一の120/70前輪</td>
+</tr>
+<tr>
+<td>YZF-R25</td>
+<td>371km</td>
+<td>4,359rpm</td>
+<td>非公表</td>
+<td>—</td>
+</tr>
+<tr>
+<td>YZF-R3</td>
+<td>370km</td>
+<td>3,791rpm</td>
+<td>非公表</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Ninja 400</td>
+<td>360km</td>
+<td>3,504rpm</td>
+<td>2.5m（公式）</td>
+<td>5台で最も小回りが利く</td>
+</tr>
+<tr>
+<td>Ninja 250</td>
+<td>351km</td>
+<td>4,372rpm</td>
+<td>非公表</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>「250のほうが燃費がいい」は成り立たない</strong>。WMTCは CBR400R 28.1 &gt; R25 26.5 ≒ R3 26.4 &gt; Ninja400 25.7 &gt; Ninja250 25.1。
+<strong>最も燃費が良いのは最大排気量・最重量のCBR400R</strong>（低回転で流せるぶんが効いている）。</li>
+<li><strong>航続はCBR400Rが断トツ（478km）</strong>。2位以下に100km以上の差。17Lタンクと28.1km/Lの積。
+<strong>※年式で値が動く</strong>: WMTCは現行 NC65（E-Clutch）が <strong>28.1</strong>＝478km、2019〜23年式 NC56 は <strong>28.3</strong>＝<strong>481km</strong>。
+§9-6 の「481km」はNC56の値であり、§7-3 の478kmと矛盾しない（→ §1 の年式系譜）。</li>
+<li>ただし<strong>CBR400Rは最小回転半径2.9mで5台中最悪</strong>（Ninja 400は2.5m）。<strong>長距離は最強・街の取り回しは最弱</strong>という
+はっきりした二極。§7-2 の加速力の低さと合わせ、<strong>CBR400Rは「速さ」ではなく「距離」で選ぶ車</strong>と読める。</li>
+<li>なお <code>data.md</code> §8 はCBR400Rの最小回転半径を<strong>推定2.64m</strong>としていたが、Honda公式（2026年式 8BL-NC65）で
+<strong>2.9m が実測公表された</strong>。推定は0.26m過小だった。→ <code>data.md</code> 側を修正済み。</li>
+<li><strong>エリミネーター400/SE の最小回転半径は非公表</strong>。カワサキの主要諸元に項目が無く、本ファイル・<code>data.md</code> の
+いずれにも出典付きの値は無い。記事本文（<code>index.html</code> の「落ち着き側の答え」表）には一時 <strong>3.0m</strong> と
+書かれていたが出典を確認できなかったため、2026-07-29 に<strong>「非公表」へ差し替え</strong>た（§4-3 の原則：
+非公表を推定で埋めない）。今後どこかで公式値を見つけたら、ここに出典URLとともに追記すること。</li>
+</ul>
+<h3>7-4. この比較から出る結論</h3>
+<ol>
+<li><strong>250 vs 400の差の正体は「加速力 +37%」より「巡航回転数 −1,500rpm」のほう</strong>（Ninja同士で比較した場合）。
+高速を使う頻度が低いなら250の不利は小さく、使うなら400の差は大きい。</li>
+<li><strong>YZF-R25 と YZF-R3 の価格差は 35,200円</strong>（690,800 / 726,000）。<strong>車体・重量・寸法・タンク・シート高は完全同一</strong>で、
+35PS/23N·m → 42PS/30N·m になる。<strong>R25を積極的に選ぶ理由は「維持費（車検）」以外に見つからない</strong>。</li>
+<li><strong>250と400の本当の分岐点は車検</strong>。250cc以下は車検不要、251cc以上は2年ごとに車検。
+<strong>R3が320ccである意味はここ</strong>——「400の走り」ではなく「車検ありの側で最も軽く安い」枠を取っている。</li>
+<li><strong>Ninja 250 と YZF-R25 は実質同性能</strong>（ともに35PS、トルクは22 vs 23N·m）。
+駆動力でR25がわずかに上（3.43 vs 3.25）だが、これは<strong>エンジンでなくギア比の差</strong>。選ぶなら数値でなくシート高
+（795 vs 780mm）・価格（726,000 vs 690,800円）・見た目で決めてよい差でしかない。</li>
+</ol>
+<h3>7-5. 再現コード</h3>
+<pre><code># tire outer diameter [m]
+D = (rim_inch*25.4 + 2*tire_width*aspect/100)/1000
+# rpm at v [km/h] in gear g
+rpm = (v*1000/60) / (math.pi*D) * (primary*secondary*gear[g])
+# 60km/h から g速で開けたときの駆動力
+T = shape(rpm / peak_torque_rpm) * catalog_max_torque * 0.92   # shape()は §4-1-3（Ninja400+R3実測の正規化平均）
+F = T * (primary*secondary*gear[g]) / (D/2)
+feel = F / (curb_weight + 60)
+</code></pre>
+<p><strong>信頼度</strong>: 実測トルクカーブを持つのは Ninja 400 と YZF-R3 のみ。Ninja 250・YZF-R25・CBR400R は
+§4-1-3 の規則による推定であり、<strong>順位の細かい上下は断定できない</strong>。ただし今回の3台はいずれも並列2気筒で、
+実測2台と気筒数・形式が一致するため、§4-1-4 で直4（CB400SF・ZX-4R）に当てはめたときのような
+「甘めに出る」バイアスは小さい。</p>
+<hr />
+<h2>8. 中古で買う場合 ― <strong>2018〜2020年式</strong>での比較（2026-07-27）</h2>
+<p>§7 は<strong>現行新車</strong>の比較。中古を探す場合は当時の諸元が違う車が混じるので、<strong>当時の公式諸元で引き直す</strong>。
+<strong>対象年式は 2018〜2020</strong>（規制は全車とも平成28年規制。令和2年規制対応は2022年以降なので、この3年は規制的に均質）。</p>
+<h3>8-0. ★この窓の中に、メーカーごとの世代の切れ目が入る</h3>
+<p><strong>2018〜2020の3年を「同じ車が3年並んでいる」と思ってはいけない。カワサキだけがそうで、他2社は違う。</strong></p>
+<table>
+<thead>
+<tr>
+<th>メーカー</th>
+<th>2018年式</th>
+<th>2019年式</th>
+<th>2020年式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>カワサキ</strong>（Ninja 250 / 400）</td>
+<td><strong>新型（EX250P / EX400G）</strong> ← 2018年に登場</td>
+<td>同じ（色のみ）</td>
+<td>同じ（色のみ）</td>
+</tr>
+<tr>
+<td><strong>ヤマハ</strong>（YZF-R25 / R3）</td>
+<td><strong>旧外装・φ37mm正立フォーク・ハロゲン</strong></td>
+<td><strong>倒立フォーク・LED・フル液晶に変更</strong>（2019/3/28発売）</td>
+<td>2019と同じ</td>
+</tr>
+<tr>
+<td><strong>ホンダ</strong>（CBR400R）</td>
+<td><strong>旧型 NC47</strong>（46PS/<strong>9,500rpm</strong>・16Lタンク・ハンドルはトップブリッジ<strong>上</strong>）</td>
+<td><strong>NC56へ全面変更</strong>（46PS/9,000rpm・17L・ハンドル下・320mmシングル）2019/3/22発売</td>
+<td>NC56と同じ</td>
+</tr>
+</tbody>
+</table>
+<p>→ <strong>2018年式を安心して買えるのはカワサキ2台だけ。</strong>
+ヤマハとホンダは<strong>2019年式以降</strong>が新しい側。<strong>5台が同世代で揃うのは2019〜2020の2年間だけ</strong>。</p>
+<h3>採用ルール（以降のすべての表）</h3>
+<p><strong>各車とも 2018〜2020 の窓の中で「有利な年式」を採用</strong>し、不利な年式との差は備考に書く。</p>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th><strong>採用する年式</strong></th>
+<th>型式</th>
+<th>なぜそちらが有利か</th>
+<th>不利な年式（備考）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ninja 250</td>
+<td><strong>2018〜2020</strong>（全期間同一）</td>
+<td>2BK-EX250P</td>
+<td>3年とも同じ。差がない</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Ninja 400</td>
+<td><strong>2018〜2020</strong>（全期間同一）</td>
+<td>2BL-EX400G</td>
+<td>3年とも同じ。差がない</td>
+<td>—</td>
+</tr>
+<tr>
+<td>YZF-R25</td>
+<td><strong>2019〜2020</strong></td>
+<td>2BK-RG43J</td>
+<td><strong>φ37mm倒立フォーク・LEDヘッドランプ・フル液晶メーター</strong>。駆動系は2018と同一なので、数値は変わらず装備だけ上がる</td>
+<td>2018年式は正立フォーク・ハロゲン・旧外装。<strong>走りの数値は同じ</strong></td>
+</tr>
+<tr>
+<td>YZF-R3</td>
+<td><strong>2019〜2020</strong></td>
+<td>2BL-RH13J</td>
+<td>同上</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>CBR400R</td>
+<td><strong>2019〜2020</strong></td>
+<td>2BL-NC56</td>
+<td><strong>タンク16→17L（航続+約28km）／低中回転トルク向上でピークを500rpm下げた（9,500→9,000rpm）／スリッパークラッチ追加／フルデジタルメーター</strong></td>
+<td>2018年式NC47は<strong>ハンドルがトップブリッジ上で姿勢はこちらのほうが楽</strong>（§9-5）。ただしタンク16L・低中速トルクは劣る</td>
+</tr>
+</tbody>
+</table>
+<p><strong>唯一のトレードオフはCBR400Rの姿勢</strong>——走りと装備では2019年式（NC56）が明確に上だが、
+<strong>「楽な姿勢」だけは2018年式（NC47）のほうが上</strong>。ツアラーとして姿勢を最優先するなら2018年式NC47を選ぶ理由がある。</p>
+<p><strong>備考（この窓の前後）</strong></p>
+<ul>
+<li><strong>2017年以前</strong>: カワサキ2台は別車（Ninja 400 EX400E＝209kg・44PS／Ninja 250 EX250L＝172kg・31PS）。→ §8-4</li>
+<li><strong>2021年式</strong>: 5台とも2020年式と同じ（規制も同じ）。<strong>2020年式と等価に扱ってよい</strong>。</li>
+<li><strong>2022年式以降</strong>: CBR400Rが足回りを一新（SFF-BP倒立＋φ296mmダブル＋ラジアル4ポット）。→ §9-7
+Ninja 250は令和2年規制で37→35PSに低下。→ §8-2</li>
+</ul>
+<h3>8-1. 2019〜2021年式の公式諸元</h3>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>型式</th>
+<th>最高出力</th>
+<th>最大トルク</th>
+<th>車両重量</th>
+<th>一次減速比</th>
+<th>二次減速比</th>
+<th>トップギア</th>
+<th>タンク</th>
+<th>WMTC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ninja 250</td>
+<td>2BK-EX250P</td>
+<td><strong>37PS</strong>/12,500</td>
+<td><strong>23N·m</strong>/10,000</td>
+<td>166kg</td>
+<td>3.068</td>
+<td><strong>2.857（40/14）</strong></td>
+<td>0.960</td>
+<td>14L</td>
+<td>26.2km/L</td>
+</tr>
+<tr>
+<td>YZF-R25</td>
+<td>2BK-RG43J</td>
+<td>35PS/12,000</td>
+<td>23N·m/10,000</td>
+<td>167kg（ABS 170kg）</td>
+<td>3.043</td>
+<td>3.071</td>
+<td>0.920</td>
+<td>14L</td>
+<td>27.2km/L</td>
+</tr>
+<tr>
+<td>YZF-R3</td>
+<td>2BL-RH13J</td>
+<td>42PS/10,750</td>
+<td><strong>29N·m</strong>/9,000</td>
+<td>170kg</td>
+<td>3.043</td>
+<td>3.071</td>
+<td>0.800</td>
+<td>14L</td>
+<td>26.1km/L</td>
+</tr>
+<tr>
+<td>Ninja 400</td>
+<td>2BL-EX400G</td>
+<td>48PS/10,000</td>
+<td><strong>38N·m</strong>/8,000</td>
+<td>167kg</td>
+<td>2.218</td>
+<td>2.928</td>
+<td>1.037</td>
+<td>14L</td>
+<td><strong>24.8km/L</strong></td>
+</tr>
+<tr>
+<td>CBR400R</td>
+<td>2BL-NC56</td>
+<td>46PS/9,000</td>
+<td>38N·m/7,500</td>
+<td><strong>192kg</strong></td>
+<td>2.029</td>
+<td>3.000</td>
+<td>1.043</td>
+<td>17L</td>
+<td>28.3km/L</td>
+</tr>
+</tbody>
+</table>
+<p>変速比 全段（2019〜2021年式）:</p>
+<ul>
+<li>Ninja 250: 2.769 / 1.894 / 1.500 / 1.240 / 1.074 / 0.960（現行と同一。<strong>違うのは二次減速比だけ</strong>）</li>
+<li>Ninja 400: 2.928 / 2.055 / 1.619 / 1.333 / 1.153 / 1.037（現行と同一）</li>
+<li>YZF-R25: 2.666 / 1.882 / 1.454 / 1.200 / 1.037 / 0.920（現行と同一）</li>
+<li>YZF-R3: 2.500 / 1.823 / 1.347 / 1.086 / 0.920 / 0.800（現行と同一）</li>
+<li>CBR400R: 3.285 / 2.105 / 1.600 / 1.300 / 1.150 / 1.043（現行と同一）</li>
+</ul>
+<h3>8-2. ★最大の発見：Ninja 250だけ、当時のほうが速くて低回転</h3>
+<p><strong>この5台のうち、現行と実質的に違うのは Ninja 250 だけ。</strong> しかも<strong>中古（当時）のほうが有利</strong>という珍しい方向。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>2019〜21年式 EX250P</th>
+<th>現行 EX250Y</th>
+<th>差</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>最高出力</td>
+<td><strong>37PS</strong>/12,500</td>
+<td>35PS/12,500</td>
+<td><strong>−2PS</strong></td>
+</tr>
+<tr>
+<td>最大トルク</td>
+<td><strong>23N·m</strong>/10,000</td>
+<td>22N·m/10,500</td>
+<td><strong>−1N·m</strong></td>
+</tr>
+<tr>
+<td>二次減速比</td>
+<td><strong>2.857（40/14）</strong></td>
+<td>2.928（41/14）</td>
+<td>リヤスプロケ <strong>40→41丁</strong></td>
+</tr>
+<tr>
+<td>6速60km/h</td>
+<td><strong>4,266rpm</strong></td>
+<td>4,372rpm</td>
+<td>現行は<strong>+106rpm</strong></td>
+</tr>
+<tr>
+<td>6速100km/h</td>
+<td><strong>7,111rpm</strong></td>
+<td>7,287rpm</td>
+<td>現行は<strong>+176rpm</strong></td>
+</tr>
+<tr>
+<td>3速60km/hのF/重量</td>
+<td><strong>3.33 N/kg</strong></td>
+<td>3.25 N/kg</td>
+<td>現行は<strong>−2.4%</strong></td>
+</tr>
+<tr>
+<td>WMTC</td>
+<td><strong>26.2km/L</strong></td>
+<td>25.1km/L</td>
+<td>現行は<strong>−1.1km/L</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>令和2年排出ガス規制で2PS落ち、その埋め合わせにリヤスプロケを1丁増やした（＝ローギヤード化した）</strong> という
+読み方ができる。結果、<strong>現行のほうが回転は高く・燃費は悪く・駆動力もわずかに下</strong>。
+250を中古で買うなら、<strong>2019〜2021年式のNinja 250は現行新車より走りの数値が良い</strong>。</p>
+<p>他の4台は年式による差がほぼ無い:</p>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>2019〜21 → 現行 の変化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>YZF-R25</td>
+<td>出力・トルク・ギア比すべて同一。重量 167→169kg（ABS標準化ぶん）。WMTC 27.2→26.5</td>
+</tr>
+<tr>
+<td>YZF-R3</td>
+<td>トルク 29→30N·m（+1）、重量 170→169kg、WMTC 26.1→26.4。<strong>ギア比は完全同一</strong></td>
+</tr>
+<tr>
+<td>Ninja 400</td>
+<td>トルク 38→37N·m（−1）、重量・ギア比は同一。WMTC 24.8→25.7（<strong>現行のほうが燃費は良い</strong>）</td>
+</tr>
+<tr>
+<td>CBR400R</td>
+<td>出力・トルク・ギア比すべて同一。重量 192→195kg（<strong>E-Clutch機構ぶん+3kg</strong>）。WMTC 28.3→28.1</td>
+</tr>
+</tbody>
+</table>
+<p>→ <strong>R25・R3・Ninja 400・CBR400Rは、中古で買っても走りは現行と変わらない。</strong>年式ではなく個体差で選んでよい。</p>
+<h3>8-3. 2019〜2021年式での計算結果</h3>
+<p>計算法は §2・§4-1-4 と同一。<strong>なお §4-1-2 の実測ダイノは Ninja 400 も YZF-R3 も 2018年式の計測</strong>なので、
+<strong>この年式帯にこそ直接当てはまる</strong>（現行への適用より根拠が強い）。</p>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>6速60km/h</th>
+<th>6速100km/h</th>
+<th>3速rpm</th>
+<th><strong>3速 F/重量</strong></th>
+<th>4速 F/重量</th>
+<th>根拠</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ninja 400 '19</strong></td>
+<td>3,504</td>
+<td><strong>5,840</strong></td>
+<td>5,470</td>
+<td><strong>4.45 N/kg</strong></td>
+<td>3.53</td>
+<td>実測</td>
+</tr>
+<tr>
+<td>YZF-R3 '19</td>
+<td>3,791</td>
+<td>6,318</td>
+<td>6,382</td>
+<td><strong>3.76</strong></td>
+<td>2.88</td>
+<td>実測</td>
+</tr>
+<tr>
+<td>CBR400R '19</td>
+<td><strong>3,240</strong></td>
+<td><strong>5,399</strong></td>
+<td>4,970</td>
+<td><strong>3.67</strong></td>
+<td>2.85</td>
+<td>推定</td>
+</tr>
+<tr>
+<td>YZF-R25 '19</td>
+<td>4,359</td>
+<td>7,265</td>
+<td>6,889</td>
+<td><strong>3.41</strong></td>
+<td>2.73</td>
+<td>推定</td>
+</tr>
+<tr>
+<td>Ninja 250 '19</td>
+<td>4,266</td>
+<td>7,111</td>
+<td>6,666</td>
+<td><strong>3.33</strong></td>
+<td>2.65</td>
+<td>推定</td>
+</tr>
+</tbody>
+</table>
+<p>実用値:</p>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>PS/(車重+60kg)</th>
+<th>満タン航続</th>
+<th>最小回転半径</th>
+<th>シート高</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ninja 400 '19</td>
+<td><strong>0.211</strong></td>
+<td>347km</td>
+<td><strong>2.5m</strong>（公式）</td>
+<td>785mm</td>
+</tr>
+<tr>
+<td>YZF-R3 '19</td>
+<td>0.183</td>
+<td>365km</td>
+<td>非公表</td>
+<td>780mm</td>
+</tr>
+<tr>
+<td>CBR400R '19</td>
+<td>0.183</td>
+<td><strong>481km</strong></td>
+<td>2.9m（公式）</td>
+<td>785mm</td>
+</tr>
+<tr>
+<td>Ninja 250 '19</td>
+<td>0.164</td>
+<td>367km</td>
+<td>非公表</td>
+<td>795mm</td>
+</tr>
+<tr>
+<td>YZF-R25 '19</td>
+<td>0.152</td>
+<td>381km</td>
+<td>非公表</td>
+<td>780mm</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>CBR400R '19 は現行より条件が良い</strong>: 192kg（現行より3kg軽い）・WMTC 28.3（現行28.1）で<strong>航続481km</strong>。
+E-Clutchが不要なら、<strong>中古NC56のほうが軽くて安い</strong>。</li>
+<li><strong>Ninja 400 は 2019〜21年式でも 3速F/重量 4.45 で断トツ</strong>（2位に0.7差）。この序列は年式で動かない。</li>
+<li><strong>250同士は年式が変わっても順位が入れ替わらない</strong>。R25が上のまま（'19: 3.41 vs 3.33／現行: 3.43 vs 3.25）。
+ただし<strong>差は年式で縮む</strong>（0.18 → 0.08）。当時のNinja 250は37PSだが<strong>トルクは23N·mでR25と同値</strong>、
+二次減速比も浅い（2.857 vs 3.071）ので、駆動力ではR25に届かない。
+<strong>カタログ馬力の差（37 vs 35PS）は、一般道の押し出す力には出ない</strong>——効くのはトルクとギア比のほう。</li>
+</ul>
+<h3>8-4. 年式の境目 ― 中古で踏んではいけない地雷</h3>
+<p><strong>「同じ車名で中身が別物」が4車種で起きている。</strong>年式を必ず確認する。</p>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>買っていい世代</th>
+<th>手前の別物世代</th>
+<th>見分け方</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ninja 400</strong></td>
+<td><strong>2018〜（EX400G）</strong> 167kg・48PS</td>
+<td><strong>2014〜2017（EBL-EX400E）209kg・44PS</strong> ＝ Ninja 650の車体を流用した別車。<strong>42kg重い</strong></td>
+<td>車体の細さ。EX400GはNinja 250と共通のトレリスフレーム</td>
+</tr>
+<tr>
+<td><strong>Ninja 250</strong></td>
+<td><strong>2018〜（2BK-EX250P）</strong> 166kg・37PS・ABS標準・14Lタンク</td>
+<td>2013〜2017（JBK-EX250L）172kg・<strong>31PS</strong>・17Lタンク</td>
+<td>LEDヘッドライト＝新型。旧型はハロゲン</td>
+</tr>
+<tr>
+<td><strong>YZF-R25 / R3</strong></td>
+<td><strong>2019〜</strong> 倒立フォーク・LEDヘッドランプ・フル液晶メーター</td>
+<td>2015〜2018 正立フォーク・ハロゲン</td>
+<td><strong>フロントフォークが金色/太い＝2019以降</strong>。一目で分かる</td>
+</tr>
+<tr>
+<td><strong>CBR400R</strong></td>
+<td><strong>2019〜（2BL-NC56）</strong> ハンドルがトップブリッジ<strong>下</strong>・スリッパークラッチ・フルデジタルメーター・17Lタンク</td>
+<td>2016〜2018（NC47）ハンドル上・16Lタンク</td>
+<td>ハンドル位置とメーター</td>
+</tr>
+</tbody>
+</table>
+<p><strong>この5台の「2019〜2021年式」という括りは、全車が新しい側の世代に入る</strong>という点で都合が良い。</p>
+<h3>8-5. 中古相場（2026-07-27 時点・ウェビック掲載データ）</h3>
+<p><strong>掲載台数が少ない年式は幅が広く出る。売り値であり、諸費用（約6万円）は別。</strong></p>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>2019年式</th>
+<th>2020年式</th>
+<th>2021年式</th>
+<th>中古全体の平均</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ninja 250</td>
+<td>約42〜45万円（4台）</td>
+<td>約42.8〜48.8万円（12台）</td>
+<td>掲載2台</td>
+<td>48.8万円</td>
+</tr>
+<tr>
+<td>YZF-R25</td>
+<td>年式別データなし</td>
+<td>〃</td>
+<td>〃</td>
+<td>48.0万円（全体22.6〜71.4万円）</td>
+</tr>
+<tr>
+<td>YZF-R3</td>
+<td>約45.8〜51.8万円（9台）</td>
+<td>約45.8〜53.8万円（3台）</td>
+<td>約51.8〜54.8万円</td>
+<td>58.3万円</td>
+</tr>
+<tr>
+<td>Ninja 400</td>
+<td>約51〜60万円（21台）</td>
+<td>約57〜60万円（15台）</td>
+<td>—</td>
+<td>66.3万円</td>
+</tr>
+<tr>
+<td>CBR400R（NC56）</td>
+<td>掲載少・<strong>買取査定で50〜70万円</strong>（＝店頭はこれより上）</td>
+<td>〃</td>
+<td>〃</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Ninja 400 は250勢より10万円ほど高い</strong>が、走りの差（3速F/重量 +34%）を考えると価格差は小さい。</li>
+<li><strong>CBR400R は中古の玉が少ない</strong>。ウェビックで「CBR400R」を引くと<strong>1986年の直4 CBR400R（59PS・181kg）が混ざる</strong>ので注意。</li>
+<li><strong>YZF-R25 の中古平均48万円は 2015〜2018年式（正立フォーク世代）を含んだ値</strong>。2019年以降だけならもっと上。</li>
+</ul>
+<h3>8-6. 2019〜2021年式ならではの実務チェック（2026年時点で5〜7年落ち）</h3>
+<ul>
+<li><strong>タイヤ</strong>: 製造から5〜7年なら走行距離に関係なく交換前提（2〜3万円）。前後140/70-17クラス。</li>
+<li><strong>ブレーキフルード・クーラント</strong>: 車検のない250（Ninja 250・R25）は交換履歴が残りにくい。要確認。</li>
+<li><strong>チェーン・スプロケ</strong>: 1〜2万kmで寿命。<strong>Ninja 250だけはリヤ40丁</strong>（現行41丁）なので、
+交換時に社外41丁を入れると現行と同じギヤリングになる＝<strong>低速寄りにも振れる</strong>。</li>
+<li><strong>倒立フォーク（R25/R3の2019以降）</strong>: 正立より<strong>インナーチューブの錆・オイル滲みの修理費が高い</strong>。
+立ちゴケ跡とフォークダストシール周りを見る。</li>
+<li><strong>車検</strong>: R3・Ninja 400・CBR400Rは車検あり。<strong>中古購入時に車検残がどれだけあるかで実質価格が5〜7万円動く</strong>。
+Ninja 250・R25は車検不要。</li>
+</ul>
+<hr />
+<h2>9. CBR400R だけ性格が違う理由 ― 「400」ではなく「縮めた500」だから（2026-07-27）</h2>
+<p>§7・§8 で CBR400R は一貫して<strong>加速力は下位・航続と低回転は最上位</strong>という他4台と逆の並び方をした。
+これは味付けの違いではなく、<strong>そもそも車格が一クラス上</strong>だから。ここを分離して明記する。</p>
+<h3>9-1. 決定的な事実：4台は「250の車体」、CBR400Rだけ「500の車体」</h3>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>車体の出自</th>
+<th>根拠</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ninja 250</td>
+<td>250専用（EX250P）</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Ninja 400</strong></td>
+<td><strong>Ninja 250 とフレーム・外装・サスを共有</strong></td>
+<td>Ninja 250との車重差は<strong>わずか1kg</strong>（166 vs 167kg）</td>
+</tr>
+<tr>
+<td>YZF-R25</td>
+<td>250専用（RG43J）</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>YZF-R3</strong></td>
+<td><strong>YZF-R25 と同一フレーム</strong>（WB・キャスター・二次減速比まで同値）</td>
+<td>車重差 0kg（ともに170kg・2019年式）</td>
+</tr>
+<tr>
+<td><strong>CBR400R</strong></td>
+<td><strong>CBR500R（471cc）の車体</strong>を日本の400cc枠に合わせたもの</td>
+<td><strong>ボア67.0mmが CBR500R と共通</strong>。ストロークだけ 66.8→<strong>56.6mm</strong> に短縮して399ccにしている</td>
+</tr>
+</tbody>
+</table>
+<p><strong>つまりこの比較は「250 vs 400」ではなく、実際には「250の車体に載った400」vs「500の車体に載った400」だった。</strong>
+Ninja 400 も YZF-R3 も、250の車体に大きいエンジンを積んだ車。CBR400R だけが上のクラスから降りてきている。</p>
+<h3>9-2. 「500ベース」が具体的にどこに出るか（4点セット）</h3>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>CBR400R</th>
+<th>他4台</th>
+<th>差</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>前タイヤ</strong></td>
+<td><strong>120/70ZR17</strong></td>
+<td>110/70-17（<strong>4台とも同じ</strong>）</td>
+<td>幅+10mm。大型車のサイズ</td>
+</tr>
+<tr>
+<td><strong>後タイヤ</strong></td>
+<td><strong>160/60ZR17</strong></td>
+<td>150/60R17（Ninja400）／140/70-17（250勢・R3）</td>
+<td>250勢に対し+20mm</td>
+</tr>
+<tr>
+<td><strong>車両重量</strong></td>
+<td><strong>192kg</strong></td>
+<td>166〜170kg</td>
+<td><strong>+13〜16%</strong>（Ninja 250比 +26kg）</td>
+</tr>
+<tr>
+<td><strong>総減速比（6速）</strong></td>
+<td><strong>6.349</strong></td>
+<td>6.735（Ninja400）〜8.597（R25）</td>
+<td>最もハイギヤード。<strong>R25は同じ速度で35%高く回る</strong></td>
+</tr>
+<tr>
+<td>ホイールベース</td>
+<td><strong>1,410mm</strong></td>
+<td>1,370〜1,380mm</td>
+<td>+30〜40mm</td>
+</tr>
+<tr>
+<td>トレール</td>
+<td><strong>102mm</strong></td>
+<td>92〜95mm</td>
+<td>+7〜10mm</td>
+</tr>
+<tr>
+<td>燃料タンク</td>
+<td><strong>17L</strong></td>
+<td><strong>14L（4台とも同じ）</strong></td>
+<td>+3L</td>
+</tr>
+</tbody>
+</table>
+<p><strong>7項目すべてが同じ方向（長い・重い・太い・低回転・大容量）を向いている。</strong>偶然ではなく設計クラスの差。</p>
+<p>ハイギヤードの正体は<strong>一次減速比</strong>にある——CBR400Rは <strong>2.029</strong> で5台中最小
+（Ninja 400 2.218／YZF-R25・R3 3.043／Ninja 250 3.068）。これも CBR500R 由来の値。
+6速ギア比そのものは 1.043 で5台中いちばん高い（＝回転が落ちない側）のに、総減速比が最小になるのは一次減速比が効いているため。</p>
+<h3>9-3. エンジンも低回転型 ― ボア/ストローク比で並ぶ</h3>
+<p>短ストローク化して399ccにした結果でも、<strong>CBR400Rは5台でいちばんスクエアに近い</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>ボア×ストローク</th>
+<th><strong>ボア/ストローク比</strong></th>
+<th>最大トルク回転</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CBR400R</strong></td>
+<td>67.0×<strong>56.6</strong></td>
+<td><strong>1.18</strong></td>
+<td><strong>7,500rpm</strong></td>
+</tr>
+<tr>
+<td>Ninja 400</td>
+<td>70.0×51.8</td>
+<td>1.35</td>
+<td>8,000rpm</td>
+</tr>
+<tr>
+<td>YZF-R25</td>
+<td>60.0×44.1</td>
+<td>1.36</td>
+<td>10,000rpm</td>
+</tr>
+<tr>
+<td>Ninja 250</td>
+<td>62.0×41.2</td>
+<td>1.50</td>
+<td>10,000rpm</td>
+</tr>
+<tr>
+<td>YZF-R3</td>
+<td>68.0×44.1</td>
+<td>1.54</td>
+<td>9,000rpm</td>
+</tr>
+</tbody>
+</table>
+<p><strong>ボア/ストローク比の順序が、そのまま最大トルク回転の順序になっている</strong>（R3とNinja 250だけ僅かに入れ替わる）。
+CBR400Rだけが1.2を切る＝<strong>この5台では最もロングストローク寄り</strong>＝低回転型。<strong>車体だけでなくエンジンの素性も一段下の回転域にある。</strong></p>
+<blockquote>
+<p><strong>用語の注意</strong>: CBR400R は 67.0×56.6 で<strong>ボア &gt; ストローク</strong>なので、絶対的な分類では
+<strong>オーバースクエア（ショートストローク）</strong>であり「ロングストロークエンジン」ではない。
+あくまで<strong>この5台の中で最もスクエアに近い＝相対的に低回転寄り</strong>という意味。
+元の CBR500R が 67.0×<strong>66.8</strong>（ほぼ完全なスクエア）で、そこからストロークだけ削って399ccにした結果、
+<strong>ボアだけ500のまま残った</strong>——これが「ショートストロークなのに低回転型」という一見矛盾した性格の出どころ。</p>
+</blockquote>
+<h3>9-4. ただし「余裕がある」わけではない ― 各社そろって43%</h3>
+<p>「低回転で走れる＝余裕がある」と読みたくなるが、<strong>エンジンにかかっている負荷の割合は5台とも同じ</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>6速60km/hの回転</th>
+<th>最大トルク回転</th>
+<th><strong>比</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CBR400R</td>
+<td>3,240</td>
+<td>7,500</td>
+<td><strong>0.43</strong></td>
+</tr>
+<tr>
+<td>Ninja 400</td>
+<td>3,504</td>
+<td>8,000</td>
+<td><strong>0.44</strong></td>
+</tr>
+<tr>
+<td>YZF-R3</td>
+<td>3,791</td>
+<td>9,000</td>
+<td><strong>0.42</strong></td>
+</tr>
+<tr>
+<td>YZF-R25</td>
+<td>4,359</td>
+<td>10,000</td>
+<td><strong>0.44</strong></td>
+</tr>
+<tr>
+<td>Ninja 250</td>
+<td>4,266</td>
+<td>10,000</td>
+<td><strong>0.43</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>排気量も気筒あたり容積も違うのに、5台とも 0.42〜0.44 に収まる。</strong>
+メーカーは排気量に関係なく「60km/hがピークトルク回転の約43%」になるようギアを組んでいる。</p>
+<p>→ <strong>CBR400Rの利点は「余裕」ではなく「同じ余裕を低い絶対回転数で出していること」</strong>。
+効き方は出力ではなく、<strong>振動・音・機械の摩耗・そして疲労</strong>の側に出る。100km/hなら
+<strong>5,399rpm（CBR400R）対 7,265rpm（YZF-R25）で1,866rpm差</strong>——これがツーリングでの差の実体。</p>
+<h3>9-5. ★逆説：2019年式は「姿勢だけ」ツアラーから遠ざかった</h3>
+<p><strong>注意すべき点。</strong>Honda公式の2019年モデル（NC56）ニュースリリースにこうある——
+<strong>「従来モデルではトップブリッジ上側に配置していたセパレートハンドルをトップブリッジ下側へ配置し、よりスポーティーなポジションに変更」</strong>。</p>
+<p>つまり <strong>CBR400Rのツアラー性を担っているのは車体・エンジン・タンクであって、ライディングポジションではない。</strong>
+むしろ2019年式で前傾を強め、他4台の側へ寄せてきている。<strong>「楽な姿勢で長距離」を期待して2019年式を買うと外す。</strong></p>
+<p>姿勢まで含めてツアラーが欲しいなら、<strong>同じNC56型式の兄弟車「400X」</strong>が本命：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>CBR400R（2019・NC56）</th>
+<th>400X（2019・NC56）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>エンジン・型式</td>
+<td>399cc並列2気筒・2BL-NC56</td>
+<td><strong>同一</strong></td>
+</tr>
+<tr>
+<td>ハンドル</td>
+<td>セパハン（トップブリッジ<strong>下</strong>）</td>
+<td><strong>アップハンドル</strong></td>
+</tr>
+<tr>
+<td>前輪</td>
+<td>17インチ</td>
+<td><strong>19インチ</strong>（2019年に17→19へ変更）</td>
+</tr>
+<tr>
+<td>シート高</td>
+<td>785mm</td>
+<td>800mm</td>
+</tr>
+<tr>
+<td>車両重量</td>
+<td>192kg</td>
+<td><strong>199kg</strong></td>
+</tr>
+<tr>
+<td>スクリーン</td>
+<td>—</td>
+<td><strong>従来より延長</strong></td>
+</tr>
+</tbody>
+</table>
+<p>→ <strong>「500ベースの車体＋低回転エンジン＋17Lタンク」という長所はそのままに、姿勢と防風だけツアラー側に振ったのが400X。</strong>
+（2024年以降は後継の NX400 に移行）</p>
+<h3>9-6. まとめ ― CBR400Rを選ぶ/選ばない基準</h3>
+<p><strong>選ぶ理由（他4台では代替できない）</strong></p>
+<ul>
+<li><strong>航続481km</strong>（2位のYZF-R25 381kmに+100km）。17Lタンク＋WMTC 28.3km/Lの積</li>
+<li><strong>100km/h巡航5,399rpm</strong>（最速のNinja 400より441rpm低く、YZF-R25より1,866rpm低い）</li>
+<li><strong>WB1,410mm・トレール102mm・120/70前輪・192kg</strong> による直進安定と横風耐性</li>
+<li>中古なら<strong>NC56（2019〜21）は現行NC65より3kg軽く、E-Clutchぶんの価格差も無い</strong></li>
+</ul>
+<p><strong>選ばない理由</strong></p>
+<ul>
+<li><strong>3速60km/hのF/重量 3.67</strong>。Ninja 400（4.45）に<strong>18%負ける</strong>。400なのにYZF-R3（3.76）以下</li>
+<li><strong>最小回転半径2.9m</strong>。この5台で最悪（Ninja 400は2.5m）＝街の取り回しは最も苦手</li>
+<li><strong>192kg</strong>。250勢より26kg重い</li>
+<li><strong>姿勢はツアラーではない</strong>（§9-5）。長時間の楽さを求めるなら400X／NX400を見るべき</li>
+</ul>
+<p><strong>一言で</strong>: CBR400Rは「速い400」ではなく「<strong>小さい500</strong>」。
+速さで比べる土俵に置くと必ず負けるが、<strong>距離・回転数・安定で比べる土俵ではこの5台に対抗馬がいない。</strong></p>
+<h3>9-7. 足回り ― ★「豪華」なのは2022年式以降だけ（中古の分水嶺）</h3>
+<p><strong>「CBR400Rは足回りが豪華」は現行には当てはまるが、2019〜2021年式には当てはまらない。</strong>
+足回りは<strong>2022年1月17日発売のモデル（8BL-NC56、¥841,500）で一新</strong>されている。
+中古で足回りを目当てにするなら、<strong>§8で推した2019〜2021年式では手に入らない</strong>。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>CBR400R <strong>2019〜2021</strong>（2BL-NC56）</th>
+<th>CBR400R <strong>2022〜</strong>（8BL-NC56 / NC65）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>フロントフォーク</td>
+<td><strong>φ41mm 正立</strong></td>
+<td><strong>SHOWA製 SFF-BP φ41mm 倒立</strong>（CBR650Rと同型と見られる）</td>
+</tr>
+<tr>
+<td>フロントブレーキ</td>
+<td><strong>φ320mm シングルディスク</strong></td>
+<td><strong>φ296mm ダブルディスク＋ラジアルマウント4ピストン</strong></td>
+</tr>
+<tr>
+<td>リヤ</td>
+<td>プロリンク（リンク式）・分離加圧式</td>
+<td><strong>同じ</strong>（2019年式から継続・変更なし）</td>
+</tr>
+<tr>
+<td>その他</td>
+<td>—</td>
+<td>スイングアーム剛性最適化・フロントホイール軽量化・前後分担荷重最適化</td>
+</tr>
+<tr>
+<td>車両重量</td>
+<td>192kg</td>
+<td>192kg（<strong>足回り強化しても増えていない</strong>）</td>
+</tr>
+</tbody>
+</table>
+<p>→ <strong>2019〜21年式のCBR400Rは、足回りではむしろ質素</strong>（正立＋シングルディスク）。
+この年式帯で唯一の倒立フォーク車は <strong>YZF-R25 / YZF-R3</strong>（φ37mm KYB、2019年のマイナーチェンジで採用）。</p>
+<h3>9-8. 5台の足回り比較 ― 差がつくのはフロント、リヤではない</h3>
+<p><strong>「リヤサスの形式が違う」は成立しない。3台とも同じリンク式である。</strong></p>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>フロントフォーク</th>
+<th>フロントブレーキ</th>
+<th>リヤサス形式</th>
+<th>リヤ調整</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CBR400R 現行</strong></td>
+<td><strong>SFF-BP φ41mm 倒立</strong>（左プリロード／右ダンピングの機能分離型）</td>
+<td><strong>φ296mm ダブル＋ラジアル4ポット</strong></td>
+<td><strong>プロリンク</strong>（リンク式）</td>
+<td>プリロード5段</td>
+</tr>
+<tr>
+<td>CBR400R '19〜21</td>
+<td>φ41mm <strong>正立</strong></td>
+<td>φ320mm シングル</td>
+<td>プロリンク（リンク式）</td>
+<td>プリロード5段</td>
+</tr>
+<tr>
+<td>YZF-R25 / R3（'19〜現行）</td>
+<td><strong>φ37mm 倒立</strong>（KYB・<strong>調整機構なし</strong>）</td>
+<td>シングル＋2ポット</td>
+<td><strong>モノクロス</strong>（リンク式）</td>
+<td>プリロード調整可</td>
+</tr>
+<tr>
+<td>Ninja 250 / 400（'18〜<strong>現行2026年式まで</strong>）</td>
+<td><strong>φ41mm 正立</strong>（テレスコピック）</td>
+<td>φ310mm セミフローティングペタル・シングル＋デュアルピストン</td>
+<td><strong>ボトムリンクユニトラック</strong>（リンク式）</td>
+<td>プリロード調整可</td>
+</tr>
+</tbody>
+</table>
+<p><strong>ここから言えること:</strong></p>
+<ol>
+<li><strong>「現行はどれも倒立」は誤り。カワサキだけ違う。</strong>
+Kawasaki公式の2026年式Ninja 400諸元は<strong>「テレスコピック（インナーチューブ径41mm）」＝正立</strong>のまま。
+Ninja 250も同じ。<strong>2018年の車体設計を2026年まで正立で通している。</strong>
+倒立は <strong>ホンダ陣営（SFF-BP 41mm）とヤマハ陣営（KYB 37mm）の2つだけ</strong>。</li>
+</ol>
+<ol>
+<li><strong>リヤ</strong>: ホンダ（プロリンク）とカワサキ（<strong>ボトムリンクユニトラック</strong>、Kawasaki公式で明記）は<strong>どちらもリンク式</strong>で、
+ここでは差がつかない。調整もプリロードのみで同じ。
+<strong>ただしヤマハだけは要注意</strong> ── この3台を直接比較した<a href="https://car.motor-fan.jp/article/10005240">Motor-Fan の記事</a>は
+<strong>「Ninja 400とCBR400Rはリンク式、YZF-R3はリンクレス」</strong>としている。
+一方 <a href="https://www.motorcycle.com/features/2019-yamaha-yzf-r3-review.html">Motorcycle.com の2019 R3レビュー</a>は "single linked rear shock" と書いており、<strong>記述が割れている</strong>。
+<strong>ヤマハは公式諸元にリンク形式を明記していない</strong>ため一次資料で確定できず、<strong>未確定として扱う</strong>。
+（2026-07-27 時点。実車のスイングアーム下を見れば即判別できる ── <strong>中古の現車確認時にリンクの有無を見ること</strong>）
+→ もしリンクレスなら、これは5台で<strong>ヤマハ2台だけの構造的な差</strong>であり、§11の直進安定の議論に効く。</li>
+</ol>
+<ol>
+<li><strong>差が出るのはフロント側</strong>。順に並べると:
+**CBR400R現行（倒立41mm＋ダブルディスク＋ラジアル4ポット）&gt; YZF-R25/R3（倒立37mm・調整不可）</li>
+</ol>
+<blockquote>
+<p>Ninja 250/400（正立41mm＋シングル2ポット）≒ CBR400R '19〜21（正立41mm＋シングル）**</p>
+</blockquote>
+<ul>
+<li>太さは41mm組（ホンダ・カワサキ）が上で、<strong>倒立でも37mmのヤマハは細い</strong>。
+「倒立＝上等」ではなく、<strong>径と倒立は別の軸</strong>。</li>
+<li><strong>ラジアルマウント4ポットキャリパー＋ダブルディスクは、この5台で現行CBR400Rだけ</strong>。
+ここは明確に一段上（＝§9-2の「120/70前輪・192kg」を止めるための装備でもある）。</li>
+</ul>
+<ol>
+<li><strong>フォークの調整</strong>: 差はあるが、上等な側が調整できるとは限らない。
+YZF-R25/R3 の37mm倒立は<strong>調整機構なし</strong>と明記されている（<a href="https://www.motorcycle.com/features/2019-yamaha-yzf-r3-review.html">Motorcycle.com 2019 R3 review</a>）。
+SFF-BPは構造上「左＝プリロード／右＝ダンピング」と機能を左右に分ける形式だが、
+<strong>CBR400Rの実装で実際に調整可能かは資料が割れており未確認</strong>。→ 実車のフォークトップで確認すること。</li>
+</ol>
+<p><strong>まとめ（足回りの観点での結論）</strong></p>
+<ul>
+<li><strong>足回り目当てなら CBR400R は 2022年式以降</strong>。2019〜21年式を選ぶ理由は足回りではなく、
+§9-2 の車格（500ベース・17Lタンク・低回転）と価格のほう。</li>
+<li><strong>2019〜21年式の中で唯一の倒立は YZF-R25 / R3</strong>。ただし37mmで細く、調整もできない。</li>
+<li><strong>Ninja 250 / 400 は現行まで一貫して正立</strong>。§7〜§8 で見たとおり走りの数値では最強（3速F/重量4.45）だが、
+<strong>それは足回りの豪華さで達成しているのではなく、軽さ（167kg）とギア比で達成している。</strong></li>
+</ul>
+<hr />
+<h2>10. 80km/hまでの1車線国道 ― この5台は実際どう違うか（2026-07-27）</h2>
+<p><strong>条件</strong>: 制限速度〜80km/h、片側1車線、追い越し車線なし、前が詰まる、信号・右左折あり。
+＝ このガレージ計画の実際の走行環境（→ index.html「暴走族をやらずにZX-4Rに乗るために」章と同じ前提）。
+対象年式は §8-0 の採用ルール（カワサキ2018〜、ヤマハ・ホンダ2019〜）。</p>
+<h3>10-1. まず全車に共通すること：80km/hはまだ「登り坂の途中」</h3>
+<p>各車の最大トルクはトップギアで <strong>137〜144km/h相当</strong>（§2）。つまり
+<strong>80km/hまでの世界では、5台とも一度もトルクの山に到達しない。</strong></p>
+<p>さらに、6速80km/hの「回転数÷最大トルク回転」は——</p>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>6速80km/hの回転</th>
+<th>最大トルク回転</th>
+<th>比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ninja 250</td>
+<td>5,689</td>
+<td>10,000</td>
+<td>0.57</td>
+</tr>
+<tr>
+<td>YZF-R25</td>
+<td>5,812</td>
+<td>10,000</td>
+<td>0.58</td>
+</tr>
+<tr>
+<td>YZF-R3</td>
+<td>5,054</td>
+<td>9,000</td>
+<td>0.56</td>
+</tr>
+<tr>
+<td>Ninja 400</td>
+<td>4,672</td>
+<td>8,000</td>
+<td>0.58</td>
+</tr>
+<tr>
+<td>CBR400R</td>
+<td>4,319</td>
+<td>7,500</td>
+<td>0.58</td>
+</tr>
+</tbody>
+</table>
+<p><strong>5台とも0.56〜0.58で揃う</strong>（§9-4の60km/hでの0.42〜0.44と同じ現象）。
+→ <strong>「どの車も同じくらい山の手前にいる」。違うのは絶対回転数だけ。</strong>
+そして60→80km/hで駆動力は<strong>全車とも増える</strong>（§10-4）＝<strong>この速度域では排気量差が素直に効く</strong>。
+ZX-4Rのように「山が遠すぎて届かない」という破綻は、この5台には起きない。</p>
+<h3>10-2. 6速の回転数 ― 常用域まるごと</h3>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>40km/h</th>
+<th>50km/h</th>
+<th>60km/h</th>
+<th>70km/h</th>
+<th><strong>80km/h</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>YZF-R25</td>
+<td>2,906</td>
+<td>3,633</td>
+<td>4,359</td>
+<td>5,086</td>
+<td><strong>5,812</strong></td>
+</tr>
+<tr>
+<td>Ninja 250</td>
+<td>2,844</td>
+<td>3,555</td>
+<td>4,266</td>
+<td>4,978</td>
+<td><strong>5,689</strong></td>
+</tr>
+<tr>
+<td>YZF-R3</td>
+<td>2,527</td>
+<td>3,159</td>
+<td>3,791</td>
+<td>4,422</td>
+<td><strong>5,054</strong></td>
+</tr>
+<tr>
+<td>Ninja 400</td>
+<td>2,336</td>
+<td>2,920</td>
+<td>3,504</td>
+<td>4,088</td>
+<td><strong>4,672</strong></td>
+</tr>
+<tr>
+<td>CBR400R</td>
+<td>2,160</td>
+<td>2,700</td>
+<td>3,240</td>
+<td>3,780</td>
+<td><strong>4,319</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>80km/hで250勢は5,700〜5,800rpm、CBR400Rは4,319rpm。差は約1,500rpm。</strong>
+80km/hを1時間続けたときの音・振動・手のしびれの差は、ここに出る。</p>
+<h3>10-3. ★80km/h巡航の余力 ― R3の優位が消える</h3>
+<p>80km/hを6速で流しているとき、そこからアクセルを開けて出る駆動力（F÷(車重+60kg)）:</p>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>6速</th>
+<th>5速</th>
+<th>4速</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ninja 400</strong></td>
+<td><strong>2.83</strong></td>
+<td><strong>3.21</strong></td>
+<td><strong>3.77</strong></td>
+</tr>
+<tr>
+<td>CBR400R</td>
+<td>2.36</td>
+<td>2.64</td>
+<td>3.06</td>
+</tr>
+<tr>
+<td>YZF-R25</td>
+<td>2.12</td>
+<td>2.40</td>
+<td>2.93</td>
+</tr>
+<tr>
+<td><strong>YZF-R3</strong></td>
+<td><strong>2.11</strong></td>
+<td>2.49</td>
+<td>3.14</td>
+</tr>
+<tr>
+<td>Ninja 250</td>
+<td>2.08</td>
+<td>2.38</td>
+<td>2.85</td>
+</tr>
+</tbody>
+</table>
+<p><strong>重要</strong>: <strong>80km/h巡航の余力では、YZF-R3（2.11）は250勢（2.08〜2.12）と横並びになる。</strong>
+R3はハイギヤードなので6速80km/hでまだ5,054rpm＝トルクが出きらない領域にいる。
+一方250勢は5,700rpmでピークに近づいている。<strong>両者が相殺して差が消える。</strong></p>
+<p>→ <strong>「R3は250より速い」は加速の話（3速で+10%）であって、80km/h巡航の余力では成立しない。</strong>
+320ccぶんの余裕を感じたければ、<strong>5速・4速に落とす必要がある</strong>（そこでは2.49／3.14と250勢を離す）。</p>
+<p><strong>Ninja 400だけは6速のまま2.83</strong>で、5台中唯一「シフトダウンせずに開けられる」。</p>
+<h3>10-4. 追い越し ― 前のトラックを抜く場面</h3>
+<p>1車線国道で対向車の切れ目に60km/hから80km/hへ出る、という具体的な場面。<strong>4速固定</strong>での駆動力:</p>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>4速rpm（60km/h）</th>
+<th>→ 4速rpm（80km/h）</th>
+<th>F/重量 60km/h → 80km/h</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ninja 400</strong></td>
+<td>4,504</td>
+<td>6,005</td>
+<td><strong>3.53 → 3.77</strong></td>
+</tr>
+<tr>
+<td>YZF-R3</td>
+<td>5,146</td>
+<td>6,861</td>
+<td>2.88 → 3.14</td>
+</tr>
+<tr>
+<td>CBR400R</td>
+<td>4,038</td>
+<td>5,384</td>
+<td>2.85 → 3.06</td>
+</tr>
+<tr>
+<td>YZF-R25</td>
+<td>5,686</td>
+<td>7,581</td>
+<td>2.73 → 2.93</td>
+</tr>
+<tr>
+<td>Ninja 250</td>
+<td>5,511</td>
+<td>7,348</td>
+<td>2.65 → 2.85</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>全車、80km/hに近づくほど駆動力が増える</strong>（山に近づくため）。追い越しの後半ほど伸びる。</li>
+<li><strong>Ninja 400 は4速のままで足りる</strong>（3.53〜3.77）。</li>
+<li><strong>250勢は4速だと2.65〜2.93</strong>。実用上は<strong>3速まで落とすことになる</strong>（3速なら3.25〜3.41／§8-3）。
+ただし3速だと80km/hで <strong>7,348〜7,581rpm</strong> まで回る＝音がかなり出る。</li>
+<li><strong>CBR400Rは4速で2.85〜3.06</strong>とR3並み。<strong>192kgが効いて、トルク38N·mが数字に化けない。</strong></li>
+</ul>
+<h3>10-5. ★不便さの正体 ― 前が詰まったとき（ここが一番差が出る）</h3>
+<p>1車線国道で最も起きるのは「<strong>前が詰まって40km/hに落ちる</strong>」。このとき何速で走れるか。
+（下限をエンジン2,500rpmと仮定。これ以下はノッキング・ギクシャクが出る領域）</p>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th><strong>6速が使える下限</strong></th>
+<th>5速の下限</th>
+<th>30km/hで使える最高ギア</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>YZF-R25</td>
+<td><strong>34km/h</strong></td>
+<td>31km/h</td>
+<td>4速（2,843rpm）</td>
+</tr>
+<tr>
+<td>Ninja 250</td>
+<td><strong>35km/h</strong></td>
+<td>31km/h</td>
+<td>4速（2,755rpm）</td>
+</tr>
+<tr>
+<td>YZF-R3</td>
+<td>40km/h</td>
+<td>34km/h</td>
+<td>4速（2,573rpm）</td>
+</tr>
+<tr>
+<td>Ninja 400</td>
+<td>43km/h</td>
+<td>39km/h</td>
+<td>3速（2,735rpm）</td>
+</tr>
+<tr>
+<td><strong>CBR400R</strong></td>
+<td><strong>46km/h</strong></td>
+<td>42km/h</td>
+<td><strong>3速（2,485rpm）</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>これがハイギヤードの裏返し。</strong></p>
+<ul>
+<li><strong>250勢は40km/hでも6速のまま流せる</strong>（2,844〜2,906rpm）。前が詰まってもギアを触らなくていい。</li>
+<li><strong>CBR400Rは46km/h以下で6速が使えない</strong>。40km/hに落ちたら<strong>5速でも足りず4速まで落とす</strong>。
+§9-2 で見た「最もハイギヤード（総減速比6.349）」の代償が、そのままここに出る。</li>
+<li><strong>30km/hまで落ちるとCBR400RとNinja 400は3速</strong>。250勢は4速で粘れる。</li>
+</ul>
+<p>→ <strong>1車線国道で前が詰まる頻度が高いほど、CBR400Rはシフト操作が増える。</strong>
+逆に<strong>250勢はギアを触る回数が最も少ない</strong>。</p>
+<h3>10-6. 車種別 ― 何が良くて、何が不便か</h3>
+<p><strong>Ninja 400 ― この条件での最適解</strong></p>
+<ul>
+<li>80km/h巡航4,672rpm。<strong>6速のまま開けて2.83</strong>（2位のCBR400Rに+20%）＝<strong>シフトダウン不要</strong></li>
+<li>追い越しは4速で完結。3速まで落とす必要がない</li>
+<li>167kg・最小回転半径2.5m。<strong>右左折・Uターン・押し歩きも5台で最良</strong></li>
+<li><strong>不便さ</strong>: 6速下限43km/h。前が詰まって40km/hになると5速へ落とす。それだけ</li>
+<li><strong>弱点らしい弱点が無い。</strong> 80km/h上限の1車線国道という条件では、5台で唯一「不便」が挙がらない</li>
+</ul>
+<p><strong>Ninja 250 / YZF-R25 ― 流すだけなら不便はない。抜くときだけ不便</strong></p>
+<ul>
+<li><strong>40km/hでも6速。ギアを触る回数が最も少ない</strong>＝渋滞・詰まりに最も強い</li>
+<li>166〜170kgで軽く、右左折も楽</li>
+<li><strong>不便さ①</strong>: 80km/h巡航で<strong>5,700〜5,800rpm</strong>。1時間で音と振動が効いてくる</li>
+<li><strong>不便さ②</strong>: 追い越しは<strong>3速まで落とす</strong>必要がある。そのとき80km/hで<strong>7,350〜7,580rpm</strong>＝かなり回る。
+「静かに素早く抜く」ができない</li>
+<li><strong>車検不要</strong>。この条件では性能不足は追い越し時だけに限定される</li>
+</ul>
+<p><strong>YZF-R3 ― 250と400の中間だが、80km/h巡航では250側に寄る</strong></p>
+<ul>
+<li>80km/h巡航5,054rpm。250勢より750rpm低く、ここは明確に楽</li>
+<li><strong>不便さ①</strong>: <strong>6速80km/hの余力は250と同じ（2.11 vs 2.08〜2.12）</strong>。
+320ccを実感するには5速・4速に落とす必要がある（そこでは2.49／3.14と離す）</li>
+<li><strong>不便さ②</strong>: 6速下限40km/h。250ほど粘れない</li>
+<li><strong>車検あり</strong>。250と同じ車体・同じ重量（170kg）で車検が付く</li>
+</ul>
+<p><strong>CBR400R ― この条件が最も苦手。長所が出るのは別の場所</strong></p>
+<ul>
+<li>80km/h巡航<strong>4,319rpm＝5台で最低</strong>。音・振動・疲労は最も少ない</li>
+<li><strong>不便さ①</strong>: <strong>6速下限46km/h</strong>。前が詰まるとシフトダウンの回数が5台で最多</li>
+<li><strong>不便さ②</strong>: 追い越し4速で3.06。<strong>400なのにR3（3.14）以下</strong>。192kgが効く</li>
+<li><strong>不便さ③</strong>: <strong>最小回転半径2.9m</strong>（Ninja 400は2.5m）＋192kg。
+1車線国道の右左折・Uターン・狭い場所の切り返しで最も苦労する</li>
+<li><strong>長所（航続481km・低回転）が本当に効くのは、80km/h上限の一般道ではなく高速道路の長距離。</strong>
+この条件では<strong>長所が最も出ず、短所（重さ・回転半径・ハイギヤード）が最も出る</strong></li>
+</ul>
+<h3>10-7. 結論 ― 80km/h上限・1車線国道という条件下では</h3>
+<table>
+<thead>
+<tr>
+<th>順位</th>
+<th>車種</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1</strong></td>
+<td><strong>Ninja 400</strong></td>
+<td>6速のまま開けられる唯一の車。取り回しも最良。不便が挙がらない</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Ninja 250 / YZF-R25</td>
+<td>流す・詰まるに最も強い。抜くときだけ3速7,400rpm。車検不要</td>
+</tr>
+<tr>
+<td>4</td>
+<td>YZF-R3</td>
+<td>巡航回転は下がるが、6速の余力は250と同じ。車検ぶんの見返りが薄い</td>
+</tr>
+<tr>
+<td>5</td>
+<td>CBR400R</td>
+<td>低回転巡航は最良だが、詰まり・追い越し・取り回しの3つで最も不便</td>
+</tr>
+</tbody>
+</table>
+<p><strong>この順位は「80km/h上限・1車線・詰まる」という条件に限った話</strong>である。
+条件が <strong>高速道路・100km/h以上・長距離</strong> に変わると、§7-3／§9-6 のとおり
+<strong>CBR400R（航続481km・100km/h 5,399rpm）が逆に最上位に来る。</strong>
+<strong>排気量ではなく、走る道が順位を決めている。</strong></p>
+<hr />
+<h2>11. 直線の安定感 ― F/重量という指標の裏側（2026-07-27）</h2>
+<p><strong>§10 は「軽ければ有利」という結論を出した。だがそれは指標の片面しか見ていない。</strong>
+「F/重量が高い＝速い」を突き詰めると<strong>自転車にエンジンを積むのが最適解</strong>になってしまう。
+実際にはそうならない。<strong>重量は直進安定を買う代金</strong>であり、それを勘定に入れていなかった。ここで入れる。</p>
+<h3>11-1. ★同じ式の表と裏 ― a = F/m は横風にも効く</h3>
+<p>まず、<strong>Ninja 400 の速さの実体を分解する</strong>（3速60km/h、§8-3）。</p>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>駆動力 F</th>
+<th>Fの比</th>
+<th>総質量（+60kg）</th>
+<th><strong>F/重量</strong></th>
+<th>F/重量の比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ninja 400</strong></td>
+<td><strong>1,011N</strong></td>
+<td><strong>1.09</strong></td>
+<td>227kg</td>
+<td><strong>4.45</strong></td>
+<td><strong>1.21</strong></td>
+</tr>
+<tr>
+<td>YZF-R3</td>
+<td>864N</td>
+<td>0.93</td>
+<td>230kg</td>
+<td>3.76</td>
+<td>1.02</td>
+</tr>
+<tr>
+<td>CBR400R</td>
+<td>925N</td>
+<td>1.00</td>
+<td>252kg</td>
+<td>3.67</td>
+<td>1.00</td>
+</tr>
+<tr>
+<td>YZF-R25</td>
+<td>785N</td>
+<td>0.85</td>
+<td>230kg</td>
+<td>3.41</td>
+<td>0.93</td>
+</tr>
+<tr>
+<td>Ninja 250</td>
+<td>752N</td>
+<td>0.81</td>
+<td>226kg</td>
+<td>3.33</td>
+<td>0.91</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ninja 400 が CBR400R に対して持つ +21% の優位のうち、エンジン由来（駆動力）は +9% しかない。</strong>
+<strong>残り +12% は「25kg 軽い」という分母から来ている。</strong></p>
+<p>そして <strong>a = F ÷ m は、駆動力にも横風にも同じように効く。</strong>
+エンジンのFで前に押されやすい車は、横風のFでも横に押される。
+<strong>「加速がいい」と「外乱に動かされやすい」は、同じ一つの式の表と裏であり、切り離せない。</strong></p>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>総質量</th>
+<th>全幅</th>
+<th>質量だけで見た揺すられやすさ</th>
+<th>全幅（受風面積の粗い代理）も入れた場合</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CBR400R</strong></td>
+<td><strong>252kg</strong></td>
+<td>755mm</td>
+<td><strong>1.000</strong>（基準）</td>
+<td><strong>1.000</strong>（基準）</td>
+</tr>
+<tr>
+<td>Ninja 400</td>
+<td>227kg</td>
+<td>710mm</td>
+<td>1.110</td>
+<td>1.044</td>
+</tr>
+<tr>
+<td>Ninja 250</td>
+<td>226kg</td>
+<td>710mm</td>
+<td>1.115</td>
+<td>1.049</td>
+</tr>
+<tr>
+<td>YZF-R25 / R3</td>
+<td>230kg</td>
+<td>730mm</td>
+<td>1.096</td>
+<td>1.059</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>質量だけなら、250勢・Ninja 400 は CBR400R より 10〜12% 大きく揺すられる。</strong></li>
+<li>ただし <strong>CBR400R はカウルも大きい</strong>（全幅755mm）。受風面積を全幅で粗く代理すると差は <strong>4〜6%</strong> に縮む。
+<strong>正直に言えば「1割違う」ではなく「数%〜1割」</strong>。ここは面積を実測していないので幅を持たせる。</li>
+</ul>
+<p><strong>比例の形は正しいが、代理変数に3つ弱点がある</strong>（→ §11-7 に未確定として計上）:</p>
+<ol>
+<li><strong>全幅は「前から見た寸法」</strong>（ミラー幅）で、横風が押すのは<strong>真横から見たシルエット面積</strong>（高さ×長さ）。
+代理として弱いというより<strong>測っている軸が違う</strong>。</li>
+<li><strong>ライダーの質量（60kg）は分母に入れたが、ライダーの受風面積は分子に入れていない</strong>。
+ライダーの側面積は両車で共通の大きな加算項なので、入れれば面積比は 1 に寄り、
+<strong>補正は 4〜6% より小さくなる</strong>＝質量だけの 10〜12% 側へ戻る。<strong>分母だけ共通項を足した非対称</strong>。</li>
+<li><strong>カウルが大きいことは横風に有利とは限らない</strong>。効くのは<strong>風心（CP）と重心の前後関係</strong>で、
+CP が重心より前だと風上へ向きを振られる（不安定側）。カウルは面積を前寄りに増やす。</li>
+</ol>
+<h3>11-2. 直進安定の素データ ― トレール・WB・質量・タイヤ幅が全部同じ順序で並ぶ</h3>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th><strong>トレール</strong></th>
+<th>ホイールベース</th>
+<th>キャスター</th>
+<th><strong>総質量</strong></th>
+<th><strong>前タイヤ幅</strong></th>
+<th>シート高</th>
+<th>リヤリンク</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CBR400R</strong></td>
+<td><strong>102mm</strong></td>
+<td><strong>1,410mm</strong></td>
+<td><strong>25°30′</strong></td>
+<td><strong>252kg</strong></td>
+<td><strong>120mm</strong></td>
+<td>785mm</td>
+<td>プロリンク（リンク式）</td>
+</tr>
+<tr>
+<td>YZF-R25</td>
+<td>95mm</td>
+<td>1,380mm</td>
+<td>25°00′</td>
+<td>230kg</td>
+<td>110mm</td>
+<td><strong>780mm</strong></td>
+<td><strong>未確定</strong>（§9-8）</td>
+</tr>
+<tr>
+<td>YZF-R3</td>
+<td>95mm</td>
+<td>1,380mm</td>
+<td>25°00′</td>
+<td>230kg</td>
+<td>110mm</td>
+<td><strong>780mm</strong></td>
+<td><strong>未確定</strong>（§9-8）</td>
+</tr>
+<tr>
+<td>Ninja 400</td>
+<td>92mm</td>
+<td>1,370mm</td>
+<td>24°42′</td>
+<td>227kg</td>
+<td>110mm</td>
+<td>785mm</td>
+<td>ボトムリンクユニトラック</td>
+</tr>
+<tr>
+<td>Ninja 250</td>
+<td><strong>90mm</strong></td>
+<td>1,370mm</td>
+<td><strong>24°18′</strong></td>
+<td><strong>226kg</strong></td>
+<td>110mm</td>
+<td><strong>795mm</strong></td>
+<td>ボトムリンクユニトラック</td>
+</tr>
+</tbody>
+</table>
+<p><strong>トレール・ホイールベース・キャスター・質量・前タイヤ幅の5項目すべてが、まったく同じ順序で並ぶ。</strong>
+CBR400R ＞ YZF-R25＝R3 ＞ Ninja 400 ＞ Ninja 250。
+<strong>唯一シート高だけが逆を向く</strong>（ヤマハ780mmが最低、Ninja 250の795mmが最高）が、
+シート高は重心の粗い代理にすぎず、他5項目の一致に対して弱い。</p>
+<p><strong>とくにトレールの差が大きい</strong>: CBR400R 102mm 対 Ninja 250 90mm ＝ <strong>+13%</strong>。
+ただし <strong>+13% をそのまま「戻す力の差」にはできない</strong>。復元トルクの標準式（Pacejka / Cossalter）は:</p>
+<pre><code>直進へ戻すトルク = (トレール + ニューマチックトレール) × cos(キャスター角) × 横力
+</code></pre>
+<ul>
+<li><strong>トレールに1次で比例するのは正しい</strong>（式の形として）。</li>
+<li><strong>cos(キャスター角) で縮む</strong>。CBR400R はキャスターも大きい（25°30′ 対 24°18′）ので、
+ここでは<strong>不利に働く</strong>。素の比 +13.3% → 実効トレール比 <strong>+12.2%</strong>。</li>
+<li><strong>ニューマチックトレール（タイヤ自身が持つ分）が両車に共通で足される</strong>ので、比率はさらに薄まる。
+値は未取得だが、20〜40mm と置けば <strong>+8〜10%</strong> まで落ちる。</li>
+<li>逆に <strong>前タイヤ幅 120 対 110</strong> は横力を増やす側なので、差を押し戻す。</li>
+</ul>
+<p><strong>言えるのは「戻す力が1割前後強い」まで。13% という精度は主張できない。</strong>
+なお <strong>復元トルクの差 ＝ 直進安定の差ではない</strong>。まっすぐ走る性質はウィーブ／ウォブルの
+減衰で決まり、操舵系の慣性・速度・質量配置も効く。トレールはその一項。</p>
+<h3>11-3. 指標 ― 既存モデルと改訂版</h3>
+<p><strong>指標A: <code>data.md</code> §2-B の既存方式</strong>（ホイールベース＋キャスター＋シート高の低さ）</p>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>スコア</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CBR400R</td>
+<td><strong>8.9</strong></td>
+</tr>
+<tr>
+<td>YZF-R25 / R3</td>
+<td>6.1</td>
+</tr>
+<tr>
+<td>Ninja 400</td>
+<td>3.3</td>
+</tr>
+<tr>
+<td>Ninja 250</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>この既存モデルには質量とトレールが入っていない</strong>（→ <code>data.md</code> §2-B の既知の限界に該当）。
+今回の指摘はまさにそこを突いている。</p>
+<p><strong>指標B: 改訂版</strong>（トレール＋ヨー慣性(WB²)＋総質量＋前タイヤ幅。等重み。シート高は弱い代理なので除外）</p>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>スコア</th>
+<th>内訳（トレール／ヨー慣性／質量／ジャイロ）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CBR400R</strong></td>
+<td><strong>10.0</strong></td>
+<td>10.0 ／ 10.0 ／ 10.0 ／ 10.0</td>
+</tr>
+<tr>
+<td>YZF-R25 / R3</td>
+<td>2.0</td>
+<td>4.2 ／ 2.5 ／ 1.5 ／ 0.0</td>
+</tr>
+<tr>
+<td>Ninja 400</td>
+<td>0.5</td>
+<td>1.7 ／ 0.0 ／ 0.4 ／ 0.0</td>
+</tr>
+<tr>
+<td>Ninja 250</td>
+<td>0.0</td>
+<td>0.0 ／ 0.0 ／ 0.0 ／ 0.0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>質量とトレールを入れると、CBR400Rが全4項目で満点になり、残り4台は団子に潰れる。</strong>
+これは §9-1 の「CBR400Rだけ500の車体」がそのまま出た結果であって、味付けの差ではない。</p>
+<h3>11-4. ★§10 の順位が反転する</h3>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>§10（80km/h・1車線国道の使いやすさ）</th>
+<th>§11（直進安定・指標B）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ninja 400</td>
+<td><strong>1位</strong></td>
+<td><strong>4位</strong></td>
+</tr>
+<tr>
+<td>Ninja 250 / YZF-R25</td>
+<td>2位</td>
+<td>5位 / 2位</td>
+</tr>
+<tr>
+<td>YZF-R3</td>
+<td>4位</td>
+<td>2位</td>
+</tr>
+<tr>
+<td><strong>CBR400R</strong></td>
+<td><strong>5位</strong></td>
+<td><strong>1位</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>§10 で1位だった Ninja 400 は、§11 では下から2番目。§10 で最下位だった CBR400R は1位。</strong>
+矛盾ではない。<strong>同じ「軽さ」を、片方は長所として、もう片方は短所として数えているだけ</strong>である。</p>
+<ul>
+<li><strong>Kawasaki は意図して軽快側に振っている</strong>。Ninja 400 はトレール92mm・WB1,370mm・キャスター24.7°で、
+5台中<strong>すべての安定パラメータが下位</strong>。偶然ではなく設計の選択。</li>
+<li><strong>Honda は意図して安定側に振っている</strong>（というより500の車体をそのまま使った結果）。</li>
+</ul>
+<h3>11-5. 二次資料による定性的な裏づけ</h3>
+<p>スペックだけでなく、この3台を直接比較した記事も同じ方向を書いている
+（<a href="https://car.motor-fan.jp/article/10005240">Motor-Fan「カワサキ Ninja400はなぜ人気？ CBR400RとYZF-R3と比べてみた」</a>）:</p>
+<ul>
+<li><strong>CBR400R は高速巡航の安定性が最も高く、長距離を比較的楽にこなせる</strong></li>
+<li><strong>YZF-R3 と Ninja 400 は高速も走れるが、軽いぶん風の影響を受けやすい</strong></li>
+<li>CBR400R は3台で最も大きく重く、<strong>安定するが取り回しには慣れが要る</strong></li>
+</ul>
+<p><strong>スペックの並び（§11-2）と、乗った人の評（この記事）が一致している。</strong></p>
+<h3>11-6. では「重さはどこまで必要か」― 80km/h上限という条件での答え</h3>
+<p><strong>重量が効くのは、外乱が入る場面だけ</strong>である。一般道80km/h上限で実際に起きる外乱は:</p>
+<table>
+<thead>
+<tr>
+<th>外乱</th>
+<th>速度依存</th>
+<th>この5台での差</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>大型車とのすれ違い・追い越され時の風圧</strong></td>
+<td><strong>速度に依らず起きる</strong></td>
+<td><strong>効く</strong>。80km/hでも1車線国道なら日常的</td>
+</tr>
+<tr>
+<td>横風（橋の上・海沿い・切り通しの出口）</td>
+<td>速度に依らず起きる</td>
+<td><strong>効く</strong></td>
+</tr>
+<tr>
+<td>轍・段差・舗装の継ぎ目</td>
+<td>低速でも起きる</td>
+<td>効く（ただしサスの質のほうが支配的）</td>
+</tr>
+<tr>
+<td>高速走行時のヨー減衰不足（ウォブル領域）</td>
+<td><strong>100km/h以上で顕在化</strong></td>
+<td><strong>80km/h上限なら効かない</strong></td>
+</tr>
+</tbody>
+</table>
+<p>→ <strong>80km/h上限という条件では、「高速でのふらつき」は問題にならない。</strong>
+残るのは<strong>トラックの風圧と横風</strong>で、ここは<strong>速度に依らず起きるので無視できない</strong>。
+つまり <strong>重量の恩恵は、この条件下では「消える」のではなく「4分の1くらいに縮む」。</strong></p>
+<p><strong>結論として、この2章は次のように読み分ける:</strong></p>
+<ul>
+<li><strong>道が狭く・詰まり・右左折が多いほど</strong> → §10 が支配的（Ninja 400 が最適）</li>
+<li><strong>道が開けて・風が強く・距離が長いほど</strong> → §11 が支配的（CBR400R が最適）</li>
+<li><strong>80km/h上限の1車線国道は、その中間で §10 寄り</strong>。ただし
+<strong>大型車の風圧と横風が多い経路（海沿い・橋・切り通し）なら §11 の重みが上がる。</strong></li>
+</ul>
+<p><strong>「軽ければ速い」は正しいが、それは外乱がゼロの実験室での話。</strong>
+実際の一般道では、<strong>F/重量の分母は、速さを削る代わりに落ち着きを買っている。</strong>
+どちらを買うかは道が決める ── <strong>走る経路に大型車と横風がどれだけあるかで、この5台の順位は入れ替わる。</strong></p>
+<h3>11-7. 未確定・今後の課題</h3>
+<ul>
+<li><strong>ヤマハ2台のリヤサスがリンク式かリンクレスか未確定</strong>（§9-8）。リンクレスなら追従性で不利になり、
+§11-2 の順位でヤマハがさらに下がる可能性がある。<strong>現車のスイングアーム下で確認</strong>。</li>
+<li><strong>受風面積を全幅で代理している</strong>（§11-1）。カウルの高さ・形状を含めた投影面積は未実測。
+差は「4〜6%」と「10〜12%」の間のどこか、としか言えない。
+さらに<strong>全幅は前から見た寸法で、横風が押す側面シルエットとは軸が違う</strong>（§11-1 の弱点1〜3）。</li>
+<li><strong>ニューマチックトレールの値が未取得</strong>（§11-2）。復元トルクの式に共通で足される項なので、
+ここが決まらないとトレール差の %は「1割前後」より詰められない。
+一次情報（Pacejka / Cossalter）は「スリップ角0で最大・角度が増えると減少・荷重が増えると増加」
+という性質は与えるが、モーターサイクル用タイヤの実数値は未入手。</li>
+<li><strong>前後重量配分・ホイール慣性モーメント</strong>は5台とも非公表。ジャイロ効果はタイヤ幅で代理した。</li>
+<li>指標Bの重み付けは<strong>等重み（根拠なし）</strong>。トレールと質量のどちらが体感に効くかは検証していない。</li>
+</ul>
+<h3>9-9. CBR400R 年式系譜 ― E-Clutch はいつからか</h3>
+<p><strong>答え: 2026年5月21日発売分から。</strong> Honda公式リリース（2026年5月15日発表）に
+**「今回、両モデルに、二輪車用有段式マニュアルトランスミッションのクラッチコントロールを自動制御する
+Honda E-Clutch を新たに搭載しました」**と明記されている（CBR400R と NX400 が同時）。</p>
+<table>
+<thead>
+<tr>
+<th>年式</th>
+<th>型式</th>
+<th>発売</th>
+<th>主な内容</th>
+<th>車重</th>
+<th>価格（税込）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2016〜2018</td>
+<td>2BL-<strong>NC47</strong></td>
+<td>2016/2</td>
+<td>46PS/<strong>9,500rpm</strong>・<strong>16L</strong>タンク・ハンドルは<strong>トップブリッジ上</strong></td>
+<td>未確認</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2019〜2021</td>
+<td>2BL-<strong>NC56</strong></td>
+<td>2019/3/22</td>
+<td>全面変更。ピーク9,500→<strong>9,000rpm</strong>（低中速トルク向上）・<strong>17L</strong>・ハンドル<strong>下</strong>・スリッパークラッチ・フルデジタルメーター。<strong>φ41mm正立＋φ320mmシングルディスク</strong></td>
+<td>192kg</td>
+<td>808,500円</td>
+</tr>
+<tr>
+<td>2022〜2023</td>
+<td>8BL-<strong>NC56</strong></td>
+<td>2022/1/17</td>
+<td><strong>足回り一新</strong>: SHOWA <strong>SFF-BP倒立</strong>＋<strong>φ296mmダブルディスク＋ラジアル4ポット</strong>（§9-7）</td>
+<td>192kg</td>
+<td>841,500円</td>
+</tr>
+<tr>
+<td>2024〜2026/5</td>
+<td>8BL-<strong>NC65</strong></td>
+<td>2024/3/21</td>
+<td>外観一新（"Modern Racing Art"）・<strong>HSTC</strong>（トラコン）・<strong>5インチフルカラーTFT</strong>・<strong>RoadSync</strong>標準。<strong>E-Clutch は無い</strong></td>
+<td><strong>191kg</strong></td>
+<td>863,500円</td>
+</tr>
+<tr>
+<td><strong>2026/5/21〜</strong></td>
+<td>8BL-<strong>NC65</strong></td>
+<td><strong>2026/5/21</strong></td>
+<td><strong>Honda E-Clutch 新搭載</strong></td>
+<td><strong>195kg</strong></td>
+<td>999,900〜1,089,000円</td>
+</tr>
+</tbody>
+</table>
+<h3>★中古で踏む地雷：型式ではE-Clutchの有無が分からない</h3>
+<p><strong><code>8BL-NC65</code> は 2024年式（E-Clutch無し）と 2026年式（E-Clutch有り）の両方に使われている。</strong>
+型式だけを見て「NC65ならE-Clutch付き」と判断すると外す。<strong>装備で確認すること。</strong></p>
+<p>判別点:</p>
+<ul>
+<li><strong>価格差が最大の手がかり</strong>: 863,500円 → <strong>999,900円（最安色同士で +136,400円）</strong></li>
+<li>車重 <strong>191kg → 195kg（+4kg）</strong></li>
+<li>E-Clutch車は<strong>クラッチレバーを操作せずに発進・停止・変速できる</strong>（レバー自体は残っており、任意で使える）</li>
+</ul>
+<p><strong>この分析（§7〜§11）で扱っている中古年式（2018〜2020）には、E-Clutchは一切関係しない。</strong>
+2026年5月発売＝<strong>本データ収集時点（2026-07-27）で発売2ヶ月</strong>であり、中古市場にはほぼ出ていない。</p>
+<p><strong>E-Clutchが欲しい場合の実務的な意味</strong>:</p>
+<ul>
+<li><strong>実質的に新車一択</strong>（999,900〜1,089,000円）。2018〜2020年式の中古（50〜70万円）とは<strong>別の予算帯</strong></li>
+<li>E-Clutchは<strong>§10-5 で指摘した「CBR400Rはシフトダウンの回数が最多」という弱点に直接効く</strong>装備。
+6速下限46km/hでギアを落とす頻度が高いこの車にとっては、機能と弱点がよく噛み合っている</li>
+<li>ただし <strong>+4kg</strong>。§11 の直進安定では有利に、§10 の取り回し（192→195kg・最小回転半径2.9m）では不利に働く</li>
+</ul>
+<hr />
+<h2>12. ギアを入れると順位が変わる ― 「力」の指標にギアが入っていなかった（2026-07-29）</h2>
+<h3>12-0. きっかけ</h3>
+<p>3台（Ninja400・YZF-R3・CBR400R）すべてに乗ったオーナーの順位づけ（X・@20_ZXT02K・2022-07-14）で、
+<strong>低速トルク: R3 ＞ CBR ＞ 忍</strong> とされていた。本ページの指標「力＝最大トルク÷総重量」では
+R3 が <strong>最下位</strong>（0.131）・Ninja400 が最上位（0.163）で、真逆になる。
+原因を調べたところ、<strong>指標に総減速比が入っていなかった</strong>。</p>
+<h3>12-1. 実際に後輪を押す力</h3>
+<pre><code>押し出し ＝ エンジントルク × 総減速比（一次 × 二次 × 変速比）÷ タイヤ半径
+体感     ＝ 押し出し ÷（車両重量 ＋ 体重60kg）
+</code></pre>
+<p>タイヤ外径は §2 と同じ式（カタログ表記から算出）。使うのはすべて §1 の公式値で、<strong>推定ゼロ</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>タイヤ外径</th>
+<th>1速</th>
+<th>2速</th>
+<th>3速</th>
+<th>4速</th>
+<th>参考: 力（ギア無視）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>YZF-R3</td>
+<td>0.6278 m</td>
+<td>9.75</td>
+<td><strong>7.11</strong></td>
+<td>5.25</td>
+<td>4.24</td>
+<td>0.131</td>
+</tr>
+<tr>
+<td>Ninja 400</td>
+<td>0.6118 m</td>
+<td><strong>10.13</strong></td>
+<td><strong>7.11</strong></td>
+<td><strong>5.60</strong></td>
+<td><strong>4.61</strong></td>
+<td>0.163</td>
+</tr>
+<tr>
+<td>CBR400R</td>
+<td>0.6238 m</td>
+<td>9.55</td>
+<td>6.12</td>
+<td>4.65</td>
+<td>3.78</td>
+<td>0.149</td>
+</tr>
+</tbody>
+</table>
+<p>単位は加速度相当。<strong>値そのものではなく比を見る。</strong></p>
+<h3>12-2. 読み取れること</h3>
+<ul>
+<li><strong>2速で R3 と Ninja400 が同値（7.11）</strong>。ギア無視だと R3 は Ninja400 の 80%（0.131÷0.163）だが、
+ギアを入れると<strong>互角</strong>。R3 は全段が大きくローギヤードで、320cc ぶんの不足をギアが埋めている。
+→ <strong>「排気量が小さいから低速が弱い」はギア込みでは成り立たない。</strong></li>
+<li><strong>CBR400R は全ギアで最下位</strong>（2速で他の 86%）。§10 で確認した「総減速比 6.349 ＝5台で最もハイギヤード」
+という同じ性質が、低いギアにも出ているだけ。<strong>オーナーの「低速トルクは CBR より R3 が上」は数字の側からも支持される。</strong></li>
+</ul>
+<h3>12-2b. なぜ R3 だけローギヤードなのか ― 250 の駆動系をそのまま使っている</h3>
+<p>変速機に入る前の固定部分（一次 × 二次）を並べると、理由がはっきりする。</p>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>一次</th>
+<th>二次</th>
+<th>一次×二次</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>YZF-R25（250）</td>
+<td>3.043</td>
+<td>3.071</td>
+<td><strong>9.345</strong></td>
+</tr>
+<tr>
+<td><strong>YZF-R3（320）</strong></td>
+<td>3.043</td>
+<td>3.071</td>
+<td><strong>9.345</strong>（R25 と完全同一）</td>
+</tr>
+<tr>
+<td>Ninja 400</td>
+<td>2.218</td>
+<td>2.928</td>
+<td>6.494</td>
+</tr>
+<tr>
+<td>CBR400R</td>
+<td>2.029</td>
+<td>3.000</td>
+<td>6.087</td>
+</tr>
+</tbody>
+</table>
+<p><strong>R3 はこの時点で Ninja400 の 1.44倍・CBR400R の 1.54倍ローギヤード。</strong>
+§9-1 の「車体の出自」表に既に「二次減速比まで同値」と書いてあったが、そこから先を追っていなかった。</p>
+<p><strong>R3 は車体だけでなく、駆動系ごと 250（R25）のまま</strong>で、変速比だけ R25 よりわずかにハイに振ってある
+（1速 2.500 対 2.666。エンジンが強くなったぶん高いギアを引ける）。
+したがって順序は「小さいぶんをギアで埋めた」ではなく、
+<strong>「250 の設計に大きいエンジンを入れたら、結果としてローギヤードになった」</strong>。</p>
+<p>総減速比（一次×二次×変速比）:</p>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>1速</th>
+<th>2速</th>
+<th>3速</th>
+<th>4速</th>
+<th>5速</th>
+<th>6速</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>YZF-R25</td>
+<td>24.914</td>
+<td>17.587</td>
+<td>13.588</td>
+<td>11.214</td>
+<td>9.691</td>
+<td>8.597</td>
+</tr>
+<tr>
+<td>YZF-R3</td>
+<td>23.363</td>
+<td>17.036</td>
+<td>12.588</td>
+<td>10.149</td>
+<td>8.597</td>
+<td>7.476</td>
+</tr>
+<tr>
+<td>Ninja 400</td>
+<td>19.015</td>
+<td>13.346</td>
+<td>10.514</td>
+<td>8.657</td>
+<td>7.488</td>
+<td>6.735</td>
+</tr>
+<tr>
+<td>CBR400R</td>
+<td>19.996</td>
+<td>12.813</td>
+<td>9.739</td>
+<td>7.913</td>
+<td>7.000</td>
+<td><strong>6.349</strong></td>
+</tr>
+</tbody>
+</table>
+<p>CBR400R のトップ 6.349 が5台で最小＝最もハイギヤード、というのは §10 で見たとおり。
+<strong>同じ性質が全段に出ている。</strong></p>
+<h3>12-2c. ローギヤードのメリ・デメ ― 同じ数字が街では長所、巡航では短所</h3>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>6速のまま粘れる下限<br>&lt;small&gt;2,500rpm を下限とする（§10 と同じ基準）&lt;/small&gt;</th>
+<th>80km/h 巡航の回転数</th>
+<th>2速の押し出し（ギア込み）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>YZF-R3</strong>（最ロー）</td>
+<td><strong>40km/h</strong>（いちばん粘れる）</td>
+<td><strong>5,054rpm</strong>（いちばん回る）</td>
+<td><strong>7.11</strong></td>
+</tr>
+<tr>
+<td>Ninja 400</td>
+<td>43km/h</td>
+<td>4,672rpm</td>
+<td><strong>7.11</strong></td>
+</tr>
+<tr>
+<td><strong>CBR400R</strong>（最ハイ）</td>
+<td>46km/h（いちばん早く落とす）</td>
+<td><strong>4,319rpm</strong>（いちばん静か）</td>
+<td>6.12</td>
+</tr>
+</tbody>
+</table>
+<p><strong>メリット（ローギヤード）</strong>: 低いギアで押し出しが強く、<strong>6速のまま 40km/h まで粘れる</strong>。
+前が詰まってもシフトを落とさずに済む＝本ページの主題「快適さ＝操作の少なさ」では<strong>快適側</strong>。</p>
+<p><strong>デメリット（ローギヤード）</strong>: 同じ速度で回転が高い。<strong>80km/h 巡航 5,054rpm</strong> は CBR400R より <strong>17%高い</strong>。
+音・振動・燃費に不利で、距離が伸びるほど効く。
+（12-0 のオーナー順位でも <strong>燃費は CBR ＞ R3 ＞ 忍</strong>。）</p>
+<p><strong>総減速比という一つの数字が、街では長所・巡航では短所になる。</strong> CBR400R はその正反対（§10）。</p>
+<h3>12-3. 数字で説明できないこと</h3>
+<p>オーナーの順位は R3 ＞ CBR ＞ <strong>忍</strong> で Ninja400 が最下位だが、12-1 では R3 と Ninja400 は同値で、
+忍が最下位になる理由は出てこない。手がかりは<strong>回転数</strong>にある。</p>
+<table>
+<thead>
+<tr>
+<th>40km/h・2速</th>
+<th>回転数</th>
+<th>最大トルク回転に対する割合</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>YZF-R3</td>
+<td>5,758rpm</td>
+<td><strong>64%</strong></td>
+</tr>
+<tr>
+<td>Ninja 400</td>
+<td>4,629rpm</td>
+<td>58%</td>
+</tr>
+<tr>
+<td>CBR400R</td>
+<td>4,359rpm</td>
+<td>58%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>R3 だけがトルクピークに近い側にいる</strong>ので、実際に出ているトルクの割合は高いはず——だが
+<strong>低回転のトルク曲線はどのメーカーも公表していない</strong>（§3-6）。ここから先は推定になるので、
+<strong>§4-3 の原則どおり数字にしない</strong>。確定できないと書いて止める。</p>
+<h3>12-4. 「力」の指標を捨てるわけではない</h3>
+<p>ギアは<strong>乗り手が選べる</strong>。落とせば力は増える。だから2つの数字は測っている場面が違う。</p>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>何を測っているか</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ギア込み（12-1）</td>
+<td><strong>開けたときの押し出し</strong>。シフトを厭わない前提での加速</td>
+</tr>
+<tr>
+<td>ギア無し（最大トルク÷総重量）</td>
+<td><strong>シフトせずに済む余裕</strong>。同じ速度をより高いギアのまま流せるか</td>
+</tr>
+</tbody>
+</table>
+<p>本ページの主題は「快適さ＝操作の少なさ」なので、<strong>ギア無しの数字も引き続き使う</strong>。
+ただし<strong>それが「低速の押し出し」ではない</strong>ことを、本文で明記する。</p>
+<h3>12-5. 再現コード</h3>
+<pre><code>import math
+B = {
+ "YZF-R3":   dict(pri=3.043, sec=3.071, g=[2.500,1.823,1.347,1.086,0.920,0.800],
+                  tire=(140,70,17), kg=169, tq=30, tqrpm=9000),
+ "Ninja 400":dict(pri=2.218, sec=2.928, g=[2.928,2.055,1.619,1.333,1.153,1.037],
+                  tire=(150,60,17), kg=167, tq=37, tqrpm=8000),
+ "CBR400R":  dict(pri=2.029, sec=3.000, g=[3.285,2.105,1.600,1.300,1.150,1.043],
+                  tire=(160,60,17), kg=195, tq=38, tqrpm=7500),
+}
+D = lambda t: (t[2]*25.4 + 2*t[0]*t[1]/100.0)/1000.0
+for n, b in B.items():
+    m = b["kg"] + 60; rad = D(b["tire"])/2
+    a = [b["tq"]*b["pri"]*b["sec"]*b["g"][i]/rad/m for i in range(4)]
+    rpm40 = 40*1000/60/(math.pi*D(b["tire"])) * b["pri"]*b["sec"]*b["g"][1]
+    print(n, ["%.2f" % x for x in a], "40km/h2速 %.0frpm (%.0f%%)" % (rpm40, rpm40/b["tqrpm"]*100))
+</code></pre>
+<p>出典: §1（公式諸元）・§1「変速比 全段」・§2（タイヤ外径の式）。</p>
+<hr />
+<h2>13. 本当の軸は排気量ではなく、道の広さかもしれない（2026-07-29）</h2>
+<p>§12 でギアを入れたら「力」の順位が揺らいだ。ならば手前の前提も疑う——
+<strong>400 の土俵で力を比べること自体に意味があるのか。</strong> 同じ計算を 250・125 まで広げた。</p>
+<h3>13-1. 二つの軸で、クラス差の大きさが倍近く違う</h3>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>狭く細い道<br>&lt;small&gt;1速の押し出し（ギア込み）&lt;/small&gt;</th>
+<th>広く長い道<br>&lt;small&gt;80km/h・6速の回転数&lt;/small&gt;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CB125R</td>
+<td>（全段ギア比が非公表）</td>
+<td>6,680rpm</td>
+</tr>
+<tr>
+<td>Ninja 250</td>
+<td>7.71</td>
+<td>5,830rpm</td>
+</tr>
+<tr>
+<td>YZF-R25</td>
+<td>7.97</td>
+<td>5,812rpm</td>
+</tr>
+<tr>
+<td>YZF-R3（320）</td>
+<td>9.75</td>
+<td>5,054rpm</td>
+</tr>
+<tr>
+<td>Ninja 400</td>
+<td><strong>10.13</strong></td>
+<td>4,672rpm</td>
+</tr>
+<tr>
+<td>CBR400R</td>
+<td>9.55</td>
+<td><strong>4,319rpm</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>250 と 400 の差 ＝ 狭い道 1.20〜1.24倍 ／ 広い道 1.35倍。</strong></p>
+<ul>
+<li><strong>狭く細い道では差が小さい。</strong> 低いギアを使う場面では、排気量差をギアがかなり埋める。
+「一般道では 250 で十分」は数字の上で正しい。</li>
+<li><strong>広く長い道では差が開く。</strong> 巡航はトップギア1つで決まるのでギアが助けられない。
+音・振動・燃費・疲れが距離に比例して効く。</li>
+<li>→ <strong>排気量が効くのは「広く長い道」でだけ。</strong>
+本ページが「80km/h・一車線国道」を前提に置いてきたのは、
+結果的に<strong>排気量が効く側の道</strong>を選んでいたことになる。</li>
+</ul>
+<h3>13-2. では 125 でよいか ― 数字は「否」</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>力（ギア無視）</th>
+<th>一次×二次</th>
+<th>80km/h 巡航</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CB125R</td>
+<td><strong>0.058</strong></td>
+<td>10.432</td>
+<td>6,680rpm</td>
+</tr>
+<tr>
+<td>250勢</td>
+<td>0.097〜0.100</td>
+<td>8.983〜9.345</td>
+<td>5,812〜5,830rpm</td>
+</tr>
+<tr>
+<td>CBR400R</td>
+<td>0.149</td>
+<td>6.087</td>
+<td>4,319rpm</td>
+</tr>
+</tbody>
+</table>
+<p>125 の力は 250 の<strong>約6割</strong>。ギアで埋まるかというと一次×二次は 250 の <strong>1.12倍しかなく</strong>、
+排気量差 1.7倍を埋めるには足りない。<strong>125 は狭い道の押し出しでも 250 に届かない。</strong></p>
+<p>※ CB125R は全段のギア比が非公表（§1）。比較したのはトップギアと一次×二次まで。
+1速・2速の押し出しは<strong>計算していない</strong>（§4-3 の原則：非公表を推定で埋めない）。</p>
+<p><strong>それでも 125 に価値があるのは、この指標の外</strong>——合法で回し切れる・車検なし・軽さ・維持費。
+練習用に 125 を挙げているのはその軸（→ 本文「方向1」）。<strong>指標を変えれば答えが変わる、というだけ。</strong></p>
+<h3>13-3. 再現コード</h3>
+<pre><code>import math
+B=[("CB125R",3.260,3.200,0.923,(150,60,17),130,11),
+   ("Ninja 250",3.068,2.928,0.960,(140,70,17),166,22),
+   ("YZF-R25",3.043,3.071,0.920,(140,70,17),169,23),
+   ("YZF-R3",3.043,3.071,0.800,(140,70,17),169,30),
+   ("Ninja 400",2.218,2.928,1.037,(150,60,17),167,37),
+   ("CBR400R",2.029,3.000,1.043,(160,60,17),195,38)]
+D=lambda t:(t[2]*25.4+2*t[0]*t[1]/100.0)/1000.0
+for n,p,s,top,t,kg,tq in B:
+    print(n, "80km/h %.0frpm" % (80*1000/60/(math.pi*D(t))*p*s*top),
+          "力(ギア無視) %.3f" % (tq/(kg+60)), "一次×二次 %.3f" % (p*s))
+</code></pre>
+<hr />
+<h2>14. 訂正と、「低速トルク」という言葉の定義（2026-07-29）</h2>
+<h3>14-1. §12-1 の表は「低速トルク」の表ではなかった（訂正）</h3>
+<p>§12-1 で <code>最大トルク × 総減速比 ÷ タイヤ半径 ÷ 総質量</code> を出し、
+「オーナーの『低速トルクは CBR より R3 が上』は数字の側からも支持される」と書いた。<strong>これは誤り。</strong></p>
+<p>使っているのは<strong>最大トルク</strong>なので、その押し出しが出るのは<strong>最大トルクの回転</strong>——2速なら
+<strong>YZF-R3 で 63km/h、Ninja400 と CBR400R で 69km/h</strong>。<strong>どれも低速ではない。</strong>
+ギアを入れてもなお<strong>ピーク同士の比較</strong>のままで、§4-3 が戒めてきたのと同じ罠に掛かっていた。</p>
+<p>言えるのは「<strong>2速で出せる最大の押し出しは CBR400R だけ 14%低い</strong>」まで。</p>
+<h3>14-2. ローギヤードの本当のコスト ― 発進のたびのシフト回数</h3>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>停止→60km/h のシフト回数</th>
+<th>各ギアが終わる速度（km/h・1→6速）</th>
+<th>6速下限</th>
+<th>80km/h巡航</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>YZF-R3</td>
+<td><strong>4回</strong>（→5速）</td>
+<td>25 / 35 / 47 / 58 / 69 / 79</td>
+<td>40km/h</td>
+<td>5,054rpm</td>
+</tr>
+<tr>
+<td>Ninja 400</td>
+<td>3回（→4速）</td>
+<td>30 / 43 / 55 / 67 / 77 / 86</td>
+<td>43km/h</td>
+<td>4,672rpm</td>
+</tr>
+<tr>
+<td>CBR400R</td>
+<td><strong>2回</strong>（→3速）</td>
+<td>29 / 46 / 60 / 74 / 84 / 93</td>
+<td>46km/h</td>
+<td>4,319rpm</td>
+</tr>
+</tbody>
+</table>
+<p>5,000rpm で変速する前提。4,000/6,000/7,000rpm で数え直しても<strong>順位は変わらない</strong>。</p>
+<ul>
+<li><strong>6速に入れば 40km/h 以上でシフトは要らない</strong>ので、下限が 40 か 46 かは大きな差ではない。</li>
+<li><strong>停止→60km/h のシフトは交差点ごとに毎回発生する。</strong>R3 は CBR400R より <strong>2回多い</strong>。</li>
+<li>→ <strong>ローギヤードのコストが出るのは巡航ではなく発進側。街ほど効く。</strong></li>
+<li><strong>シフトが少ない＝速い、ではない。</strong>60km/h まで最も速いのは力÷重量 0.163 の <strong>Ninja400</strong>。</li>
+</ul>
+<h3>14-3. R25 と R3 は「同じリズム」</h3>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>各ギア終速（5,000rpm変速）</th>
+<th>60km/hまで</th>
+<th>力</th>
+<th>80km/h巡航</th>
+<th>価格</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>YZF-R25（250）</td>
+<td>24 / 34 / 44 / 53 / 61 / 69</td>
+<td>4回</td>
+<td>0.100</td>
+<td>5,812rpm</td>
+<td>69万800円</td>
+</tr>
+<tr>
+<td>YZF-R3（320）</td>
+<td>25 / 35 / 47 / 58 / 69 / 79</td>
+<td>4回</td>
+<td><strong>0.131</strong></td>
+<td>5,054rpm</td>
+<td>72万6,000円</td>
+</tr>
+<tr>
+<td>Ninja 250</td>
+<td>24 / 35 / 44 / 53 / 61 / 69</td>
+<td>4回</td>
+<td>0.097</td>
+<td>5,830rpm</td>
+<td>72万6,000円</td>
+</tr>
+<tr>
+<td>CBR400R</td>
+<td>29 / 46 / 60 / 74 / 84 / 93</td>
+<td><strong>2回</strong></td>
+<td>0.149</td>
+<td><strong>4,319rpm</strong></td>
+<td>99万9,900円</td>
+</tr>
+</tbody>
+</table>
+<p>一次×二次が完全同一（§12-2b）なので当然だが、<strong>R3 の軽快さは 320cc のものではなく 250 のもの</strong>。
+ただし同じリズムのまま<strong>力は 1.31倍・巡航は 13%低い</strong>、差額 <strong>3万5,200円</strong>。
+→ <strong>分かれ目は排気量ではなく「250 のリズムか、400 のリズムか」。R3 は前者側。</strong></p>
+<h3>14-4. 低速トルクは CBR400R がトップ、R3 が最下位 ― 公式値で言える</h3>
+<p>曲線は非公表（§3-6）でも、<strong>ピークの大きさと、それがどの回転で出るかは公式値</strong>（§1）。</p>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>最大トルク</th>
+<th>発生回転</th>
+<th>読み</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CBR400R</strong></td>
+<td><strong>38N·m</strong></td>
+<td><strong>7,500rpm</strong></td>
+<td>3台で最大、しかも最も低い回転で出る</td>
+</tr>
+<tr>
+<td>Ninja 400</td>
+<td>37N·m</td>
+<td>8,000rpm</td>
+<td>ほぼ並ぶ</td>
+</tr>
+<tr>
+<td><strong>YZF-R3</strong></td>
+<td><strong>30N·m</strong></td>
+<td><strong>9,000rpm</strong></td>
+<td>最小、しかも最も高い回転で出る</td>
+</tr>
+</tbody>
+</table>
+<p><strong>大きさでも、出る回転の低さでも CBR400R が上で R3 が下。</strong>R3 に対しては明確、Ninja400 とは僅差。</p>
+<p>→ <strong>R3 は低速トルクが「ある」のではない。無いぶんをローギヤードで回転を上げて埋めている。</strong>
+40km/h・2速で R3 だけトルクピークの 64% に居る（他は 58%・§12-3）のがその現れ。</p>
+<h3>14-4b. 埋め合わせのコストはライダーが払う</h3>
+<p>停止→60km/h で <strong>R3 は4回、CBR400R は2回</strong>（14-2）。
+<strong>「低速トルクがあるように」走らせることはできる——シフトを忙しくすることで。</strong>
+それは低速トルクではなく、<strong>ライダーの操作で代替している</strong>だけ。</p>
+<p>→ <strong>「低速トルクの良さ」とは、CBR400R のような走り方をするためのもの。</strong>
+シフトせず、高いギアのまま、開けただけで出る。
+<strong>価値は「速さ」ではなく「シフトしなくて済むこと」</strong>＝主題「快適さ＝操作の少なさ」の言い換え。</p>
+<h3>14-4c. ただし R3 のやり方が悪いわけではない ― 言葉にだけ注意する</h3>
+<ul>
+<li>日本の公道ではそれで困らない。<strong>狭く細い道では 250 と 400 の差は 1.2倍</strong>（§13-1）＝
+「一般道では 250 で十分」と同じ理由。</li>
+<li><strong>そもそも 400 と低速トルクで比べること自体が筋違い</strong>かもしれない。
+R3 は 250 の駆動系を持つ 320cc（§12-2b）で、土俵が違う。</li>
+<li><strong>注意すべきは言葉のほう。軽さゆえの身軽な加速を「低速トルクがある」と言い換えると話が壊れる。</strong>
+軽さは a＝F/m の同じ一つの性質（加速では長所・安定では短所）で、<strong>トルクの太さとは出どころが別</strong>。
+混ぜると <strong>CBR400R が「いちばん太いのに、いちばん鈍い」</strong>（38N·m だが 255kg で 0.149）ことを説明できなくなる。</li>
+</ul>
+<h3>14-4d. 比喩 ― 自転車に50ccを載せる</h3>
+<p>軽いので発進の加速感はある。回転を保って刻めば「低速トルクがあるかのように」も走らせられる。
+だが<strong>誰もそれを「トルクのあるバイク」とは呼ばない</strong>。</p>
+<p>→ <strong>比喩が示すのはここまで。軽快さは、トルクの証拠にならない。</strong>
+軽さとギアだけで、トルクがほとんど無くても「あるように」走らせられてしまうから。</p>
+<p><strong>ただし「それはいいバイクか」は用途による。</strong>本ページの結論は中型1台＋原付1台で、
+<strong>近場の足は原付で足りる</strong>としている。狭く短い道でなら十分いいバイクで、
+足りなくなるのは道が広く長くなったときだけ。</p>
+<p><strong>R3 を原付だと言う話ではない。</strong>R3 の力 0.131 は CB125R の 0.058 の <strong>2.3倍</strong>（§13-2）で別の乗り物。
+言いたいのは<strong>言葉のほう</strong>——「軽快さ」と「トルクの太さ」を同じ引き出しに入れるな、に尽きる。</p>
+<h3>14-5. 再現コード</h3>
+<pre><code>import math
+B={"YZF-R3":(3.043,3.071,[2.500,1.823,1.347,1.086,0.920,0.800],(140,70,17)),
+   "Ninja 400":(2.218,2.928,[2.928,2.055,1.619,1.333,1.153,1.037],(150,60,17)),
+   "CBR400R":(2.029,3.000,[3.285,2.105,1.600,1.300,1.150,1.043],(160,60,17))}
+D=lambda t:(t[2]*25.4+2*t[0]*t[1]/100.0)/1000.0
+for n,(p,s,g,t) in B.items():
+    v=[5000/(p*s*x)*math.pi*D(t)*60/1000 for x in g]
+    print(n, ["%.0f"%x for x in v], "60km/hまで%d回" % next(i for i,x in enumerate(v) if x&gt;=60))
+</code></pre>
+<hr />
+<h2>15. 高速まで軸を伸ばす ― 大型を買う理由と、時速10km以下の話（2026-07-29）</h2>
+<h3>15-1. 100km/h 巡航の回転数</h3>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>力</th>
+<th>80km/h</th>
+<th>100km/h</th>
+<th>120km/h</th>
+<th>車検</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ninja 250</td>
+<td>0.097</td>
+<td>5,830rpm</td>
+<td><strong>7,287rpm</strong></td>
+<td>8,745rpm</td>
+<td>なし</td>
+</tr>
+<tr>
+<td>YZF-R3</td>
+<td>0.131</td>
+<td>5,054rpm</td>
+<td>6,318rpm</td>
+<td>7,581rpm</td>
+<td>あり</td>
+</tr>
+<tr>
+<td>Ninja 400</td>
+<td>0.163</td>
+<td>4,672rpm</td>
+<td>5,840rpm</td>
+<td>7,008rpm</td>
+<td>あり</td>
+</tr>
+<tr>
+<td>CBR400R</td>
+<td>0.149</td>
+<td>4,319rpm</td>
+<td>5,399rpm</td>
+<td>6,479rpm</td>
+<td>あり</td>
+</tr>
+<tr>
+<td><strong>W650</strong>（大型）</td>
+<td>0.220</td>
+<td><strong>2,881rpm</strong></td>
+<td><strong>3,602rpm</strong></td>
+<td>4,322rpm</td>
+<td>あり</td>
+</tr>
+<tr>
+<td><strong>MT-07</strong>（大型）</td>
+<td><strong>0.276</strong></td>
+<td>3,360rpm</td>
+<td>4,200rpm</td>
+<td>5,040rpm</td>
+<td>あり</td>
+</tr>
+<tr>
+<td><strong>ZX-6R</strong>（大型）</td>
+<td>0.266</td>
+<td>4,770rpm</td>
+<td>5,963rpm</td>
+<td>7,156rpm</td>
+<td>あり</td>
+</tr>
+</tbody>
+</table>
+<p><strong>W650 の 100km/h は 3,602rpm ＝ Ninja250（7,287rpm）のちょうど半分。</strong></p>
+<h3>15-2. 大型を買う理由は「力」ではない</h3>
+<p>力÷重量は大型で 0.220〜0.276＝400 の 1.35〜1.85倍（0.220/0.163〜0.276/0.149）あるが、
+<strong>その差を公道で使い切れない</strong>のは本ページが ZX-4R について書いてきたとおり。
+<strong>公道で確実に受け取れる実利は巡航回転のほう</strong>——音・振動・燃費・疲労に、高速を走るかぎり出続ける。</p>
+<p>→ <strong>500cc 以上を買う理由は「速さ」ではなく「回さずに済むこと」。</strong>§14-4 の低速トルクと同じ形。</p>
+<h3>15-3. ただし「大型＝低回転巡航」ではない</h3>
+<p><strong>ZX-6R は 100km/h で 5,963rpm ＝ CBR400R（5,399rpm）より回る。</strong>
+スーパースポーツはトップギアも高回転前提。
+<strong>巡航が楽なのは「大型」ではなく「ツーリング寄りの設計」</strong>（W650・MT-07）。</p>
+<h3>15-4. 大型の弱点は走行中ではなく時速10km以下</h3>
+<p>取り回し・Uターン・押し歩き・坂道の方向転換。ここでは重さが体力と技量をそのまま要求する。
+<strong>初心者にいちばん重くのしかかるのはこの領域。</strong></p>
+<p>ただし<strong>車の絶対的な性質ではない</strong>——白バイは大型で一本橋も8の字もフルロックUターンもこなす。
+<strong>「大型は低速で扱いにくい」は車と乗り手の関係であって、車だけの属性ではない。</strong></p>
+<p>→ <strong>「250がいい」は車の優劣ではなく、いまの技量に対して何が釣り合うかの話。</strong>
+本ページの結論が「250にしろ」ではなく<strong>「練習用と普段使いを分けて、技量を先に上げる」</strong>なのは、そのため。</p>
+<p>※白バイ隊員は専門訓練を受けた職業ライダーで、到達点として当然視はできない。
+ここで言えるのは「車のせいか腕のせいかを分けて考えられる」ということまで。</p>
+<h3>15-5. 階段</h3>
+<table>
+<thead>
+<tr>
+<th>走る道</th>
+<th>釣り合う排気量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>狭く短い道だけ</td>
+<td>125〜250（狭い道での差は 1.2倍・§13-1）</td>
+</tr>
+<tr>
+<td>一般道 60〜80km/h が主戦場</td>
+<td>250〜400 ← <strong>本ページの想定</strong></td>
+</tr>
+<tr>
+<td>高速道路を日常的に使う</td>
+<td>大型（ツーリング寄り）。ただし時速10km以下の負担を引き受けられるなら</td>
+</tr>
+</tbody>
+</table>
+<p><strong>250 が「バランスがいい」のは、100km/h を日常に含めないかぎり本当。</strong>
+含めた瞬間に 7,287rpm が効いて階段が一段上がる。<strong>決めているのは排気量ではなく、走る道と乗り手。</strong></p>
+<h3>15-6. 再現コード</h3>
+<pre><code>import math
+B=[("Ninja 250",3.068,2.928,0.960,(140,70,17),166,22),
+   ("CBR400R",2.029,3.000,1.043,(160,60,17),195,38),
+   ("W650",2.095,2.533,0.851,(130,80,18),195,56),
+   ("MT-07",1.925,2.687,0.964,(180,55,17),183,67),
+   ("ZX-6R",1.900,2.866,1.300,(180,55,17),199,69)]
+D=lambda t:(t[2]*25.4+2*t[0]*t[1]/100.0)/1000.0
+for n,p,s,top,t,kg,tq in B:
+    f=lambda v: v*1000/60/(math.pi*D(t))*p*s*top
+    print(n, "力%.3f" % (tq/(kg+60)), "80/%.0f 100/%.0f 120/%.0f" % (f(80),f(100),f(120)))
+</code></pre>
+<p>出典: §1（公式諸元・大型3台を含む）。W650 は乾燥重量表記、MT-07 と W650 の二次減速比は二次情報（§1 の注記参照）。</p>
+<h3>15-7. 要求されるスキルも、両端でそれぞれ別物</h3>
+<table>
+<thead>
+<tr>
+<th>端</th>
+<th>要求されるスキル</th>
+<th>本ページの対応節</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>軽くて出力が高い（サーキット系）</td>
+<td><strong>フラつきを読んで抑える技術</strong></td>
+<td>方向1・低速リーンインの練習</td>
+</tr>
+<tr>
+<td>重い（大型ツアラー）</td>
+<td><strong>支える体力と半クラの技術</strong></td>
+<td>一本橋・フルロックUターン</td>
+</tr>
+<tr>
+<td><strong>250</strong></td>
+<td><strong>どちらも前提にしない</strong></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>「250はバランスがいい」の中身は、たぶんこれ</strong>——どちらのスキルも要求しないということ。
+出力が低いので<strong>自分から速度を出しすぎる側の危険が小さく</strong>、166kg前後と軽いので
+<strong>低速で重さに負ける側の負担も小さい</strong>。</p>
+<p><strong>ただし軽さの代償だけは残る。</strong>横風や轍は<strong>こちらの出力とは無関係に</strong>押してくる（§11・a=F/m）。
+出力が低くても軽ければ押される。250が避けられるのは「自分から危険に入る」側と
+「重さに負ける」側であって、<strong>外乱に対しては軽いまま</strong>。100km/h で 7,287rpm（§15-1）もそこに重なる。</p>
+<p>→ 避けられる危険が2つ、残るのが1つ。だから「ちょうどいい」と呼んでよい。
+本ページが<strong>練習用と普段使いを分ける</strong>形に行き着いたのも同じ判断で、
+<strong>スキルを要求する端は、そのスキルを身につけてから行く</strong>、ということ。</p>
+<hr />
+<h2>17. 小排気量側の追加データ ― TZR50R / YZF-R125（「ギアを上げる忙しさ」の下端）</h2>
+<p>§15 の「では250でいいのか」の表を <strong>50cc まで下に伸ばす</strong>ために追加した2台。
+狙いは速さの比較ではなく、<strong>同じ速度に届くまでに何回シフトするか</strong>の階段を見ること。</p>
+<h3>17-1. 素データ（すべて公表値）</h3>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>一次</th>
+<th>二次</th>
+<th>変速比 1速→6速</th>
+<th>後タイヤ</th>
+<th>重量</th>
+<th>最大トルク</th>
+<th>出典</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>TZR50R</strong>（1997・2st）</td>
+<td>3.578</td>
+<td>4.083</td>
+<td>3.250 / 2.125 / 1.550 / 1.227 / 1.040 / 0.923</td>
+<td>90/90-17</td>
+<td>97kg（湿）</td>
+<td>0.63kgf·m ＝ <strong>6.18N·m</strong> / 7,500rpm</td>
+<td>バイクブロス カタログ</td>
+</tr>
+<tr>
+<td><strong>YZF-R125</strong></td>
+<td>3.042</td>
+<td>3.429</td>
+<td>2.833 / 1.875 / 1.364 / 1.143 / 0.957 / 0.840</td>
+<td>130/70-17</td>
+<td>144kg（湿）</td>
+<td><strong>11.5N·m</strong> / 8,000rpm</td>
+<td>ヤマハ オーナーズマニュアル諸元（一次73/24・二次48/14）</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>TZR50R の<strong>トルクは kgf·m 表記</strong>なので N·m 換算した（× 9.80665）。<strong>換算以外の推定は無い</strong>。</li>
+<li><strong>どちらも日本の新車ラインナップ外</strong>（TZR50R は 1997年・生産終了、YZF-R125 は欧州モデル）。
+<strong>価格欄は空にする</strong>——当時価格・国内価格が公式に取れないため。</li>
+</ul>
+<h3>17-2. 計算結果（他車と同じ式・5,000rpm変速）</h3>
+<p>タイヤ外径・各ギアの終速・巡航回転数は §2 と同じ式。</p>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>各ギアが終わる速度（km/h）</th>
+<th>60km/h までのシフト回数</th>
+<th>力</th>
+<th>80km/h・6速</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>TZR50R</strong>（50）</td>
+<td>12 / 18 / 25 / 31 / 37 / <strong>42</strong></td>
+<td><strong>5回</strong>（→6速）</td>
+<td>0.039</td>
+<td>9,638rpm</td>
+</tr>
+<tr>
+<td><strong>YZF-R125</strong>（125）</td>
+<td>20 / 30 / 41 / 49 / 58 / 66</td>
+<td><strong>5回</strong>（→6速）</td>
+<td>0.056</td>
+<td>6,059rpm</td>
+</tr>
+<tr>
+<td>YZF-R25（250）</td>
+<td>24 / 34 / 44 / 53 / 61 / 69</td>
+<td>4回</td>
+<td>0.100</td>
+<td>5,812rpm</td>
+</tr>
+<tr>
+<td>YZF-R3（320）</td>
+<td>25 / 35 / 47 / 58 / 69 / 79</td>
+<td>4回</td>
+<td>0.131</td>
+<td>5,054rpm</td>
+</tr>
+<tr>
+<td>CBR400R（400）</td>
+<td>29 / 46 / 60 / 74 / 84 / 93</td>
+<td><strong>2回</strong></td>
+<td>0.149</td>
+<td>4,319rpm</td>
+</tr>
+</tbody>
+</table>
+<p><strong>5 → 5 → 4 → 4 → 2 と、シフト回数が排気量の階段になる。</strong>
+§11-2 の「ギアで下を作れば、そのぶんシフトが増える」が、クラスをまたぐと極端な形で出る。</p>
+<h3>17-3. 注意 ― 5,000rpm という共通のものさしについて</h3>
+<p>5,000rpm は<strong>トルクピークに対する割合でほぼ揃っている</strong>ので、共通のものさしとして使える。</p>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>トルクピーク</th>
+<th>5,000rpm はその何%</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TZR50R</td>
+<td>7,500rpm</td>
+<td>67%</td>
+</tr>
+<tr>
+<td>CBR400R</td>
+<td>7,500rpm</td>
+<td>67%</td>
+</tr>
+<tr>
+<td>YZF-R125</td>
+<td>8,000rpm</td>
+<td>63%</td>
+</tr>
+<tr>
+<td>YZF-R3</td>
+<td>9,000rpm</td>
+<td>56%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>シフト回数の数え方の注意</strong>: 最終段だけは変速回転を超えて回せる。
+TZR50R は 6速の 5,000rpm 終速が 42km/h だが、<strong>そのまま 6速で 7,228rpm まで回せば 60km/h に達する</strong>
+（出力ピークは 10,000rpm）。よって「6速でも届かない」は誤りで、正しくは <strong>5回</strong>。
+他の4台は 60km/h がどれかのギアの 5,000rpm 圏内に収まるので、この数え方の違いは表に出ない。</p>
+<p><strong>50cc の代金はシフト回数には出ない。</strong> TZR50R と YZF-R125 はどちらも 5回だが、
+60km/h を6速で流すときの回転数は <strong>7,228rpm 対 4,544rpm</strong>（CBR400R は 3,239rpm）。
+<strong>同じ手数でも、使い続ける回転が 2.2倍違う。</strong></p>
+<p><strong>★未解決</strong>: 5,000rpm という固定の変速回転は、2スト50cc には移植できない。
+TZR50R のパワーバンドは概ね 7,000〜10,000rpm で、<strong>5,000rpm はバンドの下</strong>＝実際にはできない乗り方。
+実用域（9,000〜10,000rpm）で数えると 24/36/49/62/74/83 となり <strong>3回</strong>（→4速）。
+<strong>5回と3回のどちらを載せるかは前提の選択</strong>であって、計算の誤りではない。</p>
+<p><strong>80km/h 巡航の 9,638rpm は計算上の値</strong>で、原付一種の法定速度は 30km/h。
+この行は「50ccで80km/hを流す」提案ではなく、<strong>ギアの刻みの細かさを読むためのもの</strong>。</p>
+<h3>17-4. 変速回転を 5,000rpm に置く理由（★前提の正当化）</h3>
+<p><strong>5,000rpm は「加速を最大にする点」ではない。</strong>
+加速最優先の変速点は「今のギアの後輪推力 ＝ 次のギアに入れた直後の後輪推力」が釣り合う回転で、
+これは<strong>出力ピークの少し先</strong>に来る。<strong>トルクピークではまだ早い</strong>
+（次のギアに落ちた先がトルクピークより下になり、推力が大きく落ちる）。</p>
+<p>この表が数えているのは速さではなく <strong>「快適さ＝操作の少なさ」</strong> なので、
+<strong>手が痺れず・振動が耳障りにならず・音が上がらない、街の変速点</strong>を置く。それが 5,000rpm。
+加速最優先の変速点で数えると 250〜400 がほぼ 1〜2回に潰れ、指標として機能しない。</p>
+<p><strong>この決め方をすると、各車の6速の値が「快適な回転のまま流せる速度の上限」になる。</strong></p>
+<table>
+<thead>
+<tr>
+<th>車種</th>
+<th>5,000rpm・6速で流せる上限</th>
+<th>60km/h を6速で保つときの回転</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>TZR50R</strong>（50）</td>
+<td><strong>42km/h</strong></td>
+<td><strong>7,228rpm</strong></td>
+</tr>
+<tr>
+<td>YZF-R125</td>
+<td>66km/h</td>
+<td>4,544rpm</td>
+</tr>
+<tr>
+<td>YZF-R3</td>
+<td>79km/h</td>
+<td>3,791rpm</td>
+</tr>
+<tr>
+<td>Ninja 400</td>
+<td>86km/h</td>
+<td>3,504rpm</td>
+</tr>
+<tr>
+<td><strong>CBR400R</strong></td>
+<td><strong>93km/h</strong></td>
+<td><strong>3,239rpm</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>排気量が小さいほど「快適な回転で出せる速度」の天井が低い。</strong>
+50cc の代金はシフト回数（5回で125と同じ）ではなく、<strong>この天井</strong>に出ている。</p>
+<p><strong>2スト50cc ではさらに厳しい</strong>: TZR50R のパワーバンドは概ね 7,000〜10,000rpm で、
+<strong>5,000rpm はバンドの下</strong>。「快適な回転で気持ちよく走る」領域がほとんど無く、
+<strong>静かに走るか、進むか</strong>の二択になる。→ §17-3 の「固定変速回転が移植できない」はこの形で決着。</p>
+<h3>4-1-5. CBR400R のカーブを CBR500R から推定する（2026-07-31 追加）</h3>
+<p>CBR400R の実測カーブは無い（§4）。だが <strong>CBR500R とはボアが共通で、ストロークだけが違う</strong>
+（67.0 × 66.8 → 67.0 × 56.6）。同じ頭・同じボアなら、**同じピストン速度になる回転へ引き伸ばせば
+カーブは重なる**はずで、トルクは排気量比で縮む。ボア共通なので排気量比＝ストローク比になる。</p>
+<pre><code>ストローク比 k = 56.6 / 66.8 = 0.8473   （排気量比 399/471 = 0.8471 と一致）
+回転軸    ×1/k = ×1.180
+トルク軸  ×k   = ×0.847
+</code></pre>
+<p><strong>検算（カタログの2値と突き合わせる）</strong></p>
+<table>
+<thead>
+<tr>
+<th>500の実測から予測</th>
+<th>予測値</th>
+<th>CBR400R カタログ</th>
+<th>誤差</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>最大トルクの回転</td>
+<td>6,450 × 1.180 = <strong>7,612rpm</strong></td>
+<td>7,500rpm</td>
+<td><strong>+1.5%</strong></td>
+</tr>
+<tr>
+<td>最大トルク</td>
+<td>40.4N·m × 0.847 = <strong>34.2N·m</strong></td>
+<td>38N·m × 0.92（後輪換算）= 35.0N·m</td>
+<td><strong>−2.2%</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>2つとも2%以内</strong>。CBR400R のカーブは「CBR500R の実測カーブを回転軸に1.18倍・トルク軸に0.85倍
+したもの」として扱ってよい。Cycle World は500のカーブを「フラット」と記述している。</p>
+<p><strong>ここから先は出せない</strong>: 500 の<strong>数値つきカーブ</strong>（各回転のトルク）が入手できないので、
+低回転で何%出ているかは推定できない。<strong>山の位置と高さまで</strong>が限界。</p>
+<ul>
+<li>CBR500R 実測: <a href="https://www.cycleworld.com/story/bikes/honda-cbr500r-dyno-test-2022/">Cycle World 2022 CBR500R Dyno Test</a>
+（Dynojet 250i・後輪・43.20hp/8,280rpm・29.77lb-ft = 40.4N·m/6,450rpm）</li>
+<li>ボア×ストローク: 各社公式（§1）</li>
+</ul>
+<h3>4-1-6. 471cc エンジンの低回転（2026-07-31 追加）</h3>
+<p>Cycle World の CB500X 計測記事に、低回転の1点だけ数値がある。</p>
+<blockquote>
+<p>"A flat torque curve with over 25 pound-feet readily available from 2,500 rpm"</p>
+</blockquote>
+<ul>
+<li>CB500X ピーク <strong>29.26 lb-ft / 6,520rpm</strong> → 2,500rpm で <strong>25/29.26 = 85%</strong></li>
+<li>CBR500R ピーク <strong>29.77 lb-ft / 6,450rpm</strong> → 同じ25 lb-ft なら <strong>84%</strong></li>
+<li>両車は同じ471cc・同じチューニング（記事に明記）</li>
+</ul>
+<p><strong>CBR400R へ換算</strong>（§4-1-5 の ×1.180）: <strong>2,950rpm から上でピークの84〜85%以上</strong>。
+80km/h を6速で流すときの 4,319rpm は、その帯の中にある。</p>
+<p><strong>比較</strong>（§4-1-2 の実測読み取り）</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>ピークの何%</th>
+<th>その回転</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>471cc（実測）</td>
+<td>85%</td>
+<td>2,500rpm</td>
+</tr>
+<tr>
+<td>CBR400R（換算）</td>
+<td>85%</td>
+<td>2,950rpm から上</td>
+</tr>
+<tr>
+<td>Ninja 400（実測）</td>
+<td>90%</td>
+<td>4,900rpm</td>
+</tr>
+<tr>
+<td>YZF-R3（実測）</td>
+<td><strong>80%</strong></td>
+<td>5,054rpm＝80km/h巡航</td>
+</tr>
+</tbody>
+</table>
+<p><strong>限界</strong>: カーブ全体の数値は入手できていない。<strong>この1点と「フラット」という記述から先は推定</strong>。</p>
+<ul>
+<li><a href="https://www.cycleworld.com/story/bikes/honda-cb500x-dyno-test-2022/">Cycle World 2022 CB500X Dyno Test</a>
+（Dynojet 250i・42.62hp/8,430rpm・29.26lb-ft/6,520rpm）</li>
+</ul>
+<h3>4-1-7. 実測タイム差がどこで開くか（ヤングマシン 0→1000m）</h3>
+<p>ニンジャ400 と CBR400R の差は、<strong>後半で開く</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>区間</th>
+<th>差</th>
+<th>その区間で増えたぶん</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0→100km/h</td>
+<td>0.457秒</td>
+<td>+0.457</td>
+</tr>
+<tr>
+<td>0→400m</td>
+<td>0.564秒</td>
+<td><strong>+0.107</strong></td>
+</tr>
+<tr>
+<td>0→1000m</td>
+<td>1.098秒</td>
+<td><strong>+0.534</strong></td>
+</tr>
+</tbody>
+</table>
+<p>1000m 到達速度は 175.80 対 168.58km/h（CBR400R が 7.22km/h 遅い）。
+<strong>100km/h→400m の区間では 0.107秒しか開かず、差の半分近くが最後の 400→1000m で付く。</strong>
+グラフの線が低速で重なって見えるのは、この通り。</p>
+<p><a href="index.html">← 本文へ戻る</a></p></body></html>

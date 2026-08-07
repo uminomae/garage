@@ -1,0 +1,45 @@
+<svg viewBox="0 0 1030 684" xmlns="http://www.w3.org/2000/svg" font-family="'Hiragino Sans','Noto Sans JP',sans-serif">
+<rect x="0" y="0" width="1030" height="684" fill="#232733"/>
+<text x="52" y="54" fill="#e6e6e6" font-size="27" font-weight="800">250のスーパースポーツより、400のツアラーのほうが速い。</text>
+<text x="52" y="86" fill="#9aa0aa" font-size="14.5">実測の0→100km/h（短いほど速い）。同じ日・同じコース・同じライダー。</text>
+<text x="52" y="110" fill="#9aa0aa" font-size="14.5">右の縦線は、同じ車体で排気量だけが違う2組＝排気量ぶんの物差し。</text>
+<text x="268" y="134" fill="#7a808c" font-size="12.5">0→100km/h ［秒］</text>
+<text x="250" y="152" fill="#5fcf5f" font-size="17" font-weight="800" text-anchor="end">新ニンジャ400</text>
+<text x="250" y="169" fill="#7a808c" font-size="11.5" text-anchor="end">399cc・167kg・スポーツ</text>
+<rect x="268" y="134" width="325.2" height="25" rx="4" fill="#5fcf5f" opacity="1"/>
+<text x="605.2" y="154" fill="#e6e6e6" font-size="18" font-weight="800">4.926</text>
+<rect x="40" y="201" width="950" height="66" rx="6" fill="#f0883a" opacity="0.08"/>
+<text x="250" y="228" fill="#5a90e8" font-size="17" font-weight="800" text-anchor="end">CBR400R</text>
+<text x="250" y="245" fill="#7a808c" font-size="11.5" text-anchor="end">399cc・195kg・スポーツツアラー</text>
+<rect x="268" y="210" width="355.4" height="25" rx="4" fill="#5a90e8" opacity="1"/>
+<text x="635.4" y="230" fill="#e6e6e6" font-size="18" font-weight="800">5.383</text>
+<rect x="40" y="277" width="950" height="66" rx="6" fill="#f0883a" opacity="0.08"/>
+<text x="250" y="304" fill="#e0705a" font-size="17" font-weight="800" text-anchor="end">CBR250RR</text>
+<text x="250" y="321" fill="#7a808c" font-size="11.5" text-anchor="end">249cc・168kg・スーパースポーツ</text>
+<rect x="268" y="286" width="375.6" height="25" rx="4" fill="#e0705a" opacity="1"/>
+<text x="655.6" y="306" fill="#e6e6e6" font-size="18" font-weight="800">5.688</text>
+<text x="250" y="380" fill="#b98ae0" font-size="17" font-weight="600" text-anchor="end">YZF-R3</text>
+<text x="250" y="397" fill="#7a808c" font-size="11.5" text-anchor="end">321cc・169kg・スポーツ</text>
+<rect x="268" y="362" width="378.7" height="25" rx="4" fill="#b98ae0" opacity="0.7"/>
+<text x="658.7" y="382" fill="#e6e6e6" font-size="18" font-weight="600">5.736</text>
+<text x="250" y="456" fill="#7a808c" font-size="17" font-weight="600" text-anchor="end">新ニンジャ250</text>
+<text x="250" y="473" fill="#7a808c" font-size="11.5" text-anchor="end">248cc・166kg・スポーツ</text>
+<rect x="268" y="438" width="390.5" height="25" rx="4" fill="#7a808c" opacity="0.7"/>
+<text x="670.5" y="458" fill="#e6e6e6" font-size="18" font-weight="600">5.915</text>
+<text x="250" y="532" fill="#7a808c" font-size="17" font-weight="600" text-anchor="end">YZF-R25</text>
+<text x="250" y="549" fill="#7a808c" font-size="11.5" text-anchor="end">249cc・169kg・スポーツ</text>
+<rect x="268" y="514" width="456.3" height="25" rx="4" fill="#7a808c" opacity="0.7"/>
+<text x="736.3" y="534" fill="#e6e6e6" font-size="18" font-weight="600">6.911</text>
+<line x1="826" y1="146" x2="826" y2="450" stroke="#5fcf5f" stroke-width="2" opacity="0.85"/>
+<line x1="820" y1="146" x2="832" y2="146" stroke="#5fcf5f" stroke-width="2" opacity="0.85"/>
+<line x1="820" y1="450" x2="832" y2="450" stroke="#5fcf5f" stroke-width="2" opacity="0.85"/>
+<text x="837" y="293" fill="#5fcf5f" font-size="14" font-weight="700">0.989秒</text>
+<text x="837" y="310" fill="#7a808c" font-size="11.5">248cc→399cc</text>
+<line x1="918" y1="374" x2="918" y2="526" stroke="#b98ae0" stroke-width="2" opacity="0.85"/>
+<line x1="912" y1="374" x2="924" y2="374" stroke="#b98ae0" stroke-width="2" opacity="0.85"/>
+<line x1="912" y1="526" x2="924" y2="526" stroke="#b98ae0" stroke-width="2" opacity="0.85"/>
+<text x="929" y="445" fill="#b98ae0" font-size="14" font-weight="700">1.175秒</text>
+<text x="929" y="462" fill="#7a808c" font-size="11.5">249cc→321cc</text>
+<text x="268" y="336" fill="#f0883a" font-size="15" font-weight="700">↑ 195kgのツアラーが、168kgのレーサーに0.305秒先着する</text>
+<text x="52" y="658" fill="#7a808c" font-size="12.5">実測＝ヤングマシン 0→1000m全開加速テスト（JARI城里テストセンター・同日・同一ライダー・2018年）。CBR250RRはテスト当時の2017年式（38PS）で、車重・出力は現行値（42PS・168kg）。車重はメーカー公表の装備重量。</text>
+</svg>
